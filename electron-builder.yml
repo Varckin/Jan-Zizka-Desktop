@@ -21,7 +21,7 @@ win:
         - x64
   icon: build/icon.ico
   artifactName: JanMessenger-${version}-portable-${arch}.${ext}
-  requestedExecutionLevel: user
+  requestedExecutionLevel: asInvoker
 
 portable:
   artifactName: JanMessenger-${version}-portable-${arch}.${ext}
