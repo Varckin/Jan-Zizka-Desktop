@@ -13,6 +13,9 @@ const JITTER = 0.25;
 const MAX_BACKOFF_MS = 60 * 60 * 1000;
 const SIG_ASSET_NAME = 'update.sig';
 const UPDATE_CONFIG_FILE_NAME = 'app-update.yml';
+const UPDATER_HOME_DIR_NAME = 'jan-messenger-desktop';
+const ORIGIN_FILE_NAME = 'origin.json';
+const REPLACE_RETRY_DELAY_MS = 60 * 1000;
 
 const state = {
     supported: false,
@@ -32,6 +35,7 @@ let lastRelease = null;
 let signatureNotified = false;
 let replacedExePath = null;
 let replacedVersion = null;
+let replaceRetryTimer = null;
 
 function publish() {
     if (emitter) emitter(Object.assign({}, state));
@@ -163,13 +167,53 @@ async function verifyPendingUpdate(info) {
     if (!verifyUpdateSignature(sig, fields)) throw new Error('update signature verification failed');
 }
 
+function updaterHomeDir() {
+    const local = process.env.LOCALAPPDATA || app.getPath('userData');
+    return path.join(local, UPDATER_HOME_DIR_NAME);
+}
+
+function isInsideUpdaterCache(filePath) {
+    try {
+        const local = process.env.LOCALAPPDATA;
+        if (!local || !filePath) return false;
+        const normalized = path.resolve(filePath).toLowerCase();
+        const base = path.resolve(local).toLowerCase();
+        return normalized.startsWith(base + path.sep) && normalized.includes(path.sep + 'pending' + path.sep);
+    } catch {
+        return false;
+    }
+}
+
+function rememberPortableOrigin(exeFile) {
+    if (process.platform !== 'win32') return;
+    try {
+        if (!exeFile || !fs.existsSync(exeFile)) return;
+        if (isInsideUpdaterCache(exeFile)) return;
+        const dir = updaterHomeDir();
+        fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(path.join(dir, ORIGIN_FILE_NAME), JSON.stringify({ exe: exeFile, at: Date.now() }), 'utf8');
+    } catch {
+    }
+}
+
+function readPortableOrigin() {
+    try {
+        const data = JSON.parse(fs.readFileSync(path.join(updaterHomeDir(), ORIGIN_FILE_NAME), 'utf8'));
+        if (data && typeof data.exe === 'string' && fs.existsSync(data.exe)) return data.exe;
+    } catch {
+    }
+    return null;
+}
+
 function getPortableUpdateContext() {
     if (process.platform !== 'win32') return null;
-    const exeFile = process.env.PORTABLE_EXECUTABLE_FILE;
+    let exeFile = process.env.PORTABLE_EXECUTABLE_FILE;
+    if (exeFile && isInsideUpdaterCache(exeFile)) exeFile = readPortableOrigin();
     if (!exeFile || !fs.existsSync(exeFile)) return null;
     const helper = autoUpdater.downloadedUpdateHelper;
     const downloaded = helper ? helper.file : null;
     if (!downloaded || !fs.existsSync(downloaded)) return null;
+    if (path.resolve(downloaded).toLowerCase() === path.resolve(exeFile).toLowerCase()) return null;
     return { exeFile, downloaded };
 }
 
@@ -210,6 +254,15 @@ function replacePortableExecutable(context) {
     }
 }
 
+function scheduleReplaceRetry() {
+    if (replaceRetryTimer) return;
+    replaceRetryTimer = setTimeout(() => {
+        replaceRetryTimer = null;
+        applyPortableUpdateSilently();
+    }, REPLACE_RETRY_DELAY_MS);
+    if (replaceRetryTimer && typeof replaceRetryTimer.unref === 'function') replaceRetryTimer.unref();
+}
+
 function applyPortableUpdateSilently(version) {
     if (!state.supported || state.status !== 'downloaded') return;
     if (replacedExePath && (!version || version === replacedVersion)) return;
@@ -219,6 +272,8 @@ function applyPortableUpdateSilently(version) {
         replacedExePath = context.exeFile;
         if (version) replacedVersion = version;
         clearPendingCache();
+    } else {
+        scheduleReplaceRetry();
     }
 }
 
@@ -261,6 +316,7 @@ function initUpdater(onState) {
     }
 
     ensureUpdateConfigFile();
+    rememberPortableOrigin(process.env.PORTABLE_EXECUTABLE_FILE);
 
     autoUpdater.autoDownload = false;
     autoUpdater.autoInstallOnAppQuit = false;

@@ -25,7 +25,6 @@ win:
 
 portable:
   artifactName: JanMessenger-${version}-portable-${arch}.${ext}
-  unpackDirName: jan-messenger
 
 publish:
   provider: github

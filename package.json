@@ -1,7 +1,7 @@
 {
   "name": "jan-messenger-desktop",
   "productName": "Jan Messenger",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Jan Messenger desktop client",
   "main": "src/main/main.js",
   "author": "Markus Varckin",
