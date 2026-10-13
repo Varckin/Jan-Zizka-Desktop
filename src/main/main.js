@@ -10,12 +10,6 @@ if (process.env.PORTABLE_EXECUTABLE_DIR) {
         app.setPath('userData', portableData);
     } catch {
     }
-    if (process.env.PORTABLE_EXECUTABLE_FILE) {
-        try {
-            fs.rmSync(process.env.PORTABLE_EXECUTABLE_FILE + '.old', { force: true });
-        } catch {
-        }
-    }
 }
 
 const settings = require('./settings');

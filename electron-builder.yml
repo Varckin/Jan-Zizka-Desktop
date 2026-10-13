@@ -16,15 +16,16 @@ compression: maximum
 
 win:
   target:
-    - target: portable
+    - target: nsis
       arch:
         - x64
   icon: build/icon.ico
-  artifactName: JanMessenger-${version}-portable-${arch}.${ext}
   requestedExecutionLevel: asInvoker
 
-portable:
-  artifactName: JanMessenger-${version}-portable-${arch}.${ext}
+nsis:
+  oneClick: true
+  perMachine: false
+  artifactName: JanMessenger-Setup-${version}-${arch}.${ext}
 
 publish:
   provider: github
@@ -33,5 +34,3 @@ publish:
   releaseType: release
 
 npmRebuild: false
-
-afterPack: ./scripts/after-pack.js

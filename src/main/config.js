@@ -36,7 +36,6 @@ const APP_PROTOCOL = 'jan';
 
 const UPDATE_OWNER = 'varckin';
 const UPDATE_REPO = 'jan-zizka-desktop';
-const UPDATER_CACHE_DIR_NAME = 'jan-zizka-desktop-updater';
 
 const VIEW_NAMES = ['chat', 'e2e', 'settings'];
 
@@ -62,7 +61,6 @@ module.exports = {
     sanitizeServerUrl,
     UPDATE_OWNER,
     UPDATE_REPO,
-    UPDATER_CACHE_DIR_NAME,
     DEFAULT_SERVER_URL,
     PROXY_PATHS,
     WS_PROXY_PREFIXES,

@@ -37,11 +37,11 @@ jobs:
             -replace "const UPDATE_REPO = '[^']*';", "const UPDATE_REPO = '$env:GH_REPO';" `
             | Set-Content src\main\config.js -NoNewline
 
-      - name: Build portable x64
+      - name: Build NSIS x64
         env:
           GH_OWNER: ${{ github.repository_owner }}
           GH_REPO: ${{ github.event.repository.name }}
-        run: npx electron-builder --win portable --x64 --publish never
+        run: npx electron-builder --win nsis --x64 --publish never
 
       - name: Artifacts for manual runs
         if: ${{ !startsWith(github.ref, 'refs/tags/v') }}

@@ -1,10 +1,8 @@
-const fs = require('fs');
-const path = require('path');
 const { app } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const settings = require('./settings');
-const { IS_PACKAGED, resourcesPath } = require('./paths');
-const { UPDATE_OWNER, UPDATE_REPO, UPDATER_CACHE_DIR_NAME } = require('./config');
+const { IS_PACKAGED } = require('./paths');
+const { UPDATE_OWNER, UPDATE_REPO } = require('./config');
 const { verifyUpdateSignature } = require('./updateSig');
 
 const BASE_INTERVAL_MS = 15 * 60 * 1000;
@@ -12,10 +10,6 @@ const FIRST_CHECK_DELAY_MS = 45 * 1000;
 const JITTER = 0.25;
 const MAX_BACKOFF_MS = 60 * 60 * 1000;
 const SIG_ASSET_NAME = 'update.sig';
-const UPDATE_CONFIG_FILE_NAME = 'app-update.yml';
-const UPDATER_HOME_DIR_NAME = 'jan-messenger-desktop';
-const ORIGIN_FILE_NAME = 'origin.json';
-const REPLACE_RETRY_DELAY_MS = 60 * 1000;
 
 const state = {
     supported: false,
@@ -33,9 +27,6 @@ let busy = false;
 let lastEtag = null;
 let lastRelease = null;
 let signatureNotified = false;
-let replacedExePath = null;
-let replacedVersion = null;
-let replaceRetryTimer = null;
 
 function publish() {
     if (emitter) emitter(Object.assign({}, state));
@@ -167,146 +158,6 @@ async function verifyPendingUpdate(info) {
     if (!verifyUpdateSignature(sig, fields)) throw new Error('update signature verification failed');
 }
 
-function updaterHomeDir() {
-    const local = process.env.LOCALAPPDATA || app.getPath('userData');
-    return path.join(local, UPDATER_HOME_DIR_NAME);
-}
-
-function isInsideUpdaterCache(filePath) {
-    try {
-        const local = process.env.LOCALAPPDATA;
-        if (!local || !filePath) return false;
-        const normalized = path.resolve(filePath).toLowerCase();
-        const base = path.resolve(local).toLowerCase();
-        return normalized.startsWith(base + path.sep) && normalized.includes(path.sep + 'pending' + path.sep);
-    } catch {
-        return false;
-    }
-}
-
-function rememberPortableOrigin(exeFile) {
-    if (process.platform !== 'win32') return;
-    try {
-        if (!exeFile || !fs.existsSync(exeFile)) return;
-        if (isInsideUpdaterCache(exeFile)) return;
-        const dir = updaterHomeDir();
-        fs.mkdirSync(dir, { recursive: true });
-        fs.writeFileSync(path.join(dir, ORIGIN_FILE_NAME), JSON.stringify({ exe: exeFile, at: Date.now() }), 'utf8');
-    } catch {
-    }
-}
-
-function readPortableOrigin() {
-    try {
-        const data = JSON.parse(fs.readFileSync(path.join(updaterHomeDir(), ORIGIN_FILE_NAME), 'utf8'));
-        if (data && typeof data.exe === 'string' && fs.existsSync(data.exe)) return data.exe;
-    } catch {
-    }
-    return null;
-}
-
-function getPortableUpdateContext() {
-    if (process.platform !== 'win32') return null;
-    let exeFile = process.env.PORTABLE_EXECUTABLE_FILE;
-    if (exeFile && isInsideUpdaterCache(exeFile)) exeFile = readPortableOrigin();
-    if (!exeFile || !fs.existsSync(exeFile)) return null;
-    const helper = autoUpdater.downloadedUpdateHelper;
-    const downloaded = helper ? helper.file : null;
-    if (!downloaded || !fs.existsSync(downloaded)) return null;
-    if (path.resolve(downloaded).toLowerCase() === path.resolve(exeFile).toLowerCase()) return null;
-    return { exeFile, downloaded };
-}
-
-function clearPendingCache() {
-    try {
-        const helper = autoUpdater.downloadedUpdateHelper;
-        if (helper && typeof helper.clear === 'function') {
-            Promise.resolve(helper.clear()).catch(() => { });
-        }
-    } catch {
-    }
-}
-
-function replacePortableExecutable(context) {
-    const backupPath = context.exeFile + '.old';
-    let renamed = false;
-    try {
-        try {
-            fs.rmSync(backupPath, { force: true });
-        } catch {
-        }
-        fs.renameSync(context.exeFile, backupPath);
-        renamed = true;
-        fs.copyFileSync(context.downloaded, context.exeFile);
-        return true;
-    } catch {
-        if (renamed) {
-            try {
-                fs.rmSync(context.exeFile, { force: true });
-            } catch {
-            }
-            try {
-                fs.renameSync(backupPath, context.exeFile);
-            } catch {
-            }
-        }
-        return false;
-    }
-}
-
-function scheduleReplaceRetry() {
-    if (replaceRetryTimer) return;
-    replaceRetryTimer = setTimeout(() => {
-        replaceRetryTimer = null;
-        applyPortableUpdateSilently();
-    }, REPLACE_RETRY_DELAY_MS);
-    if (replaceRetryTimer && typeof replaceRetryTimer.unref === 'function') replaceRetryTimer.unref();
-}
-
-function applyPortableUpdateSilently(version) {
-    if (!state.supported || state.status !== 'downloaded') return;
-    if (replacedExePath && (!version || version === replacedVersion)) return;
-    const context = getPortableUpdateContext();
-    if (!context) return;
-    if (replacePortableExecutable(context)) {
-        replacedExePath = context.exeFile;
-        if (version) replacedVersion = version;
-        clearPendingCache();
-    } else {
-        scheduleReplaceRetry();
-    }
-}
-
-function buildUpdateConfigYaml() {
-    return [
-        'provider: github',
-        `owner: ${UPDATE_OWNER}`,
-        `repo: ${UPDATE_REPO}`,
-        'releaseType: release',
-        `updaterCacheDirName: ${UPDATER_CACHE_DIR_NAME}`,
-        '',
-    ].join('\n');
-}
-
-function ensureUpdateConfigFile() {
-    if (process.platform !== 'win32') return;
-    const target = resourcesPath(UPDATE_CONFIG_FILE_NAME);
-    if (fs.existsSync(target)) return;
-    const content = buildUpdateConfigYaml();
-    try {
-        fs.mkdirSync(path.dirname(target), { recursive: true });
-        fs.writeFileSync(target, content, 'utf8');
-        return;
-    } catch {
-    }
-    try {
-        const fallback = path.join(app.getPath('userData'), UPDATE_CONFIG_FILE_NAME);
-        fs.writeFileSync(fallback, content, 'utf8');
-        autoUpdater.updateConfigPath = fallback;
-    } catch {
-    }
-}
-
 function initUpdater(onState) {
     emitter = onState || null;
     state.supported = IS_PACKAGED;
@@ -315,11 +166,8 @@ function initUpdater(onState) {
         return state;
     }
 
-    ensureUpdateConfigFile();
-    rememberPortableOrigin(process.env.PORTABLE_EXECUTABLE_FILE);
-
     autoUpdater.autoDownload = false;
-    autoUpdater.autoInstallOnAppQuit = false;
+    autoUpdater.autoInstallOnAppQuit = true;
     autoUpdater.allowPrerelease = false;
     autoUpdater.disableDifferentialDownload = true;
     autoUpdater.requestHeaders = { 'user-agent': `JanDesktop/${app.getVersion()}` };
@@ -345,7 +193,6 @@ function initUpdater(onState) {
     });
     autoUpdater.on('update-downloaded', info => {
         setStatus('downloaded', { version: info.version });
-        applyPortableUpdateSilently(info && info.version != null ? String(info.version) : null);
     });
     autoUpdater.on('error', err => {
         if (state.status === 'checking' || state.status === 'downloading' || state.status === 'available') {
@@ -353,9 +200,6 @@ function initUpdater(onState) {
             setStatus('error', { error: String(err && err.message || err) });
         }
     });
-    app.on('before-quit', () => applyPortableUpdateSilently());
-    app.on('will-quit', () => applyPortableUpdateSilently());
-    app.on('quit', () => applyPortableUpdateSilently());
 
     setStatus('idle');
     if (enabled()) schedule(FIRST_CHECK_DELAY_MS);
@@ -374,20 +218,6 @@ function quitAndInstall() {
     if (!state.supported || state.status !== 'downloaded') return false;
     const windowManager = require('./window');
     windowManager.setQuitting(true);
-    let target = replacedExePath && fs.existsSync(replacedExePath) ? replacedExePath : null;
-    if (!target) {
-        const context = getPortableUpdateContext();
-        if (context && replacePortableExecutable(context)) {
-            target = context.exeFile;
-            replacedExePath = target;
-            clearPendingCache();
-        }
-    }
-    if (target) {
-        app.relaunch({ execPath: target, args: ['--updated'] });
-        setImmediate(() => app.exit(0));
-        return true;
-    }
     setImmediate(() => autoUpdater.quitAndInstall(false, true));
     return true;
 }
