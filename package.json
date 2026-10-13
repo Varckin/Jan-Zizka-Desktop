@@ -1,7 +1,7 @@
 {
   "name": "jan-messenger-desktop",
   "productName": "Jan Messenger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Jan Messenger desktop client",
   "main": "src/main/main.js",
   "author": "Markus Varckin",
@@ -17,7 +17,8 @@
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder --win portable --x64",
-    "dist:dir": "electron-builder --win dir --x64"
+    "dist:dir": "electron-builder --win dir --x64",
+    "icon": "node scripts/make-icon.js"
   },
   "dependencies": {
     "@zxcvbn-ts/core": "4.2.0",
@@ -30,6 +31,8 @@
   },
   "devDependencies": {
     "electron": "31.7.7",
-    "electron-builder": "24.13.3"
+    "electron-builder": "24.13.3",
+    "png2icons": "2.0.1",
+    "pngjs": "7.0.0"
   }
 }
