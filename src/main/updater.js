@@ -1,8 +1,10 @@
+const fs = require('fs');
+const path = require('path');
 const { app } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const settings = require('./settings');
-const { IS_PACKAGED } = require('./paths');
-const { UPDATE_OWNER, UPDATE_REPO } = require('./config');
+const { IS_PACKAGED, resourcesPath } = require('./paths');
+const { UPDATE_OWNER, UPDATE_REPO, UPDATER_CACHE_DIR_NAME } = require('./config');
 const { verifyUpdateSignature } = require('./updateSig');
 
 const BASE_INTERVAL_MS = 15 * 60 * 1000;
@@ -10,6 +12,7 @@ const FIRST_CHECK_DELAY_MS = 45 * 1000;
 const JITTER = 0.25;
 const MAX_BACKOFF_MS = 60 * 60 * 1000;
 const SIG_ASSET_NAME = 'update.sig';
+const UPDATE_CONFIG_FILE_NAME = 'app-update.yml';
 
 const state = {
     supported: false,
@@ -158,6 +161,36 @@ async function verifyPendingUpdate(info) {
     if (!verifyUpdateSignature(sig, fields)) throw new Error('update signature verification failed');
 }
 
+function buildUpdateConfigYaml() {
+    return [
+        'provider: github',
+        `owner: ${UPDATE_OWNER}`,
+        `repo: ${UPDATE_REPO}`,
+        'releaseType: release',
+        `updaterCacheDirName: ${UPDATER_CACHE_DIR_NAME}`,
+        '',
+    ].join('\n');
+}
+
+function ensureUpdateConfigFile() {
+    if (process.platform !== 'win32') return;
+    const target = resourcesPath(UPDATE_CONFIG_FILE_NAME);
+    if (fs.existsSync(target)) return;
+    const content = buildUpdateConfigYaml();
+    try {
+        fs.mkdirSync(path.dirname(target), { recursive: true });
+        fs.writeFileSync(target, content, 'utf8');
+        return;
+    } catch {
+    }
+    try {
+        const fallback = path.join(app.getPath('userData'), UPDATE_CONFIG_FILE_NAME);
+        fs.writeFileSync(fallback, content, 'utf8');
+        autoUpdater.updateConfigPath = fallback;
+    } catch {
+    }
+}
+
 function initUpdater(onState) {
     emitter = onState || null;
     state.supported = IS_PACKAGED;
@@ -166,9 +199,12 @@ function initUpdater(onState) {
         return state;
     }
 
+    ensureUpdateConfigFile();
+
     autoUpdater.autoDownload = false;
     autoUpdater.autoInstallOnAppQuit = true;
     autoUpdater.allowPrerelease = false;
+    autoUpdater.disableDifferentialDownload = true;
     autoUpdater.requestHeaders = { 'user-agent': `JanDesktop/${app.getVersion()}` };
 
     autoUpdater.on('update-not-available', () => {

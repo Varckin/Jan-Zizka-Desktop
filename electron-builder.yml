@@ -30,7 +30,9 @@ portable:
 publish:
   provider: github
   owner: varckin
-  repo: jan-messenger-desktop
+  repo: jan-zizka-desktop
   releaseType: release
 
 npmRebuild: false
+
+afterPack: ./scripts/after-pack.js
