@@ -9,7 +9,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/varckin/Jan-Zizka-desktop.git"
+    "url": "git+https://github.com/Varckin/Jan-Zizka-Desktop.git"
   },
   "engines": {
     "node": ">=20"
