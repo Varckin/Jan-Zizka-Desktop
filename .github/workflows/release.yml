@@ -27,7 +27,20 @@ jobs:
       - name: Dependencies
         run: npm ci
 
+      - name: Stamp update endpoint into client config
+        env:
+          GH_OWNER: ${{ github.repository_owner }}
+          GH_REPO: ${{ github.event.repository.name }}
+        run: |
+          (Get-Content src\main\config.js -Raw) `
+            -replace "const UPDATE_OWNER = '[^']*';", "const UPDATE_OWNER = '$env:GH_OWNER';" `
+            -replace "const UPDATE_REPO = '[^']*';", "const UPDATE_REPO = '$env:GH_REPO';" `
+            | Set-Content src\main\config.js -NoNewline
+
       - name: Build portable x64
+        env:
+          GH_OWNER: ${{ github.repository_owner }}
+          GH_REPO: ${{ github.event.repository.name }}
         run: npx electron-builder --win portable --x64 --publish never
 
       - name: Artifacts for manual runs
@@ -35,15 +48,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: portable-build
-          path: |
-            release/*.exe
-            release/latest.yml
+          path: release/*.exe
 
-      - name: Sign update manifest
+      - name: Prepare and sign update manifest
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         env:
           UPDATE_SIGN_KEY: ${{ secrets.UPDATE_SIGN_KEY }}
-        run: node scripts/sign-update.js release/latest.yml release/update.sig
+          UPDATE_VERSION: ${{ github.ref_name }}
+        run: node scripts/sign-update.js
 
       - name: Publish release
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
