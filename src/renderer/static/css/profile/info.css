@@ -1,0 +1,136 @@
+#view-profile .profile-body, #view-settings .profile-body{
+    margin-top: 1rem;
+    position: relative;
+}
+
+#view-profile .profile-info, #view-settings .profile-info{
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0s;
+}
+
+#view-profile .view-mode, #view-settings .view-mode{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+#view-profile .view-mode.hidden-view, #view-settings .view-mode.hidden-view{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-24px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        visibility 0s linear 0.4s;
+}
+
+#view-profile .edit-mode, #view-settings .edit-mode{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(24px);
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        visibility 0s linear 0.4s;
+}
+
+#view-profile .edit-mode.visible, #view-settings .edit-mode.visible{
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+    transition:
+        opacity 0.4s ease,
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0s;
+}
+
+#view-profile .info-item, #view-settings .info-item{
+    display: flex;
+    align-items: flex-start;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #2a2a44;
+    transition: background 0.2s, padding 0.2s;
+    min-width: 0;
+}
+
+#view-profile .info-item:hover, #view-settings .info-item:hover{ background: rgba(255,255,255,0.02); padding-left: 4px; }
+
+#view-profile .info-item .label, #view-settings .info-item .label{
+    min-width: 140px;
+    max-width: 40%;
+    flex-shrink: 0;
+    margin-right: 16px;
+    font-weight: 500;
+    color: #b8c7e6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+#view-profile .info-item .value, #view-settings .info-item .value{
+    flex: 1;
+    min-width: 0;
+    color: #e0e0e0;
+    transition: color 0.2s;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+#view-profile .edit-mode .form-group, #view-settings .edit-mode .form-group{
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+#view-profile .edit-mode.visible .form-group, #view-settings .edit-mode.visible .form-group{
+    animation: fieldAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+#view-profile .edit-mode.visible .form-group:nth-child(1), #view-settings .edit-mode.visible .form-group:nth-child(1){ animation-delay: 0.08s; }
+#view-profile .edit-mode.visible .form-group:nth-child(2), #view-settings .edit-mode.visible .form-group:nth-child(2){ animation-delay: 0.13s; }
+#view-profile .edit-mode.visible .form-group:nth-child(3), #view-settings .edit-mode.visible .form-group:nth-child(3){ animation-delay: 0.18s; }
+#view-profile .edit-mode.visible .form-group:nth-child(4), #view-settings .edit-mode.visible .form-group:nth-child(4){ animation-delay: 0.23s; }
+#view-profile .edit-mode.visible .form-group:nth-child(5), #view-settings .edit-mode.visible .form-group:nth-child(5){ animation-delay: 0.28s; }
+#view-profile .edit-mode.visible .form-group:nth-child(6), #view-settings .edit-mode.visible .form-group:nth-child(6){ animation-delay: 0.33s; }
+#view-profile .edit-mode.visible .form-group:nth-child(7), #view-settings .edit-mode.visible .form-group:nth-child(7){ animation-delay: 0.38s; }
+
+#view-profile .edit-mode .form-group label, #view-settings .edit-mode .form-group label{
+    display: block;
+    color: #b8c7e6;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    word-wrap: break-word;
+}
+
+#view-profile .edit-mode .form-group input, #view-settings .edit-mode .form-group input, #view-profile .edit-mode .form-group textarea, #view-settings .edit-mode .form-group textarea, #view-profile .edit-mode .form-group select, #view-settings .edit-mode .form-group select{
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #2a2a44;
+    background: #0f0f1a;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+#view-profile .edit-mode .form-group input:focus, #view-settings .edit-mode .form-group input:focus, #view-profile .edit-mode .form-group textarea:focus, #view-settings .edit-mode .form-group textarea:focus, #view-profile .edit-mode .form-group select:focus, #view-settings .edit-mode .form-group select:focus{
+    outline: none;
+    border-color: #4a6fa5;
+    box-shadow: 0 0 0 4px rgba(74, 111, 165, 0.25);
+    background: #1a1a30;
+}

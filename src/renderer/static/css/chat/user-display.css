@@ -1,0 +1,34 @@
+#view-chat .user-display{ display: inline-flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+#view-chat .user-display .display-name{ font-weight: 500; color: inherit; }
+
+#view-chat .chat-item .info .name .user-display .display-name{ color: var(--chat-text-bright); }
+
+#view-chat .message .sender .user-display .display-name{ color: #b8c7e6; }
+#view-chat .message.sent .sender .user-display .display-name{ color: rgba(255, 255, 255, 0.85); }
+
+#view-chat .member-name .user-display .display-name{ color: var(--chat-text); }
+
+#view-chat .info-profile-header h2 .user-display .display-name{ color: var(--chat-text-bright); }
+
+#view-chat .blocked-user-name .user-display .display-name{ color: var(--chat-text); }
+
+#view-chat .verified-badge{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    color: #3b82f6;
+    vertical-align: -0.15em;
+}
+
+#view-chat .verified-badge svg{ width: 100%; height: 100%; display: block; }
+
+#view-chat .chat-item .info .name .verified-badge{ width: 14px; height: 14px; vertical-align: baseline; }
+
+#view-chat #chat-name-span .verified-badge{ width: 0.9em; height: 0.9em; margin-left: 6px; }
+
+#view-chat .message .sender .verified-badge{ width: 0.95em; height: 0.95em; margin-left: 4px; }
+
+#view-chat .info-profile-header h2 .verified-badge{ width: 0.85em; height: 0.85em; margin-left: 6px; }

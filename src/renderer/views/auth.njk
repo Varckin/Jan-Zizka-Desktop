@@ -1,0 +1,176 @@
+{% extends "layout.njk" %}
+
+{% block body_class %}auth-page{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="/static/css/desktop/shell.css">
+<link rel="stylesheet" href="/static/css/desktop/overrides.css">
+<link rel="stylesheet" href="/static/css/auth/variables.css">
+<link rel="stylesheet" href="/static/css/auth/animations.css">
+<link rel="stylesheet" href="/static/css/auth/layout.css">
+<link rel="stylesheet" href="/static/css/auth/forms.css">
+<link rel="stylesheet" href="/static/css/auth/buttons.css">
+<link rel="stylesheet" href="/static/css/auth/links.css">
+<link rel="stylesheet" href="/static/css/auth/verification.css">
+<link rel="stylesheet" href="/static/css/auth/responsive.css">
+<link rel="stylesheet" href="/static/css/password-strength.css">
+{% endblock %}
+
+{% block chrome %}
+{% include "partials/titlebar.njk" %}
+{% endblock %}
+
+{% block content %}
+<div class="auth-page-content">
+    <div class="auth-container">
+        <div class="auth-bg" aria-hidden="true">
+            <span class="auth-bg-orb auth-bg-orb-1"></span>
+            <span class="auth-bg-orb auth-bg-orb-2"></span>
+        </div>
+        <div class="auth-card">
+            <h1 id="auth-main-title">
+                {% if mode == 'register' %}{{ t('auth_title_register') }}
+                {% elif mode == 'forgot' %}{{ t('forgot_password_title') }}
+                {% elif mode == 'reset' %}{{ t('reset_password_title') }}
+                {% else %}{{ t('auth_title_login') }}{% endif %}
+            </h1>
+            <p class="subtitle" id="auth-main-subtitle">
+                {% if mode == 'register' %}{{ t('auth_subtitle_register') }}
+                {% elif mode == 'forgot' %}{{ t('forgot_password_subtitle') }}
+                {% elif mode == 'reset' %}{{ t('reset_password_subtitle') }}
+                {% else %}{{ t('auth_subtitle_login') }}{% endif %}
+            </p>
+
+            <div id="login-container" class="auth-form-container{% if mode != 'login' %} hidden-form{% endif %}">
+                <div class="auth-form-inner">
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="login-username">{{ t('auth_label_username_email') }}</label>
+                            <input type="text" id="login-username" name="username" placeholder="{{ t('auth_placeholder_username_email') }}" autocomplete="username" {% if mode == 'login' %}autofocus{% endif %} required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">{{ t('auth_label_password') }}</label>
+                            <input type="password" id="login-password" name="password" placeholder="{{ t('auth_placeholder_password') }}" autocomplete="current-password" required>
+                        </div>
+                        <div class="form-error"></div>
+                        <button type="submit" class="auth-button" id="login-submit">{{ t('auth_button_login') }}</button>
+                    </form>
+                    <div class="auth-switch">{{ t('auth_switch_no_account') | safe }}</div>
+                    <div class="auth-links"><a href="#" class="switch-link" data-mode="forgot">{{ t('forgot_password') }}</a></div>
+                </div>
+            </div>
+
+            <div id="register-container" class="auth-form-container{% if mode != 'register' %} hidden-form{% endif %}">
+                <div class="auth-form-inner">
+                    <form id="register-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="reg-first-name">{{ t('auth_label_first_name') }}</label>
+                            <input type="text" id="reg-first-name" name="first_name" placeholder="{{ t('auth_placeholder_first_name') }}" autocomplete="given-name" maxlength="64" {% if mode == 'register' %}autofocus{% endif %} required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-last-name">{{ t('auth_label_last_name') }}</label>
+                            <input type="text" id="reg-last-name" name="last_name" placeholder="{{ t('auth_placeholder_last_name') }}" autocomplete="family-name" maxlength="64">
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-username">{{ t('auth_label_username') }}</label>
+                            <input type="text" id="reg-username" name="username" placeholder="{{ t('auth_placeholder_username') }}" autocomplete="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">{{ t('auth_label_email') }}</label>
+                            <input type="email" id="reg-email" name="email" placeholder="{{ t('auth_placeholder_email') }}" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">{{ t('auth_label_password') }}</label>
+                            <input type="password" id="reg-password" name="password" placeholder="{{ t('auth_placeholder_password_min') }}" autocomplete="new-password" required minlength="8" data-password-strength>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password-confirm">{{ t('auth_label_confirm_password') }}</label>
+                            <input type="password" id="reg-password-confirm" name="password_confirm" placeholder="{{ t('auth_placeholder_confirm_password') }}" autocomplete="new-password" required>
+                        </div>
+                        <div class="form-error"></div>
+                        <button type="submit" class="auth-button" id="register-submit">{{ t('auth_button_register') }}</button>
+                    </form>
+                    <div class="auth-switch">{{ t('auth_switch_have_account') | safe }}</div>
+                </div>
+            </div>
+
+            <div id="verification-container" class="auth-form-container hidden-form">
+                <div class="auth-form-inner">
+                    <form id="verification-form" class="auth-form">
+                        <p class="verification-info" id="verification-info"></p>
+                        <div class="form-group">
+                            <label for="verify-code">{{ t('email_verification_code_label') }}</label>
+                            <input type="text" id="verify-code" name="code" placeholder="{{ t('email_verification_placeholder') }}" maxlength="6" pattern="[0-9]{6}" inputmode="numeric" autocomplete="one-time-code" required>
+                        </div>
+                        <div class="form-error"></div>
+                        <button type="submit" class="auth-button" id="verify-submit">{{ t('email_verification_button') }}</button>
+                    </form>
+                    <div class="auth-switch"><a href="#" id="resend-code-link">{{ t('email_verification_resend') }}</a></div>
+                </div>
+            </div>
+
+            <div id="forgot-container" class="auth-form-container{% if mode != 'forgot' %} hidden-form{% endif %}">
+                <div class="auth-form-inner">
+                    <form id="forgot-password-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="reset-email">{{ t('email') }}</label>
+                            <input type="email" id="reset-email" name="email" placeholder="{{ t('auth_placeholder_email') }}" autocomplete="email" required>
+                        </div>
+                        <div class="form-error"></div>
+                        <button type="submit" class="auth-button" id="reset-submit">{{ t('send_reset_link') }}</button>
+                    </form>
+                    <div class="auth-switch"><a href="#" class="switch-link" data-mode="login">{{ t('back_to_login') }}</a></div>
+                </div>
+            </div>
+
+            <div id="reset-container" class="auth-form-container{% if mode != 'reset' %} hidden-form{% endif %}">
+                <div class="auth-form-inner">
+                    {% if mode == 'reset' and resetError %}
+                        <div class="form-error show">{{ t('reset_token_invalid') }}</div>
+                        <div class="auth-switch"><a href="#" class="switch-link" data-mode="login">{{ t('back_to_login') }}</a></div>
+                    {% else %}
+                        <form id="reset-password-form" class="auth-form">
+                            <input type="hidden" id="reset-token" value="{{ token }}">
+                            <div class="form-group" id="reset-token-field">
+                                <label for="reset-token-input">{{ t('reset_token_label') }}</label>
+                                <input type="text" id="reset-token-input" placeholder="{{ t('reset_token_placeholder') }}" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">{{ t('new_password') }}</label>
+                                <input type="password" id="new-password" name="new_password" placeholder="{{ t('auth_placeholder_password_min') }}" autocomplete="new-password" required minlength="8" data-password-strength>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">{{ t('confirm_password') }}</label>
+                                <input type="password" id="confirm-password" name="confirm_password" placeholder="{{ t('auth_placeholder_confirm_password') }}" autocomplete="new-password" required>
+                            </div>
+                            <div class="form-error"></div>
+                            <button type="submit" class="auth-button" id="reset-password-submit">{{ t('reset_password_button') }}</button>
+                        </form>
+                        <div class="auth-switch"><a href="#" class="switch-link" data-mode="login">{{ t('back_to_login') }}</a></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <footer class="auth-footer">
+            <div class="auth-footer-side">
+                <span class="auth-version">v{{ appVersion }}</span>
+            </div>
+        </footer>
+        <div class="auth-lang-slot">
+            {% include "partials/lang_switcher.njk" %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block vendor_scripts %}
+<script src="/static/js/zxcvbn-umd/core.js"></script>
+<script src="/static/js/zxcvbn-umd/language-common.js"></script>
+<script src="/static/js/zxcvbn-umd/language-en.js"></script>
+<script src="/static/js/password-strength.js"></script>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="/static/js/desktop/authEntry.js"></script>
+{% endblock %}

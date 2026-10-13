@@ -1,0 +1,26 @@
+@media (max-width: 768px) {
+    #view-chat #photo-viewer-modal .photo-viewer-nav img{ max-width: 90vw; max-height: 70vh; }
+    #view-chat .info-modal-content{ max-width: 100%; }
+}
+
+@media (max-width: 640px) {
+    #view-chat .channel-info-header{ flex-direction: column; text-align: center; }
+    #view-chat .channel-info-actions{ justify-content: center; }
+    #view-chat .settings-tab{ padding: 8px 10px; font-size: 0.85rem; }
+    #view-chat .message.long-pressing{
+        transform: scale(0.97);
+        opacity: 0.85;
+        transition: transform 0.15s, opacity 0.15s;
+    }
+}
+
+@media (max-width: 480px) {
+    #view-chat .message .sender{ font-size: 0.7rem; }
+    #view-chat .message .time{ font-size: 0.6rem; }
+    #view-chat .custom-dialog{ padding: 20px; max-width: 95%; }
+    #view-chat .dialog-content p{ font-size: 0.95rem; }
+    #view-chat #photo-viewer-modal .photo-viewer-nav img{ max-width: 95vw; max-height: 60vh; }
+    #view-chat #photo-viewer-modal .photo-viewer-nav button{ font-size: 1.5rem; padding: 4px 10px; }
+    #view-chat .info-avatar-wrapper{ width: 70px; height: 70px; }
+    #view-chat .info-profile-header h2{ font-size: 1.2rem; }
+}

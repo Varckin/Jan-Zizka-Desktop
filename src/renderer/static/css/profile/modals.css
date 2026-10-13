@@ -1,0 +1,138 @@
+#view-profile .modal, #view-settings .modal{
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+#view-profile .modal.is-open, #view-settings .modal.is-open{
+    display: flex;
+    animation: modalOverlayIn 0.3s ease forwards;
+}
+
+#view-profile .modal.is-closing, #view-settings .modal.is-closing{
+    display: flex;
+    pointer-events: none;
+    animation: modalOverlayOut 0.25s ease forwards;
+}
+
+#view-profile .modal.is-open .modal-content, #view-settings .modal.is-open .modal-content{
+    animation: modalContentIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+#view-profile .modal.is-closing .modal-content, #view-settings .modal.is-closing .modal-content{
+    animation: modalContentOut 0.25s ease forwards;
+}
+
+#view-profile .modal-content, #view-settings .modal-content{
+    background: #1a1a2e;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: #e0e0e0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+#view-profile .modal .close, #view-settings .modal .close{
+    float: right;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s, transform 0.2s;
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+#view-profile .modal .close:hover, #view-settings .modal .close:hover{ color: #fff; transform: rotate(90deg); }
+
+#view-profile .modal-content h2, #view-settings .modal-content h2{
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    color: #b8c7e6;
+    font-weight: 500;
+}
+
+#view-profile .modal-content .form-group, #view-settings .modal-content .form-group{ margin-bottom: 0.5rem; }
+
+#view-profile .modal-content .form-group label, #view-settings .modal-content .form-group label{
+    display: block;
+    color: #b8c7e6;
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+    word-wrap: break-word;
+}
+
+#view-profile .modal-content .form-group input, #view-settings .modal-content .form-group input, #view-profile .modal-content .form-group textarea, #view-settings .modal-content .form-group textarea, #view-profile .modal-content .form-group select, #view-settings .modal-content .form-group select{
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #2a2a44;
+    background: #0f0f1a;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+#view-profile .modal-content .form-group input:focus, #view-settings .modal-content .form-group input:focus, #view-profile .modal-content .form-group textarea:focus, #view-settings .modal-content .form-group textarea:focus, #view-profile .modal-content .form-group select:focus, #view-settings .modal-content .form-group select:focus{
+    outline: none;
+    border-color: #4a6fa5;
+    box-shadow: 0 0 0 4px rgba(74, 111, 165, 0.25);
+    background: #1a1a30;
+}
+
+#view-profile .modal-content .error-msg, #view-settings .modal-content .error-msg{
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    min-height: 1em;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#view-profile .modal-content .error-msg.show, #view-settings .modal-content .error-msg.show{ opacity: 1; transform: translateY(0); }
+
+#view-profile .modal-content .form-error, #view-settings .modal-content .form-error{
+    color: #ff6b6b;
+    min-height: 0.5em;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    margin: 0.2rem 0 0.4rem 0;
+}
+
+#view-profile .modal-content .form-error.show, #view-settings .modal-content .form-error.show{ opacity: 1; transform: translateY(0); }
+
+#view-profile .modal-content .btn-primary, #view-settings .modal-content .btn-primary{ margin-top: 0.3rem; }
+
+#view-profile #avatar-crop-modal .avatar-crop-content, #view-settings #avatar-crop-modal .avatar-crop-content{
+    background: #1a1a2e;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+#view-profile .avatar-crop-container, #view-settings .avatar-crop-container{ max-height: 70vh; overflow: hidden; margin: 10px 0; }
+
+#view-profile .avatar-crop-container img, #view-settings .avatar-crop-container img{ max-width: 100%; display: block; }
+
+#view-profile .avatar-crop-actions, #view-settings .avatar-crop-actions{ display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px; }

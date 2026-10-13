@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="{{ cspMeta }}">
+    <title>{% block title %}{{ t('site_title') }}{% endblock %}</title>
+    <link rel="icon" href="/static/img/logo.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/desktop/base.css">
+    <link rel="stylesheet" href="/static/css/starfall.css">
+    <link rel="stylesheet" href="/static/css/lang-switcher.css">
+    {% block head_extra %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    {% block chrome %}{% endblock %}
+
+    {% block content %}{% endblock %}
+
+    <script src="/static/js/desktop/starfall.js"></script>
+    <script src="/i18n/translations.js"></script>
+    <script src="/desktop/app-data.js"></script>
+    {% block vendor_scripts %}{% endblock %}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

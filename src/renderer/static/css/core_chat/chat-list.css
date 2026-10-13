@@ -1,0 +1,202 @@
+#view-chat .chat-item, #view-chat .e2e-chat-item, #view-e2e .e2e-chat-item, #view-settings .e2e-chat-item,  #view-e2e .chat-item, #view-chat .e2e-chat-item, #view-e2e .e2e-chat-item, #view-settings .e2e-chat-item,  #view-settings .chat-item, #view-chat .e2e-chat-item, #view-e2e .e2e-chat-item, #view-settings .e2e-chat-item{
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--chat-border-soft);
+    opacity: 1;
+    transform: none;
+    transition:
+        background 0.25s ease,
+        transform 0.35s var(--chat-ease-soft),
+        opacity 0.3s ease,
+        max-height 0.35s ease,
+        padding 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.25s ease;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+#view-chat .chat-item--enter, #view-chat .e2e-chat-item--enter, #view-e2e .e2e-chat-item--enter, #view-settings .e2e-chat-item--enter,  #view-e2e .chat-item--enter, #view-chat .e2e-chat-item--enter, #view-e2e .e2e-chat-item--enter, #view-settings .e2e-chat-item--enter,  #view-settings .chat-item--enter, #view-chat .e2e-chat-item--enter, #view-e2e .e2e-chat-item--enter, #view-settings .e2e-chat-item--enter{
+    animation: chatItemAppear 0.42s var(--chat-ease-soft) backwards;
+}
+
+#view-chat .chat-item:hover, #view-chat .e2e-chat-item:hover, #view-e2e .e2e-chat-item:hover, #view-settings .e2e-chat-item:hover,  #view-e2e .chat-item:hover, #view-chat .e2e-chat-item:hover, #view-e2e .e2e-chat-item:hover, #view-settings .e2e-chat-item:hover,  #view-settings .chat-item:hover, #view-chat .e2e-chat-item:hover, #view-e2e .e2e-chat-item:hover, #view-settings .e2e-chat-item:hover{
+    background: var(--chat-bg-elevated);
+    transform: translateX(3px);
+    box-shadow: -3px 0 0 0 var(--chat-accent) inset,
+                0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+#view-chat .chat-item.active, #view-chat .e2e-chat-item.active, #view-e2e .e2e-chat-item.active, #view-settings .e2e-chat-item.active,  #view-e2e .chat-item.active, #view-chat .e2e-chat-item.active, #view-e2e .e2e-chat-item.active, #view-settings .e2e-chat-item.active,  #view-settings .chat-item.active, #view-chat .e2e-chat-item.active, #view-e2e .e2e-chat-item.active, #view-settings .e2e-chat-item.active{
+    background: linear-gradient(90deg, rgba(74, 111, 165, 0.18), transparent 90%);
+    border-left: 3px solid var(--chat-accent);
+    box-shadow: inset 0 0 24px rgba(74, 111, 165, 0.08);
+}
+
+#view-chat .chat-item.active .avatar, #view-chat .chat-item.active .avatar-img, #view-e2e .chat-item.active .avatar-img, #view-settings .chat-item.active .avatar-img, #view-chat .e2e-chat-item.active .e2e-chat-avatar, #view-e2e .e2e-chat-item.active .e2e-chat-avatar, #view-settings .e2e-chat-item.active .e2e-chat-avatar, #view-chat .e2e-chat-item.active .e2e-chat-avatar img, #view-e2e .e2e-chat-item.active .e2e-chat-avatar img, #view-settings .e2e-chat-item.active .e2e-chat-avatar img,  #view-e2e .chat-item.active .avatar, #view-chat .chat-item.active .avatar-img, #view-e2e .chat-item.active .avatar-img, #view-settings .chat-item.active .avatar-img, #view-chat .e2e-chat-item.active .e2e-chat-avatar, #view-e2e .e2e-chat-item.active .e2e-chat-avatar, #view-settings .e2e-chat-item.active .e2e-chat-avatar, #view-chat .e2e-chat-item.active .e2e-chat-avatar img, #view-e2e .e2e-chat-item.active .e2e-chat-avatar img, #view-settings .e2e-chat-item.active .e2e-chat-avatar img,  #view-settings .chat-item.active .avatar, #view-chat .chat-item.active .avatar-img, #view-e2e .chat-item.active .avatar-img, #view-settings .chat-item.active .avatar-img, #view-chat .e2e-chat-item.active .e2e-chat-avatar, #view-e2e .e2e-chat-item.active .e2e-chat-avatar, #view-settings .e2e-chat-item.active .e2e-chat-avatar, #view-chat .e2e-chat-item.active .e2e-chat-avatar img, #view-e2e .e2e-chat-item.active .e2e-chat-avatar img, #view-settings .e2e-chat-item.active .e2e-chat-avatar img{
+    animation: floatGlow 3.2s ease-in-out infinite;
+}
+
+#view-chat .chat-item.removing, #view-chat .e2e-chat-item.removing, #view-e2e .e2e-chat-item.removing, #view-settings .e2e-chat-item.removing,  #view-e2e .chat-item.removing, #view-chat .e2e-chat-item.removing, #view-e2e .e2e-chat-item.removing, #view-settings .e2e-chat-item.removing,  #view-settings .chat-item.removing, #view-chat .e2e-chat-item.removing, #view-e2e .e2e-chat-item.removing, #view-settings .e2e-chat-item.removing{
+    animation: none !important;
+    max-height: 0 !important;
+    opacity: 0;
+    transform: translateX(-30px);
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom-width: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#view-chat .chat-item.menu-open,  #view-e2e .chat-item.menu-open,  #view-settings .chat-item.menu-open{ z-index: 1000; transform: none !important; }
+
+#view-chat .chat-item .avatar-wrapper, #view-chat .e2e-chat-item .e2e-chat-avatar-wrapper, #view-e2e .e2e-chat-item .e2e-chat-avatar-wrapper, #view-settings .e2e-chat-item .e2e-chat-avatar-wrapper,  #view-e2e .chat-item .avatar-wrapper, #view-chat .e2e-chat-item .e2e-chat-avatar-wrapper, #view-e2e .e2e-chat-item .e2e-chat-avatar-wrapper, #view-settings .e2e-chat-item .e2e-chat-avatar-wrapper,  #view-settings .chat-item .avatar-wrapper, #view-chat .e2e-chat-item .e2e-chat-avatar-wrapper, #view-e2e .e2e-chat-item .e2e-chat-avatar-wrapper, #view-settings .e2e-chat-item .e2e-chat-avatar-wrapper{
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    width: var(--chat-avatar-size, 42px);
+    height: var(--chat-avatar-size, 42px);
+    margin-right: 12px;
+}
+
+#view-chat .chat-item .avatar, #view-chat .e2e-chat-item .e2e-chat-avatar, #view-e2e .e2e-chat-item .e2e-chat-avatar, #view-settings .e2e-chat-item .e2e-chat-avatar,  #view-e2e .chat-item .avatar, #view-chat .e2e-chat-item .e2e-chat-avatar, #view-e2e .e2e-chat-item .e2e-chat-avatar, #view-settings .e2e-chat-item .e2e-chat-avatar,  #view-settings .chat-item .avatar, #view-chat .e2e-chat-item .e2e-chat-avatar, #view-e2e .e2e-chat-item .e2e-chat-avatar, #view-settings .e2e-chat-item .e2e-chat-avatar{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--chat-gradient-avatar);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    transition: transform 0.3s var(--chat-ease-soft), box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+#view-chat .chat-item .avatar-img, #view-chat .e2e-chat-item .e2e-chat-avatar img, #view-e2e .e2e-chat-item .e2e-chat-avatar img, #view-settings .e2e-chat-item .e2e-chat-avatar img,  #view-e2e .chat-item .avatar-img, #view-chat .e2e-chat-item .e2e-chat-avatar img, #view-e2e .e2e-chat-item .e2e-chat-avatar img, #view-settings .e2e-chat-item .e2e-chat-avatar img,  #view-settings .chat-item .avatar-img, #view-chat .e2e-chat-item .e2e-chat-avatar img, #view-e2e .e2e-chat-item .e2e-chat-avatar img, #view-settings .e2e-chat-item .e2e-chat-avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s var(--chat-ease-soft);
+    display: block;
+}
+
+#view-chat .chat-item:hover .avatar, #view-chat .chat-item:hover .avatar-img, #view-e2e .chat-item:hover .avatar-img, #view-settings .chat-item:hover .avatar-img, #view-chat .e2e-chat-item:hover .e2e-chat-avatar, #view-e2e .e2e-chat-item:hover .e2e-chat-avatar, #view-settings .e2e-chat-item:hover .e2e-chat-avatar, #view-chat .e2e-chat-item:hover .e2e-chat-avatar img, #view-e2e .e2e-chat-item:hover .e2e-chat-avatar img, #view-settings .e2e-chat-item:hover .e2e-chat-avatar img,  #view-e2e .chat-item:hover .avatar, #view-chat .chat-item:hover .avatar-img, #view-e2e .chat-item:hover .avatar-img, #view-settings .chat-item:hover .avatar-img, #view-chat .e2e-chat-item:hover .e2e-chat-avatar, #view-e2e .e2e-chat-item:hover .e2e-chat-avatar, #view-settings .e2e-chat-item:hover .e2e-chat-avatar, #view-chat .e2e-chat-item:hover .e2e-chat-avatar img, #view-e2e .e2e-chat-item:hover .e2e-chat-avatar img, #view-settings .e2e-chat-item:hover .e2e-chat-avatar img,  #view-settings .chat-item:hover .avatar, #view-chat .chat-item:hover .avatar-img, #view-e2e .chat-item:hover .avatar-img, #view-settings .chat-item:hover .avatar-img, #view-chat .e2e-chat-item:hover .e2e-chat-avatar, #view-e2e .e2e-chat-item:hover .e2e-chat-avatar, #view-settings .e2e-chat-item:hover .e2e-chat-avatar, #view-chat .e2e-chat-item:hover .e2e-chat-avatar img, #view-e2e .e2e-chat-item:hover .e2e-chat-avatar img, #view-settings .e2e-chat-item:hover .e2e-chat-avatar img{
+    transform: scale(1.08);
+}
+
+#view-chat .chat-item .online-dot, #view-chat .e2e-chat-item .e2e-online-dot, #view-e2e .e2e-chat-item .e2e-online-dot, #view-settings .e2e-chat-item .e2e-online-dot,  #view-e2e .chat-item .online-dot, #view-chat .e2e-chat-item .e2e-online-dot, #view-e2e .e2e-chat-item .e2e-online-dot, #view-settings .e2e-chat-item .e2e-online-dot,  #view-settings .chat-item .online-dot, #view-chat .e2e-chat-item .e2e-online-dot, #view-e2e .e2e-chat-item .e2e-online-dot, #view-settings .e2e-chat-item .e2e-online-dot{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background-color: var(--chat-success);
+    border: 2px solid var(--chat-bg-panel);
+    border-radius: 50%;
+    transform: translate(25%, 25%);
+    animation: onlinePulse 2s ease-out infinite;
+    pointer-events: none;
+}
+
+#view-chat .chat-item .info, #view-chat .e2e-chat-item .e2e-chat-info, #view-e2e .e2e-chat-item .e2e-chat-info, #view-settings .e2e-chat-item .e2e-chat-info,  #view-e2e .chat-item .info, #view-chat .e2e-chat-item .e2e-chat-info, #view-e2e .e2e-chat-item .e2e-chat-info, #view-settings .e2e-chat-item .e2e-chat-info,  #view-settings .chat-item .info, #view-chat .e2e-chat-item .e2e-chat-info, #view-e2e .e2e-chat-item .e2e-chat-info, #view-settings .e2e-chat-item .e2e-chat-info{
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+#view-chat .chat-item .info .name, #view-chat .e2e-chat-item .e2e-chat-name, #view-e2e .e2e-chat-item .e2e-chat-name, #view-settings .e2e-chat-item .e2e-chat-name,  #view-e2e .chat-item .info .name, #view-chat .e2e-chat-item .e2e-chat-name, #view-e2e .e2e-chat-item .e2e-chat-name, #view-settings .e2e-chat-item .e2e-chat-name,  #view-settings .chat-item .info .name, #view-chat .e2e-chat-item .e2e-chat-name, #view-e2e .e2e-chat-item .e2e-chat-name, #view-settings .e2e-chat-item .e2e-chat-name{
+    font-weight: 500;
+    color: var(--chat-text-bright);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+#view-chat .chat-item:hover .info .name, #view-chat .e2e-chat-item:hover .e2e-chat-name, #view-e2e .e2e-chat-item:hover .e2e-chat-name, #view-settings .e2e-chat-item:hover .e2e-chat-name,  #view-e2e .chat-item:hover .info .name, #view-chat .e2e-chat-item:hover .e2e-chat-name, #view-e2e .e2e-chat-item:hover .e2e-chat-name, #view-settings .e2e-chat-item:hover .e2e-chat-name,  #view-settings .chat-item:hover .info .name, #view-chat .e2e-chat-item:hover .e2e-chat-name, #view-e2e .e2e-chat-item:hover .e2e-chat-name, #view-settings .e2e-chat-item:hover .e2e-chat-name{ color: #fff; }
+
+#view-chat .chat-item .info .typing-indicator,  #view-e2e .chat-item .info .typing-indicator,  #view-settings .chat-item .info .typing-indicator{
+    font-size: 0.8rem;
+    color: var(--chat-accent-soft);
+    font-style: italic;
+    animation: pulse 1.2s infinite;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#view-chat .chat-item .info .last-msg-wrapper, #view-chat .e2e-chat-item .e2e-chat-sub, #view-e2e .e2e-chat-item .e2e-chat-sub, #view-settings .e2e-chat-item .e2e-chat-sub,  #view-e2e .chat-item .info .last-msg-wrapper, #view-chat .e2e-chat-item .e2e-chat-sub, #view-e2e .e2e-chat-item .e2e-chat-sub, #view-settings .e2e-chat-item .e2e-chat-sub,  #view-settings .chat-item .info .last-msg-wrapper, #view-chat .e2e-chat-item .e2e-chat-sub, #view-e2e .e2e-chat-item .e2e-chat-sub, #view-settings .e2e-chat-item .e2e-chat-sub{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--chat-text-muted);
+}
+
+#view-chat .e2e-chat-item .e2e-chat-sub,  #view-e2e .e2e-chat-item .e2e-chat-sub,  #view-settings .e2e-chat-item .e2e-chat-sub{ margin-top: 2px; font-size: 0.8rem; }
+
+#view-chat .chat-item .info .last-msg, #view-chat .e2e-chat-item .e2e-chat-sub .preview, #view-e2e .e2e-chat-item .e2e-chat-sub .preview, #view-settings .e2e-chat-item .e2e-chat-sub .preview,  #view-e2e .chat-item .info .last-msg, #view-chat .e2e-chat-item .e2e-chat-sub .preview, #view-e2e .e2e-chat-item .e2e-chat-sub .preview, #view-settings .e2e-chat-item .e2e-chat-sub .preview,  #view-settings .chat-item .info .last-msg, #view-chat .e2e-chat-item .e2e-chat-sub .preview, #view-e2e .e2e-chat-item .e2e-chat-sub .preview, #view-settings .e2e-chat-item .e2e-chat-sub .preview{
+    flex: 1;
+    min-width: 0;
+    font-size: 0.85rem;
+    color: var(--chat-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#view-chat .e2e-chat-item .e2e-chat-sub .preview,  #view-e2e .e2e-chat-item .e2e-chat-sub .preview,  #view-settings .e2e-chat-item .e2e-chat-sub .preview{ font-size: inherit; }
+
+#view-chat .chat-item .info .last-msg.attachment,  #view-e2e .chat-item .info .last-msg.attachment,  #view-settings .chat-item .info .last-msg.attachment{
+    color: var(--chat-accent);
+    font-style: italic;
+}
+
+#view-chat .chat-item .info .last-msg .last-msg-sender,  #view-e2e .chat-item .info .last-msg .last-msg-sender,  #view-settings .chat-item .info .last-msg .last-msg-sender{
+    color: var(--chat-accent-soft);
+}
+
+#view-chat .chat-item .info .last-msg-checks,  #view-e2e .chat-item .info .last-msg-checks,  #view-settings .chat-item .info .last-msg-checks{
+    flex: 0 0 auto;
+    align-self: center;
+    color: var(--chat-text-muted);
+}
+
+#view-chat .chat-item .info .last-msg-checks.is-read,  #view-e2e .chat-item .info .last-msg-checks.is-read,  #view-settings .chat-item .info .last-msg-checks.is-read{
+    color: var(--chat-accent-bright, #7eb4ff);
+}
+
+#view-chat .chat-item .info .time, #view-chat .e2e-chat-item .e2e-chat-sub .time, #view-e2e .e2e-chat-item .e2e-chat-sub .time, #view-settings .e2e-chat-item .e2e-chat-sub .time,  #view-e2e .chat-item .info .time, #view-chat .e2e-chat-item .e2e-chat-sub .time, #view-e2e .e2e-chat-item .e2e-chat-sub .time, #view-settings .e2e-chat-item .e2e-chat-sub .time,  #view-settings .chat-item .info .time, #view-chat .e2e-chat-item .e2e-chat-sub .time, #view-e2e .e2e-chat-item .e2e-chat-sub .time, #view-settings .e2e-chat-item .e2e-chat-sub .time{
+    font-size: 0.7rem;
+    color: var(--chat-text-dim);
+    margin-left: 8px;
+    white-space: nowrap;
+    align-self: center;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+#view-chat .e2e-chat-item .e2e-chat-sub .time,  #view-e2e .e2e-chat-item .e2e-chat-sub .time,  #view-settings .e2e-chat-item .e2e-chat-sub .time{ margin-left: 0; font-size: inherit; color: inherit; }
+
+#view-chat .chat-item .badge, #view-chat .e2e-chat-item .e2e-badge, #view-e2e .e2e-chat-item .e2e-badge, #view-settings .e2e-chat-item .e2e-badge,  #view-e2e .chat-item .badge, #view-chat .e2e-chat-item .e2e-badge, #view-e2e .e2e-chat-item .e2e-badge, #view-settings .e2e-chat-item .e2e-badge,  #view-settings .chat-item .badge, #view-chat .e2e-chat-item .e2e-badge, #view-e2e .e2e-chat-item .e2e-badge, #view-settings .e2e-chat-item .e2e-badge{
+    background: var(--chat-accent);
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+    animation: badgePop 0.35s var(--chat-ease-spring);
+    box-shadow: 0 0 12px rgba(74, 111, 165, 0.55);
+    flex-shrink: 0;
+}

@@ -1,0 +1,4 @@
+var h,f;function A(){if(f)return h;f=1,h=g;function g(t,v){typeof t=="string"&&(v=t,t=void 0);var o=[];function a(n){if(typeof n!="string"){var u=b();if(g.verbose&&console.log("codegen: "+u),u="return "+u,n){for(var _=Object.keys(n),d=new Array(_.length+1),j=new Array(_.length),r=0;r<_.length;)d[r]=_[r],j[r]=n[_[r++]];return d[r]=u,Function.apply(null,d).apply(null,j)}return Function(u)()}for(var i=new Array(arguments.length-1),e=0;e<i.length;)i[e]=arguments[++e];if(e=0,n=n.replace(/%([%dfijs])/g,function(E,y){var l=i[e++];switch(y){case"d":case"f":return String(Number(l));case"i":return String(Math.floor(l));case"j":return JSON.stringify(l);case"s":return String(l)}return"%"}),e!==i.length)throw Error("parameter count mismatch");return o.push(n),a}function b(n){return"function "+(n||v||"")+"("+(t&&t.join(",")||"")+`){
+  `+o.join(`
+  `)+`
+}`}return a.toString=b,a}return g.verbose=!1,h}var w=A(),q=w.verbose;export{w as default,q as verbose};

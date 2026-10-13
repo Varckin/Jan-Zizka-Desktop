@@ -1,0 +1,46 @@
+{% set ctx_menu_id = 'message-context-menu' %}
+{% include "partials/core_ctx_menu.njk" %}
+
+<div id="blocked-users-modal" class="modal">
+  <div class="modal-content">
+    <button class="close" data-modal-close="blocked-users-modal" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <h2>{{ t('blocked_users') }}</h2>
+    <div id="blocked-users-list"></div>
+  </div>
+</div>
+
+<div id="discover-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="discover-title">
+  <div class="modal-content search-modal-content discover-modal-content">
+    <button class="close" id="discover-close" type="button" title="{{ t('close') }}" aria-label="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="search-modal-header">
+      <div class="search-modal-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="search-modal-heading">
+        <h2 id="discover-title">{{ t('discover_title') }}</h2>
+        <p class="search-modal-status" id="discover-status" role="status" aria-live="polite">{{ t('discover_hint') }}</p>
+      </div>
+    </div>
+    <div class="search-field">
+      <input type="text" id="discover-input" class="search-field-input" placeholder="{{ t('discover_placeholder') }}" autocomplete="off" spellcheck="false" aria-controls="discover-results">
+      <div class="search-field-spinner" id="discover-spinner" aria-hidden="true"></div>
+      <button class="search-field-clear" id="discover-clear" type="button" title="{{ t('search_clear') }}" aria-label="{{ t('search_clear') }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div id="discover-results" class="discover-results" role="listbox" aria-label="{{ t('discover_title') }}"></div>
+  </div>
+</div>

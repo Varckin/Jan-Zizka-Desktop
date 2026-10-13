@@ -1,0 +1,271 @@
+#view-chat .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area,  #view-e2e .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area,  #view-settings .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area{
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 24px 14px;
+    border-top: 1px solid var(--chat-border);
+    background: rgba(26, 26, 46, 0.6);
+    gap: 8px;
+    position: relative;
+    transition: background 0.35s var(--chat-ease-soft),
+                border-color 0.35s var(--chat-ease-soft);
+}
+
+#view-chat .chat-input-area:focus-within, #view-chat .e2e-input-area:focus-within, #view-e2e .e2e-input-area:focus-within, #view-settings .e2e-input-area:focus-within,  #view-e2e .chat-input-area:focus-within, #view-chat .e2e-input-area:focus-within, #view-e2e .e2e-input-area:focus-within, #view-settings .e2e-input-area:focus-within,  #view-settings .chat-input-area:focus-within, #view-chat .e2e-input-area:focus-within, #view-e2e .e2e-input-area:focus-within, #view-settings .e2e-input-area:focus-within{
+    border-color: var(--chat-border-accent);
+    background: rgba(30, 30, 54, 0.72);
+}
+
+#view-chat .reply-indicator, #view-chat .e2e-reply-indicator, #view-e2e .e2e-reply-indicator, #view-settings .e2e-reply-indicator,  #view-e2e .reply-indicator, #view-chat .e2e-reply-indicator, #view-e2e .e2e-reply-indicator, #view-settings .e2e-reply-indicator,  #view-settings .reply-indicator, #view-chat .e2e-reply-indicator, #view-e2e .e2e-reply-indicator, #view-settings .e2e-reply-indicator{
+    background: var(--chat-bg-elevated);
+    padding: 6px 12px;
+    border-radius: 10px;
+    border-left: 3px solid var(--chat-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--chat-text-heading);
+    animation: slideDown 0.35s var(--chat-ease-soft) both;
+}
+
+#view-chat .reply-indicator .btn-icon, #view-chat .e2e-reply-indicator .btn-icon, #view-e2e .e2e-reply-indicator .btn-icon, #view-settings .e2e-reply-indicator .btn-icon, #view-chat .e2e-reply-indicator .e2e-btn-icon, #view-e2e .e2e-reply-indicator .e2e-btn-icon, #view-settings .e2e-reply-indicator .e2e-btn-icon,  #view-e2e .reply-indicator .btn-icon, #view-chat .e2e-reply-indicator .btn-icon, #view-e2e .e2e-reply-indicator .btn-icon, #view-settings .e2e-reply-indicator .btn-icon, #view-chat .e2e-reply-indicator .e2e-btn-icon, #view-e2e .e2e-reply-indicator .e2e-btn-icon, #view-settings .e2e-reply-indicator .e2e-btn-icon,  #view-settings .reply-indicator .btn-icon, #view-chat .e2e-reply-indicator .btn-icon, #view-e2e .e2e-reply-indicator .btn-icon, #view-settings .e2e-reply-indicator .btn-icon, #view-chat .e2e-reply-indicator .e2e-btn-icon, #view-e2e .e2e-reply-indicator .e2e-btn-icon, #view-settings .e2e-reply-indicator .e2e-btn-icon{ padding: 0 6px; font-size: 1rem; }
+
+#view-chat .e2e-reply-label,  #view-e2e .e2e-reply-label,  #view-settings .e2e-reply-label{
+    flex-shrink: 0;
+    color: var(--chat-text-heading);
+    font-weight: 500;
+}
+
+#view-chat .e2e-reply-preview,  #view-e2e .e2e-reply-preview,  #view-settings .e2e-reply-preview{
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--chat-text-muted);
+}
+
+#view-chat .file-preview-container, #view-chat .e2e-file-preview, #view-e2e .e2e-file-preview, #view-settings .e2e-file-preview,  #view-e2e .file-preview-container, #view-chat .e2e-file-preview, #view-e2e .e2e-file-preview, #view-settings .e2e-file-preview,  #view-settings .file-preview-container, #view-chat .e2e-file-preview, #view-e2e .e2e-file-preview, #view-settings .e2e-file-preview{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 4px 0;
+    animation: slideDown 0.35s var(--chat-ease-soft) both;
+}
+
+#view-chat .file-preview-container .file-preview, #view-chat .e2e-file-preview .e2e-file-chip, #view-e2e .e2e-file-preview .e2e-file-chip, #view-settings .e2e-file-preview .e2e-file-chip,  #view-e2e .file-preview-container .file-preview, #view-chat .e2e-file-preview .e2e-file-chip, #view-e2e .e2e-file-preview .e2e-file-chip, #view-settings .e2e-file-preview .e2e-file-chip,  #view-settings .file-preview-container .file-preview, #view-chat .e2e-file-preview .e2e-file-chip, #view-e2e .e2e-file-preview .e2e-file-chip, #view-settings .e2e-file-preview .e2e-file-chip{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--chat-bg-elevated);
+    padding: 4px 10px 4px 8px;
+    border-radius: 16px;
+    border: 1px solid var(--chat-accent);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: background 0.25s var(--chat-ease-soft),
+                transform 0.25s var(--chat-ease-spring),
+                box-shadow 0.25s var(--chat-ease-soft);
+    animation: popIn 0.4s var(--chat-ease-spring) both;
+}
+
+#view-chat .file-preview-container .file-preview:hover, #view-chat .e2e-file-preview .e2e-file-chip:hover, #view-e2e .e2e-file-preview .e2e-file-chip:hover, #view-settings .e2e-file-preview .e2e-file-chip:hover,  #view-e2e .file-preview-container .file-preview:hover, #view-chat .e2e-file-preview .e2e-file-chip:hover, #view-e2e .e2e-file-preview .e2e-file-chip:hover, #view-settings .e2e-file-preview .e2e-file-chip:hover,  #view-settings .file-preview-container .file-preview:hover, #view-chat .e2e-file-preview .e2e-file-chip:hover, #view-e2e .e2e-file-preview .e2e-file-chip:hover, #view-settings .e2e-file-preview .e2e-file-chip:hover{
+    background: var(--chat-bg-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+#view-chat .file-preview-container .file-preview .file-icon,  #view-e2e .file-preview-container .file-preview .file-icon,  #view-settings .file-preview-container .file-preview .file-icon{ font-size: 1.2rem; line-height: 1; }
+
+#view-chat .file-preview-container .file-preview .file-name,  #view-e2e .file-preview-container .file-preview .file-name,  #view-settings .file-preview-container .file-preview .file-name{
+    font-size: 0.85rem;
+    color: var(--chat-text);
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#view-chat .file-preview-container .file-preview .file-size,  #view-e2e .file-preview-container .file-preview .file-size,  #view-settings .file-preview-container .file-preview .file-size{ font-size: 0.7rem; color: var(--chat-text-muted); }
+
+#view-chat .file-preview-container .file-preview .remove-file, #view-chat .e2e-file-preview .e2e-file-chip button, #view-e2e .e2e-file-preview .e2e-file-chip button, #view-settings .e2e-file-preview .e2e-file-chip button,  #view-e2e .file-preview-container .file-preview .remove-file, #view-chat .e2e-file-preview .e2e-file-chip button, #view-e2e .e2e-file-preview .e2e-file-chip button, #view-settings .e2e-file-preview .e2e-file-chip button,  #view-settings .file-preview-container .file-preview .remove-file, #view-chat .e2e-file-preview .e2e-file-chip button, #view-e2e .e2e-file-preview .e2e-file-chip button, #view-settings .e2e-file-preview .e2e-file-chip button{
+    background: transparent;
+    border: none;
+    color: #aa5555;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 50%;
+    transition: background 0.25s ease,
+                color 0.25s ease,
+                transform 0.3s var(--chat-ease-spring);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#view-chat .file-preview-container .file-preview .remove-file:hover, #view-chat .e2e-file-preview .e2e-file-chip button:hover, #view-e2e .e2e-file-preview .e2e-file-chip button:hover, #view-settings .e2e-file-preview .e2e-file-chip button:hover,  #view-e2e .file-preview-container .file-preview .remove-file:hover, #view-chat .e2e-file-preview .e2e-file-chip button:hover, #view-e2e .e2e-file-preview .e2e-file-chip button:hover, #view-settings .e2e-file-preview .e2e-file-chip button:hover,  #view-settings .file-preview-container .file-preview .remove-file:hover, #view-chat .e2e-file-preview .e2e-file-chip button:hover, #view-e2e .e2e-file-preview .e2e-file-chip button:hover, #view-settings .e2e-file-preview .e2e-file-chip button:hover{
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff6666;
+    transform: rotate(90deg) scale(1.12);
+}
+
+#view-chat .input-stack,  #view-e2e .input-stack,  #view-settings .input-stack{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+#view-chat .input-toolbar,  #view-e2e .input-toolbar,  #view-settings .input-toolbar{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    min-height: 40px;
+}
+
+#view-chat .input-toolbar-bottom,  #view-e2e .input-toolbar-bottom,  #view-settings .input-toolbar-bottom{
+    justify-content: space-between;
+    animation: toolbarRowIn 0.45s var(--chat-ease-soft) 0.1s both;
+}
+
+#view-chat .toolbar-group,  #view-e2e .toolbar-group,  #view-settings .toolbar-group{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+#view-chat .input-stack textarea,  #view-e2e .input-stack textarea,  #view-settings .input-stack textarea{
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    padding: 10px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--chat-border);
+    background: var(--chat-bg-deep);
+    color: var(--chat-text);
+    font-size: 0.95rem;
+    font-family: inherit;
+    line-height: 1.45;
+    outline: none;
+    min-height: 46px;
+    max-height: 160px;
+    animation: toolbarRowIn 0.45s var(--chat-ease-soft) 0.04s both;
+    transition: border-color 0.35s var(--chat-ease-soft),
+                box-shadow 0.35s var(--chat-ease-soft),
+                background 0.35s var(--chat-ease-soft),
+                height 0.2s var(--chat-ease-soft);
+}
+
+#view-chat .input-stack textarea::placeholder,  #view-e2e .input-stack textarea::placeholder,  #view-settings .input-stack textarea::placeholder{
+    color: var(--chat-text-dim);
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
+}
+
+#view-chat .input-stack textarea:focus::placeholder,  #view-e2e .input-stack textarea:focus::placeholder,  #view-settings .input-stack textarea:focus::placeholder{ opacity: 0.45; }
+
+#view-chat .input-stack textarea:focus,  #view-e2e .input-stack textarea:focus,  #view-settings .input-stack textarea:focus{
+    border-color: var(--chat-accent);
+    box-shadow: 0 0 0 3px var(--chat-accent-glow),
+                0 6px 20px rgba(74, 111, 165, 0.18);
+    background: var(--chat-bg-panel);
+}
+
+#view-chat .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon,  #view-e2e .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon,  #view-settings .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon{
+    flex-shrink: 0;
+    min-height: 40px;
+    min-width: 40px;
+    padding: 8px;
+    border-radius: var(--chat-radius-md);
+}
+
+#view-chat .input-toolbar .btn-icon:focus-visible, #view-chat .input-toolbar .e2e-btn-icon:focus-visible, #view-e2e .input-toolbar .e2e-btn-icon:focus-visible, #view-settings .input-toolbar .e2e-btn-icon:focus-visible, #view-chat .input-toolbar .btn-primary:focus-visible, #view-e2e .input-toolbar .btn-primary:focus-visible, #view-settings .input-toolbar .btn-primary:focus-visible,  #view-e2e .input-toolbar .btn-icon:focus-visible, #view-chat .input-toolbar .e2e-btn-icon:focus-visible, #view-e2e .input-toolbar .e2e-btn-icon:focus-visible, #view-settings .input-toolbar .e2e-btn-icon:focus-visible, #view-chat .input-toolbar .btn-primary:focus-visible, #view-e2e .input-toolbar .btn-primary:focus-visible, #view-settings .input-toolbar .btn-primary:focus-visible,  #view-settings .input-toolbar .btn-icon:focus-visible, #view-chat .input-toolbar .e2e-btn-icon:focus-visible, #view-e2e .input-toolbar .e2e-btn-icon:focus-visible, #view-settings .input-toolbar .e2e-btn-icon:focus-visible, #view-chat .input-toolbar .btn-primary:focus-visible, #view-e2e .input-toolbar .btn-primary:focus-visible, #view-settings .input-toolbar .btn-primary:focus-visible{
+    outline: 2px solid var(--chat-accent-soft);
+    outline-offset: 2px;
+}
+
+#view-chat .attach-btn,  #view-e2e .attach-btn,  #view-settings .attach-btn{ cursor: pointer; }
+
+#view-chat #gif-btn:hover .icon,  #view-e2e #gif-btn:hover .icon,  #view-settings #gif-btn:hover .icon{ animation: gifPop 0.55s var(--chat-ease-spring); }
+
+#view-chat #voice-btn:hover .icon,  #view-e2e #voice-btn:hover .icon,  #view-settings #voice-btn:hover .icon{ animation: micBounce 0.6s var(--chat-ease-soft); }
+
+#view-chat .attach-btn:hover .icon, #view-chat #e2e-attach-btn:hover .icon, #view-e2e #e2e-attach-btn:hover .icon, #view-settings #e2e-attach-btn:hover .icon,  #view-e2e .attach-btn:hover .icon, #view-chat #e2e-attach-btn:hover .icon, #view-e2e #e2e-attach-btn:hover .icon, #view-settings #e2e-attach-btn:hover .icon,  #view-settings .attach-btn:hover .icon, #view-chat #e2e-attach-btn:hover .icon, #view-e2e #e2e-attach-btn:hover .icon, #view-settings #e2e-attach-btn:hover .icon{
+    transform-origin: 50% 15%;
+    animation: attachSwing 0.75s var(--chat-ease-soft);
+}
+
+#view-chat #emoji-btn:hover .icon, #view-chat #e2e-emoji-btn:hover .icon, #view-e2e #e2e-emoji-btn:hover .icon, #view-settings #e2e-emoji-btn:hover .icon,  #view-e2e #emoji-btn:hover .icon, #view-chat #e2e-emoji-btn:hover .icon, #view-e2e #e2e-emoji-btn:hover .icon, #view-settings #e2e-emoji-btn:hover .icon,  #view-settings #emoji-btn:hover .icon, #view-chat #e2e-emoji-btn:hover .icon, #view-e2e #e2e-emoji-btn:hover .icon, #view-settings #e2e-emoji-btn:hover .icon{ animation: emojiWiggle 0.7s var(--chat-ease-soft); }
+
+#view-chat #voice-btn.recording-active,  #view-e2e #voice-btn.recording-active,  #view-settings #voice-btn.recording-active{
+    color: var(--chat-danger);
+    background: rgba(255, 107, 107, 0.14);
+    animation: micPulse 1.5s ease-in-out infinite;
+}
+
+#view-chat #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn,  #view-e2e #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn,  #view-settings #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn{
+    flex-shrink: 0;
+    min-height: 42px;
+    padding: 0 22px;
+    border-radius: var(--chat-radius-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#view-chat .send-icon,  #view-e2e .send-icon,  #view-settings .send-icon{ transition: transform 0.35s var(--chat-ease-spring); }
+
+#view-chat #send-btn:hover .send-icon, #view-chat #e2e-send-btn:hover .send-icon, #view-e2e #e2e-send-btn:hover .send-icon, #view-settings #e2e-send-btn:hover .send-icon,  #view-e2e #send-btn:hover .send-icon, #view-chat #e2e-send-btn:hover .send-icon, #view-e2e #e2e-send-btn:hover .send-icon, #view-settings #e2e-send-btn:hover .send-icon,  #view-settings #send-btn:hover .send-icon, #view-chat #e2e-send-btn:hover .send-icon, #view-e2e #e2e-send-btn:hover .send-icon, #view-settings #e2e-send-btn:hover .send-icon{
+    transform: translateX(3px) translateY(-2px) rotate(10deg);
+}
+
+#view-chat .input-stack:has(textarea:not(:placeholder-shown)) .send-icon,  #view-e2e .input-stack:has(textarea:not(:placeholder-shown)) .send-icon,  #view-settings .input-stack:has(textarea:not(:placeholder-shown)) .send-icon{
+    transform: rotate(-8deg) scale(1.08);
+}
+
+#view-chat .input-stack:has(textarea:not(:placeholder-shown)) #send-btn:not(:disabled), #view-chat .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled), #view-e2e .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled), #view-settings .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled),  #view-e2e .input-stack:has(textarea:not(:placeholder-shown)) #send-btn:not(:disabled), #view-chat .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled), #view-e2e .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled), #view-settings .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled),  #view-settings .input-stack:has(textarea:not(:placeholder-shown)) #send-btn:not(:disabled), #view-chat .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled), #view-e2e .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled), #view-settings .input-stack:has(textarea:not(:placeholder-shown)) #e2e-send-btn:not(:disabled){
+    animation: sendReadyGlow 2.6s var(--chat-ease-soft) infinite;
+}
+
+#view-chat .voice-indicator,  #view-e2e .voice-indicator,  #view-settings .voice-indicator{
+    display: flex;
+    background: var(--chat-bg-elevated);
+    border: 1px solid rgba(255, 107, 107, 0.35);
+    border-radius: var(--chat-radius-pill);
+    padding: 6px 14px;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(255, 107, 107, 0.12);
+    animation: slideDown 0.35s var(--chat-ease-soft) both;
+}
+
+#view-chat .voice-dot,  #view-e2e .voice-dot,  #view-settings .voice-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--chat-danger);
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+    flex-shrink: 0;
+    animation: voiceDotPulse 1.15s ease-in-out infinite;
+}
+
+#view-chat .voice-timer,  #view-e2e .voice-timer,  #view-settings .voice-timer{
+    color: var(--chat-text);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.5px;
+}
+
+#view-chat .voice-stop,  #view-e2e .voice-stop,  #view-settings .voice-stop{ color: var(--chat-danger); }
+
+#view-chat .voice-hint,  #view-e2e .voice-hint,  #view-settings .voice-hint{
+    color: var(--chat-text-muted);
+    font-size: 0.8rem;
+    margin-left: auto;
+    animation: pulse 1.6s ease-in-out infinite;
+}

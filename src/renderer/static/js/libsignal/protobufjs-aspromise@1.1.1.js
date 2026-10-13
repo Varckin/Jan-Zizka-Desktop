@@ -1,0 +1,1 @@
+var a,p;function h(){if(p)return a;p=1,a=i;function i(f,m){for(var s=[],e=2;e<arguments.length;)s.push(arguments[e++]);var r=!0;return new Promise(function(l,o){s.push(function(u){if(r)if(r=!1,u)o(u);else{for(var _=[],n=1;n<arguments.length;)_.push(arguments[n++]);l.apply(null,_)}});try{f.apply(m||this,s)}catch(t){r&&(r=!1,o(t))}})}return a}var v=h();export{v as default};

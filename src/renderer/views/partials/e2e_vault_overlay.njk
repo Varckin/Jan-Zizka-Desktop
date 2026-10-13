@@ -1,0 +1,38 @@
+<div id="e2e-vault-overlay" class="e2e-vault-overlay">
+  <div class="e2e-vault-card" id="e2e-vault-card" role="dialog" aria-modal="true" aria-labelledby="e2e-vault-title">
+    <div class="e2e-vault-lock" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
+    <h2 id="e2e-vault-title"></h2>
+    <p class="e2e-vault-text" id="e2e-vault-text"></p>
+    <form id="e2e-vault-form" autocomplete="off">
+      <div class="e2e-vault-field is-hidden" id="e2e-vault-current-field">
+        <input type="password" id="e2e-vault-current" placeholder="{{ t('e2e_vault_current') }}" autocomplete="current-password">
+      </div>
+      <div class="e2e-vault-field">
+        <input type="password" id="e2e-vault-pass" placeholder="{{ t('e2e_vault_passphrase') }}" autocomplete="off">
+      </div>
+      <div class="e2e-vault-strength is-hidden" id="e2e-vault-strength">
+        <div class="e2e-vault-strength-segs">
+          <span class="e2e-vault-strength-seg"></span>
+          <span class="e2e-vault-strength-seg"></span>
+          <span class="e2e-vault-strength-seg"></span>
+          <span class="e2e-vault-strength-seg"></span>
+        </div>
+        <span class="e2e-vault-strength-label" id="e2e-vault-strength-label"></span>
+      </div>
+      <div class="e2e-vault-field is-hidden" id="e2e-vault-confirm-field">
+        <input type="password" id="e2e-vault-confirm" placeholder="{{ t('e2e_vault_confirm') }}" autocomplete="new-password">
+      </div>
+      <div class="e2e-modal-error" id="e2e-vault-error"></div>
+      <div class="e2e-vault-actions">
+        <span class="e2e-vault-attempts" id="e2e-vault-attempts"></span>
+        <button type="button" class="e2e-btn-secondary is-hidden" id="e2e-vault-cancel">{{ t('cancel') }}</button>
+        <button type="submit" class="e2e-btn-primary" id="e2e-vault-submit">{{ t('e2e_vault_unlock_btn') }}</button>
+      </div>
+    </form>
+  </div>
+</div>

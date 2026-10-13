@@ -1,0 +1,40 @@
+<div class="profile-header">
+    <div class="avatar-wrapper">
+        {% if user.avatar %}
+            <img id="profile-avatar" src="/profile/avatar/{{ user.username }}" alt="{{ t('avatar') }}">
+            <div id="avatar-placeholder" class="avatar-placeholder" hidden>
+                <span id="avatar-initials">{{ user_initial }}</span>
+            </div>
+        {% else %}
+            <img id="profile-avatar" src="data:," alt="{{ t('avatar') }}" hidden>
+            <div id="avatar-placeholder" class="avatar-placeholder">
+                <span id="avatar-initials">{{ user_initial }}</span>
+            </div>
+        {% endif %}
+        <div class="avatar-edit" id="avatar-edit-btn">
+            <label for="avatar-input" title="{{ t('change_avatar') }}">✎</label>
+            <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/gif,image/webp" hidden>
+        </div>
+    </div>
+    <div class="profile-name">
+        <h1 id="profile-fullname">{{ full_name }}</h1>
+        {% if has_full_name %}
+        <span class="profile-username-small" id="profile-username-small">@{{ user.username }}</span>
+        {% endif %}
+        <span class="profile-role">{{ t(role_label_key) }}</span>
+    </div>
+    <div class="profile-actions">
+        <button id="change-password-btn" class="btn-change-password" type="button">🔑 {{ t('change_password') }}</button>
+        <div class="profile-actions-toggle">
+            <div class="profile-actions-view" id="actions-view">
+                <button id="edit-profile-btn" class="btn-edit" type="button">
+                    <span class="icon-pencil">✎</span> {{ t('edit_profile') }}
+                </button>
+            </div>
+            <div class="profile-actions-edit is-hidden" id="actions-edit">
+                <button id="save-profile-btn" class="btn-save" type="button">💾 {{ t('save') }}</button>
+                <button id="cancel-edit-btn" class="btn-cancel" type="button">✕ {{ t('cancel') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

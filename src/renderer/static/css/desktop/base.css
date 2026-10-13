@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #12121f;
+    color: #e0e0e0;
+    line-height: 1.5;
+    overflow: hidden;
+    isolation: auto;
+    user-select: none;
+}
+
+body input,
+body textarea,
+body [contenteditable="true"] {
+    user-select: text;
+}
+
+#user-id {
+    display: none;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 15, 26, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2f2f4d;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3f3f63;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::selection {
+    background: rgba(74, 111, 165, 0.45);
+    color: #f2f5ff;
+}
+
+a {
+    color: #7eb4ff;
+}
+
+.password-field {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+}
+
+.password-field input {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding-right: 46px !important;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 0;
+    right: 6px;
+    height: 100%;
+    width: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #ffffff;
+    opacity: 0.72;
+    cursor: pointer;
+    z-index: 2;
+    transition: opacity 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+
+.password-toggle svg {
+    width: 19px;
+    height: 19px;
+}
+
+.password-toggle:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.password-toggle:active {
+    transform: scale(0.9);
+}
+
+.password-toggle:focus-visible {
+    outline: none;
+    opacity: 1;
+    box-shadow: 0 0 0 2px rgba(126, 180, 255, 0.55);
+}
+
+.password-toggle .pw-eye-closed {
+    display: none;
+}
+
+.password-toggle.is-active {
+    opacity: 1;
+}
+
+.password-toggle.is-active .pw-eye-open {
+    display: none;
+}
+
+.password-toggle.is-active .pw-eye-closed {
+    display: block;
+}
+
+#e2e-vault-overlay .password-toggle {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+#e2e-vault-overlay .password-toggle:hover {
+    opacity: 1;
+}

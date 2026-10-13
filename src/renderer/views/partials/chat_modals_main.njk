@@ -1,0 +1,206 @@
+<div id="group-modal" class="modal">
+  <div class="modal-content">
+    <button class="close" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <h2>{{ t('create_group') }}</h2>
+    <form id="group-form">
+      <label>{{ t('group_name') }}</label>
+      <input type="text" id="group-name" required>
+      <label>{{ t('avatar') }}</label>
+      <input type="file" id="group-avatar-file" accept="image/jpeg,image/png,image/gif,image/webp">
+      <label>{{ t('description') }}</label>
+      <textarea id="group-description" rows="2" placeholder="{{ t('group_description_placeholder') }}"></textarea>
+      <label>{{ t('members_usernames') }}</label>
+      <div id="group-members-container">
+        <input type="text" class="group-member-input" placeholder="{{ t('enter_username') }}" autocomplete="off">
+      </div>
+      <button type="submit" class="btn-primary">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        <span>{{ t('create') }}</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div id="chat-settings-modal" class="modal">
+  <div class="modal-content modal-lg">
+    <button class="close" id="settings-modal-close" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <h2>{{ t('chat_settings') }}</h2>
+    <div class="settings-tabs">
+      <button class="settings-tab active" data-tab="general" type="button">{{ t('general') }}</button>
+      <button class="settings-tab" data-tab="members" type="button">{{ t('members') }}</button>
+      <button class="settings-tab" data-tab="links" type="button">{{ t('invite_links') }}</button>
+    </div>
+    <div id="settings-tab-general" class="settings-tab-content">
+      <form id="chat-settings-form">
+        <label>{{ t('chat_name') }}</label>
+        <input type="text" id="chat-settings-name">
+        <label>{{ t('avatar') }}</label>
+        <div class="avatar-upload">
+          <img id="chat-settings-avatar-preview" src="data:," alt="Avatar" class="avatar-preview is-hidden">
+          <label for="chat-avatar-input" class="btn-secondary">{{ t('upload') }}</label>
+          <input type="file" id="chat-avatar-input" accept="image/*" hidden>
+        </div>
+        <label>{{ t('description') }}</label>
+        <textarea id="chat-settings-description" rows="3"></textarea>
+        <div class="settings-actions">
+          <button type="submit" class="btn-primary">
+            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>{{ t('save') }}</span>
+          </button>
+          <button type="button" id="delete-chat-btn" class="btn-danger is-hidden">
+            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+            <span>{{ t('delete_chat') }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="settings-tab-members" class="settings-tab-content is-hidden">
+      <div id="settings-members-list">
+        <div class="loading">{{ t('loading') }}</div>
+      </div>
+      <div id="settings-add-member-area" class="is-hidden">
+        <input type="text" id="settings-add-member-input" placeholder="{{ t('username_to_add') }}">
+        <button id="settings-add-member-btn" class="btn-primary" type="button">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>{{ t('add') }}</span>
+        </button>
+      </div>
+    </div>
+    <div id="settings-tab-links" class="settings-tab-content is-hidden">
+      <div id="invite-create-area">
+        <div class="invite-create-fields">
+          <div class="invite-field">
+            <label for="invite-expires-select">{{ t('invite_expiration') }}</label>
+            <select id="invite-expires-select">
+              <option value="1h">{{ t('invite_expire_1h') }}</option>
+              <option value="12h">{{ t('invite_expire_12h') }}</option>
+              <option value="24h">{{ t('invite_expire_24h') }}</option>
+              <option value="7d">{{ t('invite_expire_7d') }}</option>
+              <option value="30d">{{ t('invite_expire_30d') }}</option>
+              <option value="forever" selected>{{ t('invite_expire_forever') }}</option>
+            </select>
+          </div>
+          <div class="invite-field">
+            <label for="invite-limit-input">{{ t('invite_usage_limit') }}</label>
+            <input type="number" id="invite-limit-input" min="0" max="1000" step="1" placeholder="{{ t('invite_unlimited') }}">
+          </div>
+        </div>
+        <button id="invite-create-btn" class="btn-primary" type="button">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <span>{{ t('invite_create') }}</span>
+        </button>
+      </div>
+      <div id="invite-links-list">
+        <div class="loading">{{ t('loading') }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="chat-avatar-crop-modal" class="modal">
+  <div class="modal-content avatar-crop-content">
+    <h2>{{ t('crop_avatar') }}</h2>
+    <div class="avatar-crop-container">
+      <img id="chat-avatar-crop-image" src="data:," alt="Crop">
+    </div>
+    <div class="avatar-crop-actions">
+      <button id="chat-avatar-crop-cancel" class="btn-secondary" type="button">{{ t('cancel') }}</button>
+      <button id="chat-avatar-crop-confirm" class="btn-primary" type="button">{{ t('save') }}</button>
+    </div>
+  </div>
+</div>
+
+<div id="mute-modal" class="modal">
+  <div class="modal-content mute-modal-content">
+    <button class="close" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <h2>{{ t('mute_chat') }}</h2>
+    <p class="mute-modal-subtitle">{{ t('mute_chat_subtitle') }}</p>
+    <div class="mute-duration-list" id="mute-duration-list">
+      <button type="button" class="mute-duration-option" data-duration="1h">{{ t('mute_duration_1h') }}</button>
+      <button type="button" class="mute-duration-option" data-duration="12h">{{ t('mute_duration_12h') }}</button>
+      <button type="button" class="mute-duration-option" data-duration="24h">{{ t('mute_duration_24h') }}</button>
+      <button type="button" class="mute-duration-option" data-duration="2d">{{ t('mute_duration_2d') }}</button>
+      <button type="button" class="mute-duration-option" data-duration="1w">{{ t('mute_duration_1w') }}</button>
+      <button type="button" class="mute-duration-option" data-duration="1m">{{ t('mute_duration_1m') }}</button>
+      <button type="button" class="mute-duration-option" data-duration="forever">{{ t('mute_duration_forever') }}</button>
+    </div>
+  </div>
+</div>
+
+<div id="invite-join-modal" class="modal">
+  <div class="modal-content invite-join-content">
+    <button class="close" id="invite-join-close" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="invite-join-header">
+      <div class="invite-join-avatar-wrapper">
+        <img id="invite-join-avatar" src="data:," alt="avatar" class="invite-join-avatar is-hidden">
+        <div id="invite-join-avatar-placeholder" class="invite-join-avatar-placeholder is-hidden">
+          <span id="invite-join-initials"></span>
+        </div>
+      </div>
+      <h2 id="invite-join-name"></h2>
+      <div id="invite-join-meta" class="invite-join-meta"></div>
+    </div>
+    <div id="invite-join-description" class="invite-join-description is-hidden"></div>
+    <div id="invite-join-error" class="invite-join-error is-hidden"></div>
+    <div class="invite-join-actions">
+      <button id="invite-join-cancel" class="btn-secondary" type="button">{{ t('cancel') }}</button>
+      <button id="invite-join-confirm" class="btn-primary" type="button">{{ t('invite_join_action') }}</button>
+    </div>
+  </div>
+</div>
+
+<div id="info-modal" class="modal">
+  <div class="modal-content info-modal-content">
+    <button class="close" id="info-modal-close" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="info-profile-header">
+      <div class="info-avatar-wrapper">
+        <img id="info-avatar" src="data:," alt="avatar" class="info-avatar-large is-hidden">
+        <div id="info-avatar-placeholder" class="info-avatar-placeholder is-hidden">
+          <span id="info-avatar-initials"></span>
+        </div>
+      </div>
+      <h2 id="info-display-name">Name</h2>
+      <div id="info-username" class="info-username is-hidden"></div>
+      <span id="info-subtitle" class="info-subtitle">{{ t('user') }}</span>
+    </div>
+    <div class="info-details">
+      <div id="info-bio-container" class="info-bio is-hidden"></div>
+      <div id="info-meta">
+        <div class="info-meta-item is-hidden" id="info-joined-item"><span class="label">{{ t('joined') }}</span><span class="value" id="info-joined"></span></div>
+        <div class="info-meta-item is-hidden" id="info-last-login-item"><span class="label">{{ t('last_login') }}</span><span class="value" id="info-last-login"></span></div>
+        <div class="info-meta-item is-hidden" id="info-geo-item"><span class="label">{{ t('location') }}</span><span class="value" id="info-geo"></span></div>
+        <div class="info-meta-item is-hidden" id="info-lang-item"><span class="label">{{ t('language') }}</span><span class="value" id="info-lang"></span></div>
+        <div class="info-meta-item is-hidden" id="info-description-item"><span class="label">{{ t('description') }}</span><span class="value" id="info-description-text"></span></div>
+      </div>
+      <div id="info-members-section" class="is-hidden">
+        <h3>{{ t('members') }} <span id="info-members-count" class="info-members-count"></span></h3>
+        <ul id="info-members-list" class="members-list"></ul>
+      </div>
+      <div id="info-media-section" class="chat-media-section is-hidden">
+        <h3>{{ t('attachments_title') }}</h3>
+        <div id="info-media-browser" class="chat-media-browser-host"></div>
+      </div>
+    </div>
+    <div class="info-actions is-hidden" id="info-actions"></div>
+  </div>
+</div>

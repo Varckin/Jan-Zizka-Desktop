@@ -1,0 +1,71 @@
+<div id="e2e-new-chat-modal" class="e2e-modal" role="dialog" aria-modal="true">
+  <div class="e2e-modal-content">
+    <button class="e2e-modal-close" aria-label="{{ t('close') }}" data-modal-close="e2e-new-chat-modal" type="button">✕</button>
+    <h2>{{ t('e2e_new_chat') }}</h2>
+    <input type="text" id="e2e-new-chat-username" placeholder="{{ t('e2e_username_placeholder') }}" autocomplete="off">
+    <div id="e2e-new-chat-error" class="e2e-modal-error"></div>
+    <button id="e2e-new-chat-confirm" class="e2e-btn-primary" type="button">{{ t('create') }}</button>
+  </div>
+</div>
+
+<div id="e2e-edit-modal" class="e2e-modal" role="dialog" aria-modal="true">
+  <div class="e2e-modal-content">
+    <button class="e2e-modal-close" aria-label="{{ t('close') }}" data-modal-close="e2e-edit-modal" type="button">✕</button>
+    <h2>{{ t('edit') }}</h2>
+    <textarea id="e2e-edit-text" rows="4" aria-label="{{ t('edit') }}"></textarea>
+    <div id="e2e-edit-error" class="e2e-modal-error"></div>
+    <button id="e2e-edit-confirm" class="e2e-btn-primary" type="button">{{ t('save') }}</button>
+  </div>
+</div>
+
+<div id="e2e-search-modal" class="e2e-modal" role="dialog" aria-modal="true">
+  <div class="e2e-modal-content e2e-search-content">
+    <button class="e2e-modal-close" aria-label="{{ t('close') }}" data-modal-close="e2e-search-modal" type="button">✕</button>
+    <h2>{{ t('e2e_search_messages') }}</h2>
+    <input type="text" id="e2e-search-msg-input"
+           placeholder="{{ t('search_placeholder') }}" autocomplete="off">
+    <div id="e2e-search-msg-results" class="e2e-search-results"></div>
+  </div>
+</div>
+
+<div id="e2e-profile-modal" class="e2e-modal" role="dialog" aria-modal="true">
+  <div class="e2e-modal-content e2e-profile-content">
+    <button class="e2e-modal-close" aria-label="{{ t('close') }}" data-modal-close="e2e-profile-modal" type="button">✕</button>
+    <div class="e2e-profile-header">
+      <div class="e2e-profile-avatar" id="e2e-profile-avatar"></div>
+      <h2 id="e2e-profile-name">…</h2>
+      <span class="e2e-profile-username is-hidden" id="e2e-profile-username"></span>
+    </div>
+    <div class="e2e-profile-body">
+      <div class="e2e-profile-bio is-hidden" id="e2e-profile-bio"></div>
+      <div class="e2e-profile-safety is-hidden" id="e2e-profile-safety">
+        <div class="e2e-profile-safety-title">{{ t('e2e_safety_number') }}</div>
+        <div class="e2e-profile-safety-digits" id="e2e-profile-safety-digits"></div>
+        <img id="e2e-profile-safety-qr" class="e2e-profile-safety-qr is-hidden" alt="QR" width="148" height="148">
+        <div class="e2e-profile-safety-hint" id="e2e-profile-safety-hint"></div>
+        <button id="e2e-profile-safety-copy" class="e2e-btn-secondary e2e-profile-safety-copy is-hidden" type="button">{{ t('e2e_copy') }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="e2e-delete-chat-modal" class="e2e-modal" role="dialog" aria-modal="true">
+  <div class="e2e-modal-content e2e-delete-chat-content">
+    <button class="e2e-modal-close" aria-label="{{ t('close') }}" data-modal-close="e2e-delete-chat-modal" type="button">✕</button>
+    <div class="e2e-delete-chat-icon" aria-hidden="true">🗑</div>
+    <h2>{{ t('e2e_delete_confirm_title') }}</h2>
+    <p class="e2e-delete-chat-text">{{ t('e2e_delete_confirm') }}</p>
+    <div class="e2e-delete-chat-actions">
+      <button type="button" class="e2e-btn-secondary" data-modal-close="e2e-delete-chat-modal">
+        {{ t('cancel') }}
+      </button>
+      <button type="button" id="e2e-delete-chat-confirm" class="e2e-btn-danger">
+        {{ t('delete') }}
+      </button>
+    </div>
+  </div>
+</div>
+
+{% set emoji_popup_id = 'e2e-emoji-popup' %}
+{% set emoji_grid_id = 'e2e-emoji-grid' %}
+{% include "partials/core_emoji_popup.njk" %}

@@ -1,0 +1,156 @@
+#view-chat .emoji-popup,  #view-e2e .emoji-popup,  #view-settings .emoji-popup{
+    position: fixed;
+    z-index: var(--chat-z-emoji);
+    background: var(--chat-bg-panel);
+    border: 1px solid var(--chat-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    width: 320px;
+    max-width: calc(100vw - 20px);
+    max-height: 380px;
+    padding: 8px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+    transition: opacity 0.22s ease,
+                transform 0.3s var(--chat-ease-spring);
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+#view-chat .emoji-popup.show,  #view-e2e .emoji-popup.show,  #view-settings .emoji-popup.show{
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+}
+
+#view-chat .emoji-popup::-webkit-scrollbar,  #view-e2e .emoji-popup::-webkit-scrollbar,  #view-settings .emoji-popup::-webkit-scrollbar{ width: 6px; }
+#view-chat .emoji-popup::-webkit-scrollbar-thumb,  #view-e2e .emoji-popup::-webkit-scrollbar-thumb,  #view-settings .emoji-popup::-webkit-scrollbar-thumb{
+    background: rgba(122, 140, 180, 0.28);
+    border-radius: 6px;
+}
+#view-chat .emoji-popup::-webkit-scrollbar-thumb:hover,  #view-e2e .emoji-popup::-webkit-scrollbar-thumb:hover,  #view-settings .emoji-popup::-webkit-scrollbar-thumb:hover{ background: rgba(122, 140, 180, 0.5); }
+
+#view-chat .emoji-popup-content,  #view-e2e .emoji-popup-content,  #view-settings .emoji-popup-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+    gap: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    justify-items: center;
+    align-items: center;
+}
+
+#view-chat .emoji-picker-root,  #view-e2e .emoji-picker-root,  #view-settings .emoji-picker-root{
+    display: block;
+    width: 100%;
+}
+
+#view-chat .emoji-categories,  #view-e2e .emoji-categories,  #view-settings .emoji-categories{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin: -8px -8px 6px;
+    padding: 8px 6px 6px;
+    background: var(--chat-bg-panel);
+    border-bottom: 1px solid var(--chat-border);
+    border-radius: 15px 15px 0 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
+#view-chat .emoji-categories::-webkit-scrollbar,  #view-e2e .emoji-categories::-webkit-scrollbar,  #view-settings .emoji-categories::-webkit-scrollbar{ display: none; }
+
+#view-chat .emoji-cat-btn,  #view-e2e .emoji-cat-btn,  #view-settings .emoji-cat-btn{
+    flex: 1 0 auto;
+    min-width: 32px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+    color: inherit;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: background-color 0.15s ease,
+                opacity 0.15s ease;
+}
+
+#view-chat .emoji-cat-btn:hover,  #view-e2e .emoji-cat-btn:hover,  #view-settings .emoji-cat-btn:hover{
+    opacity: 0.85;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#view-chat .emoji-cat-btn.active,  #view-e2e .emoji-cat-btn.active,  #view-settings .emoji-cat-btn.active{
+    opacity: 1;
+    background: rgba(126, 180, 255, 0.16);
+}
+
+#view-chat .emoji-section-title,  #view-e2e .emoji-section-title,  #view-settings .emoji-section-title{
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--chat-text-dim);
+    padding: 6px 2px 4px;
+    user-select: none;
+}
+
+#view-chat .emoji-section + .emoji-section,  #view-e2e .emoji-section + .emoji-section,  #view-settings .emoji-section + .emoji-section{
+    margin-top: 6px;
+}
+
+#view-chat .emoji-popup .emoji-item,  #view-e2e .emoji-popup .emoji-item,  #view-settings .emoji-popup .emoji-item{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: background-color 0.15s ease,
+                transform 0.2s var(--chat-ease-spring);
+}
+
+#view-chat .emoji-popup .emoji-item:hover,  #view-e2e .emoji-popup .emoji-item:hover,  #view-settings .emoji-popup .emoji-item:hover{
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.22);
+}
+
+#view-chat .emoji-popup .emoji-item:active,  #view-e2e .emoji-popup .emoji-item:active,  #view-settings .emoji-popup .emoji-item:active{ transform: scale(1.05); }
+
+#view-chat #emoji-btn:hover, #view-chat #e2e-emoji-btn:hover, #view-e2e #e2e-emoji-btn:hover, #view-settings #e2e-emoji-btn:hover,  #view-e2e #emoji-btn:hover, #view-chat #e2e-emoji-btn:hover, #view-e2e #e2e-emoji-btn:hover, #view-settings #e2e-emoji-btn:hover,  #view-settings #emoji-btn:hover, #view-chat #e2e-emoji-btn:hover, #view-e2e #e2e-emoji-btn:hover, #view-settings #e2e-emoji-btn:hover{
+    color: #ffe082;
+    background: rgba(255, 224, 130, 0.08);
+}
+
+@media (max-width: 480px) {
+    #view-chat .emoji-popup,  #view-e2e .emoji-popup,  #view-settings .emoji-popup{ width: 260px; max-height: 320px; }
+    #view-chat .emoji-popup-content,  #view-e2e .emoji-popup-content,  #view-settings .emoji-popup-content{ grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)); }
+    #view-chat .emoji-popup .emoji-item,  #view-e2e .emoji-popup .emoji-item,  #view-settings .emoji-popup .emoji-item{ width: 28px; height: 28px; font-size: 16px; }
+    #view-chat .emoji-cat-btn,  #view-e2e .emoji-cat-btn,  #view-settings .emoji-cat-btn{ min-width: 28px; height: 26px; font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #view-chat .emoji-popup, #view-chat .emoji-popup .emoji-item, #view-e2e .emoji-popup .emoji-item, #view-settings .emoji-popup .emoji-item,  #view-e2e .emoji-popup, #view-chat .emoji-popup .emoji-item, #view-e2e .emoji-popup .emoji-item, #view-settings .emoji-popup .emoji-item,  #view-settings .emoji-popup, #view-chat .emoji-popup .emoji-item, #view-e2e .emoji-popup .emoji-item, #view-settings .emoji-popup .emoji-item{
+        transition: none !important;
+        animation: none !important;
+    }
+    #view-chat .emoji-popup,  #view-e2e .emoji-popup,  #view-settings .emoji-popup{ opacity: 1; transform: none; }
+}

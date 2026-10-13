@@ -1,0 +1,382 @@
+#view-chat .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages,  #view-e2e .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages,  #view-settings .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages{
+    min-height: 0;
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+}
+
+#view-chat .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message,  #view-e2e .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message,  #view-settings .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message{
+    position: relative;
+    max-width: 75%;
+    padding: 10px 16px;
+    border-radius: var(--chat-radius-bubble);
+    background: var(--chat-bg-elevated);
+    align-self: flex-start;
+    word-wrap: break-word;
+    animation: slideInLeft 0.42s var(--chat-ease-soft);
+    box-shadow: var(--chat-shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#view-chat .message:hover, #view-chat .e2e-message:hover, #view-e2e .e2e-message:hover, #view-settings .e2e-message:hover,  #view-e2e .message:hover, #view-chat .e2e-message:hover, #view-e2e .e2e-message:hover, #view-settings .e2e-message:hover,  #view-settings .message:hover, #view-chat .e2e-message:hover, #view-e2e .e2e-message:hover, #view-settings .e2e-message:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+#view-chat .message.sent, #view-chat .e2e-message.sent, #view-e2e .e2e-message.sent, #view-settings .e2e-message.sent,  #view-e2e .message.sent, #view-chat .e2e-message.sent, #view-e2e .e2e-message.sent, #view-settings .e2e-message.sent,  #view-settings .message.sent, #view-chat .e2e-message.sent, #view-e2e .e2e-message.sent, #view-settings .e2e-message.sent{
+    align-self: flex-end;
+    background: var(--chat-gradient-sent);
+    animation: slideInRight 0.42s var(--chat-ease-soft);
+}
+
+#view-chat .message .sender, #view-chat .e2e-message .e2e-msg-sender, #view-e2e .e2e-message .e2e-msg-sender, #view-settings .e2e-message .e2e-msg-sender,  #view-e2e .message .sender, #view-chat .e2e-message .e2e-msg-sender, #view-e2e .e2e-message .e2e-msg-sender, #view-settings .e2e-message .e2e-msg-sender,  #view-settings .message .sender, #view-chat .e2e-message .e2e-msg-sender, #view-e2e .e2e-message .e2e-msg-sender, #view-settings .e2e-message .e2e-msg-sender{
+    font-size: 0.8rem;
+    color: var(--chat-text-heading);
+    margin-bottom: 4px;
+    user-select: none;
+}
+
+#view-chat .e2e-message .e2e-msg-sender,  #view-e2e .e2e-message .e2e-msg-sender,  #view-settings .e2e-message .e2e-msg-sender{
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-weight: 500;
+}
+
+#view-chat .message.sent .sender, #view-chat .e2e-message.sent .e2e-msg-sender, #view-e2e .e2e-message.sent .e2e-msg-sender, #view-settings .e2e-message.sent .e2e-msg-sender,  #view-e2e .message.sent .sender, #view-chat .e2e-message.sent .e2e-msg-sender, #view-e2e .e2e-message.sent .e2e-msg-sender, #view-settings .e2e-message.sent .e2e-msg-sender,  #view-settings .message.sent .sender, #view-chat .e2e-message.sent .e2e-msg-sender, #view-e2e .e2e-message.sent .e2e-msg-sender, #view-settings .e2e-message.sent .e2e-msg-sender{ color: rgba(255, 255, 255, 0.85); }
+
+#view-chat .message .content, #view-chat .e2e-message .e2e-msg-content, #view-e2e .e2e-message .e2e-msg-content, #view-settings .e2e-message .e2e-msg-content,  #view-e2e .message .content, #view-chat .e2e-message .e2e-msg-content, #view-e2e .e2e-message .e2e-msg-content, #view-settings .e2e-message .e2e-msg-content,  #view-settings .message .content, #view-chat .e2e-message .e2e-msg-content, #view-e2e .e2e-message .e2e-msg-content, #view-settings .e2e-message .e2e-msg-content{
+    font-size: 0.95rem;
+    line-height: 1.4;
+    user-select: text;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+#view-chat .message .time, #view-chat .e2e-message .e2e-msg-meta, #view-e2e .e2e-message .e2e-msg-meta, #view-settings .e2e-message .e2e-msg-meta,  #view-e2e .message .time, #view-chat .e2e-message .e2e-msg-meta, #view-e2e .e2e-message .e2e-msg-meta, #view-settings .e2e-message .e2e-msg-meta,  #view-settings .message .time, #view-chat .e2e-message .e2e-msg-meta, #view-e2e .e2e-message .e2e-msg-meta, #view-settings .e2e-message .e2e-msg-meta{
+    font-size: 0.7rem;
+    color: var(--chat-text-muted);
+    margin-top: 4px;
+    text-align: right;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+#view-chat .message.sent .time, #view-chat .e2e-message.sent .e2e-msg-meta, #view-e2e .e2e-message.sent .e2e-msg-meta, #view-settings .e2e-message.sent .e2e-msg-meta,  #view-e2e .message.sent .time, #view-chat .e2e-message.sent .e2e-msg-meta, #view-e2e .e2e-message.sent .e2e-msg-meta, #view-settings .e2e-message.sent .e2e-msg-meta,  #view-settings .message.sent .time, #view-chat .e2e-message.sent .e2e-msg-meta, #view-e2e .e2e-message.sent .e2e-msg-meta, #view-settings .e2e-message.sent .e2e-msg-meta{ color: rgba(255, 255, 255, 0.72); }
+
+#view-chat .message .edited, #view-chat .e2e-edited, #view-e2e .e2e-edited, #view-settings .e2e-edited,  #view-e2e .message .edited, #view-chat .e2e-edited, #view-e2e .e2e-edited, #view-settings .e2e-edited,  #view-settings .message .edited, #view-chat .e2e-edited, #view-e2e .e2e-edited, #view-settings .e2e-edited{
+    font-size: 0.65rem;
+    color: inherit;
+    font-style: italic;
+    opacity: 0.8;
+    user-select: none;
+}
+
+#view-chat .message .time .read-count,  #view-e2e .message .time .read-count,  #view-settings .message .time .read-count{
+    display: inline-block;
+    color: inherit;
+    font-size: 0.7rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.2px;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+#view-chat .e2e-message .e2e-msg-error,  #view-e2e .e2e-message .e2e-msg-error,  #view-settings .e2e-message .e2e-msg-error{
+    color: #ff9e9e;
+    font-size: 0.82rem;
+    font-style: italic;
+}
+
+#view-chat .message .reply-preview,  #view-e2e .message .reply-preview,  #view-settings .message .reply-preview{
+    font-size: 0.8rem;
+    color: var(--chat-text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: var(--chat-radius-sm);
+    margin-bottom: 6px;
+    border-left: 3px solid var(--chat-accent);
+    user-select: none;
+}
+
+#view-chat .message .attachments, #view-chat .e2e-attachments, #view-e2e .e2e-attachments, #view-settings .e2e-attachments,  #view-e2e .message .attachments, #view-chat .e2e-attachments, #view-e2e .e2e-attachments, #view-settings .e2e-attachments,  #view-settings .message .attachments, #view-chat .e2e-attachments, #view-e2e .e2e-attachments, #view-settings .e2e-attachments{
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+#view-chat .message .attachments .file-item, #view-chat .e2e-file-chip, #view-e2e .e2e-file-chip, #view-settings .e2e-file-chip,  #view-e2e .message .attachments .file-item, #view-chat .e2e-file-chip, #view-e2e .e2e-file-chip, #view-settings .e2e-file-chip,  #view-settings .message .attachments .file-item, #view-chat .e2e-file-chip, #view-e2e .e2e-file-chip, #view-settings .e2e-file-chip{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 10px 4px 6px;
+    border-radius: var(--chat-radius-md);
+    border: 1px solid var(--chat-bg-hover);
+    font-size: 0.82rem;
+    color: var(--chat-text);
+    transition: background 0.2s, transform 0.2s ease;
+}
+
+#view-chat .message .attachments .file-item:hover, #view-chat .e2e-file-chip:hover, #view-e2e .e2e-file-chip:hover, #view-settings .e2e-file-chip:hover,  #view-e2e .message .attachments .file-item:hover, #view-chat .e2e-file-chip:hover, #view-e2e .e2e-file-chip:hover, #view-settings .e2e-file-chip:hover,  #view-settings .message .attachments .file-item:hover, #view-chat .e2e-file-chip:hover, #view-e2e .e2e-file-chip:hover, #view-settings .e2e-file-chip:hover{
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+#view-chat .e2e-file-chip,  #view-e2e .e2e-file-chip,  #view-settings .e2e-file-chip{ cursor: pointer; }
+#view-chat .e2e-file-chip.disabled,  #view-e2e .e2e-file-chip.disabled,  #view-settings .e2e-file-chip.disabled{ opacity: 0.6; cursor: default; }
+#view-chat .e2e-file-chip.disabled:hover,  #view-e2e .e2e-file-chip.disabled:hover,  #view-settings .e2e-file-chip.disabled:hover{ transform: none; }
+
+#view-chat .e2e-attach-chip,  #view-e2e .e2e-attach-chip,  #view-settings .e2e-attach-chip{
+    background: rgba(255, 255, 255, 0.08);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    border: 1px solid rgba(126, 180, 255, 0.15);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#view-chat .e2e-attach-chip:hover,  #view-e2e .e2e-attach-chip:hover,  #view-settings .e2e-attach-chip:hover{
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
+}
+
+#view-chat .message .attachments .file-item .file-icon,  #view-e2e .message .attachments .file-item .file-icon,  #view-settings .message .attachments .file-item .file-icon{ font-size: 1.4rem; line-height: 1; }
+
+#view-chat .message .attachments .file-item .file-name,  #view-e2e .message .attachments .file-item .file-name,  #view-settings .message .attachments .file-item .file-name{
+    font-size: 0.8rem;
+    color: var(--chat-text-heading);
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#view-chat .message .attachments .file-item .file-size,  #view-e2e .message .attachments .file-item .file-size,  #view-settings .message .attachments .file-item .file-size{ font-size: 0.7rem; color: var(--chat-text-muted); }
+
+#view-chat .message .attachments .file-item .file-link,  #view-e2e .message .attachments .file-item .file-link,  #view-settings .message .attachments .file-item .file-link{ color: var(--chat-accent-soft); text-decoration: none; }
+
+#view-chat .message .attachments img, #view-chat .e2e-file-image, #view-e2e .e2e-file-image, #view-settings .e2e-file-image,  #view-e2e .message .attachments img, #view-chat .e2e-file-image, #view-e2e .e2e-file-image, #view-settings .e2e-file-image,  #view-settings .message .attachments img, #view-chat .e2e-file-image, #view-e2e .e2e-file-image, #view-settings .e2e-file-image{
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: var(--chat-radius-md);
+    border: 1px solid var(--chat-bg-hover);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#view-chat .message .attachments img:hover, #view-chat .e2e-file-image:hover, #view-e2e .e2e-file-image:hover, #view-settings .e2e-file-image:hover,  #view-e2e .message .attachments img:hover, #view-chat .e2e-file-image:hover, #view-e2e .e2e-file-image:hover, #view-settings .e2e-file-image:hover,  #view-settings .message .attachments img:hover, #view-chat .e2e-file-image:hover, #view-e2e .e2e-file-image:hover, #view-settings .e2e-file-image:hover{ transform: scale(1.02); }
+
+#view-chat .e2e-file-image,  #view-e2e .e2e-file-image,  #view-settings .e2e-file-image{
+    display: block;
+    cursor: zoom-in;
+    border: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+#view-chat .e2e-file-image:hover,  #view-e2e .e2e-file-image:hover,  #view-settings .e2e-file-image:hover{
+    transform: scale(1.03);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+#view-chat .e2e-file-msg,  #view-e2e .e2e-file-msg,  #view-settings .e2e-file-msg{ margin-top: 4px; }
+
+#view-chat .e2e-file-caption,  #view-e2e .e2e-file-caption,  #view-settings .e2e-file-caption{
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+#view-chat .message .attachments audio,  #view-e2e .message .attachments audio,  #view-settings .message .attachments audio{
+    width: 100%;
+    max-width: 260px;
+    height: 40px;
+    border-radius: 20px;
+    background: var(--chat-bg-panel);
+    outline: none;
+}
+
+#view-chat .message .attachments audio::-webkit-media-controls-panel,  #view-e2e .message .attachments audio::-webkit-media-controls-panel,  #view-settings .message .attachments audio::-webkit-media-controls-panel{ background: var(--chat-bg-elevated); }
+#view-chat .message .attachments audio::-webkit-media-controls-current-time-display, #view-chat .message .attachments audio::-webkit-media-controls-time-remaining-display, #view-e2e .message .attachments audio::-webkit-media-controls-time-remaining-display, #view-settings .message .attachments audio::-webkit-media-controls-time-remaining-display,  #view-e2e .message .attachments audio::-webkit-media-controls-current-time-display, #view-chat .message .attachments audio::-webkit-media-controls-time-remaining-display, #view-e2e .message .attachments audio::-webkit-media-controls-time-remaining-display, #view-settings .message .attachments audio::-webkit-media-controls-time-remaining-display,  #view-settings .message .attachments audio::-webkit-media-controls-current-time-display, #view-chat .message .attachments audio::-webkit-media-controls-time-remaining-display, #view-e2e .message .attachments audio::-webkit-media-controls-time-remaining-display, #view-settings .message .attachments audio::-webkit-media-controls-time-remaining-display{ color: var(--chat-text); }
+
+#view-chat .message .content .message-gif,  #view-e2e .message .content .message-gif,  #view-settings .message .content .message-gif{ max-width: 100%; max-height: 300px; object-fit: contain; border-radius: 12px; }
+#view-chat .message .attachments .message-video, #view-chat .e2e-attachments .message-video, #view-e2e .e2e-attachments .message-video, #view-settings .e2e-attachments .message-video,  #view-e2e .message .attachments .message-video, #view-chat .e2e-attachments .message-video, #view-e2e .e2e-attachments .message-video, #view-settings .e2e-attachments .message-video,  #view-settings .message .attachments .message-video, #view-chat .e2e-attachments .message-video, #view-e2e .e2e-attachments .message-video, #view-settings .e2e-attachments .message-video{ max-width: 100%; max-height: 300px; border-radius: 12px; }
+
+#view-chat .message.message-highlight, #view-chat .e2e-message.e2e-message-highlight, #view-e2e .e2e-message.e2e-message-highlight, #view-settings .e2e-message.e2e-message-highlight,  #view-e2e .message.message-highlight, #view-chat .e2e-message.e2e-message-highlight, #view-e2e .e2e-message.e2e-message-highlight, #view-settings .e2e-message.e2e-message-highlight,  #view-settings .message.message-highlight, #view-chat .e2e-message.e2e-message-highlight, #view-e2e .e2e-message.e2e-message-highlight, #view-settings .e2e-message.e2e-message-highlight{ animation: messageHighlight 2s ease; }
+
+#view-chat .date-separator, #view-chat .e2e-date-separator, #view-e2e .e2e-date-separator, #view-settings .e2e-date-separator,  #view-e2e .date-separator, #view-chat .e2e-date-separator, #view-e2e .e2e-date-separator, #view-settings .e2e-date-separator,  #view-settings .date-separator, #view-chat .e2e-date-separator, #view-e2e .e2e-date-separator, #view-settings .e2e-date-separator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    margin: 14px 0 6px;
+    pointer-events: none;
+    user-select: none;
+    animation: fadeIn 0.35s ease both;
+}
+
+#view-chat .date-separator-label, #view-chat .e2e-date-separator-label, #view-e2e .e2e-date-separator-label, #view-settings .e2e-date-separator-label,  #view-e2e .date-separator-label, #view-chat .e2e-date-separator-label, #view-e2e .e2e-date-separator-label, #view-settings .e2e-date-separator-label,  #view-settings .date-separator-label, #view-chat .e2e-date-separator-label, #view-e2e .e2e-date-separator-label, #view-settings .e2e-date-separator-label{
+    background: rgba(74, 111, 165, 0.18);
+    color: var(--chat-text-heading);
+    padding: 4px 14px;
+    border-radius: 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border: 1px solid rgba(74, 111, 165, 0.28);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+#view-chat .message .content .message-link, #view-chat .e2e-message .e2e-msg-content .message-link, #view-e2e .e2e-message .e2e-msg-content .message-link, #view-settings .e2e-message .e2e-msg-content .message-link,  #view-e2e .message .content .message-link, #view-chat .e2e-message .e2e-msg-content .message-link, #view-e2e .e2e-message .e2e-msg-content .message-link, #view-settings .e2e-message .e2e-msg-content .message-link,  #view-settings .message .content .message-link, #view-chat .e2e-message .e2e-msg-content .message-link, #view-e2e .e2e-message .e2e-msg-content .message-link, #view-settings .e2e-message .e2e-msg-content .message-link{
+    color: #8fc0ff;
+    text-decoration: underline;
+    text-decoration-color: rgba(143, 192, 255, 0.5);
+    text-underline-offset: 2px;
+    overflow-wrap: anywhere;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+#view-chat .message .content .message-link:hover, #view-chat .e2e-message .e2e-msg-content .message-link:hover, #view-e2e .e2e-message .e2e-msg-content .message-link:hover, #view-settings .e2e-message .e2e-msg-content .message-link:hover,  #view-e2e .message .content .message-link:hover, #view-chat .e2e-message .e2e-msg-content .message-link:hover, #view-e2e .e2e-message .e2e-msg-content .message-link:hover, #view-settings .e2e-message .e2e-msg-content .message-link:hover,  #view-settings .message .content .message-link:hover, #view-chat .e2e-message .e2e-msg-content .message-link:hover, #view-e2e .e2e-message .e2e-msg-content .message-link:hover, #view-settings .e2e-message .e2e-msg-content .message-link:hover{
+    color: #b8d8ff;
+    text-decoration-color: #b8d8ff;
+}
+
+#view-chat .message.sent .content .message-link, #view-chat .e2e-message.sent .e2e-msg-content .message-link, #view-e2e .e2e-message.sent .e2e-msg-content .message-link, #view-settings .e2e-message.sent .e2e-msg-content .message-link,  #view-e2e .message.sent .content .message-link, #view-chat .e2e-message.sent .e2e-msg-content .message-link, #view-e2e .e2e-message.sent .e2e-msg-content .message-link, #view-settings .e2e-message.sent .e2e-msg-content .message-link,  #view-settings .message.sent .content .message-link, #view-chat .e2e-message.sent .e2e-msg-content .message-link, #view-e2e .e2e-message.sent .e2e-msg-content .message-link, #view-settings .e2e-message.sent .e2e-msg-content .message-link{
+    color: #eaf2ff;
+    text-decoration-color: rgba(234, 242, 255, 0.6);
+}
+
+#view-chat .message.sent .content .message-link:hover, #view-chat .e2e-message.sent .e2e-msg-content .message-link:hover, #view-e2e .e2e-message.sent .e2e-msg-content .message-link:hover, #view-settings .e2e-message.sent .e2e-msg-content .message-link:hover,  #view-e2e .message.sent .content .message-link:hover, #view-chat .e2e-message.sent .e2e-msg-content .message-link:hover, #view-e2e .e2e-message.sent .e2e-msg-content .message-link:hover, #view-settings .e2e-message.sent .e2e-msg-content .message-link:hover,  #view-settings .message.sent .content .message-link:hover, #view-chat .e2e-message.sent .e2e-msg-content .message-link:hover, #view-e2e .e2e-message.sent .e2e-msg-content .message-link:hover, #view-settings .e2e-message.sent .e2e-msg-content .message-link:hover{
+    color: #ffffff;
+    text-decoration-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    #view-chat .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message,  #view-e2e .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message,  #view-settings .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message{ max-width: 85%; }
+}
+
+@media (max-width: 480px) {
+    #view-chat .date-separator-label, #view-chat .e2e-date-separator-label, #view-e2e .e2e-date-separator-label, #view-settings .e2e-date-separator-label,  #view-e2e .date-separator-label, #view-chat .e2e-date-separator-label, #view-e2e .e2e-date-separator-label, #view-settings .e2e-date-separator-label,  #view-settings .date-separator-label, #view-chat .e2e-date-separator-label, #view-e2e .e2e-date-separator-label, #view-settings .e2e-date-separator-label{ font-size: 0.68rem; padding: 3px 10px; }
+    #view-chat .message .attachments img, #view-chat .e2e-file-image, #view-e2e .e2e-file-image, #view-settings .e2e-file-image,  #view-e2e .message .attachments img, #view-chat .e2e-file-image, #view-e2e .e2e-file-image, #view-settings .e2e-file-image,  #view-settings .message .attachments img, #view-chat .e2e-file-image, #view-e2e .e2e-file-image, #view-settings .e2e-file-image{ max-width: 150px; max-height: 150px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #view-chat .date-separator, #view-chat .e2e-date-separator, #view-e2e .e2e-date-separator, #view-settings .e2e-date-separator,  #view-e2e .date-separator, #view-chat .e2e-date-separator, #view-e2e .e2e-date-separator, #view-settings .e2e-date-separator,  #view-settings .date-separator, #view-chat .e2e-date-separator, #view-e2e .e2e-date-separator, #view-settings .e2e-date-separator{ animation: none !important; }
+}
+
+#view-chat .system-message,  #view-e2e .system-message,  #view-settings .system-message{
+    display: flex;
+    justify-content: center;
+    align-self: stretch;
+    margin: 10px 0;
+    pointer-events: none;
+    user-select: none;
+    animation: systemMessageIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#view-chat .system-message-pill,  #view-e2e .system-message-pill,  #view-settings .system-message-pill{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    max-width: 85%;
+    padding: 6px 14px;
+    border-radius: 16px;
+    background: rgba(74, 111, 165, 0.14);
+    border: 1px solid rgba(74, 111, 165, 0.24);
+    color: var(--chat-text-muted, #8a8aa0);
+    font-size: 0.82rem;
+    line-height: 1.35;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+#view-chat .system-message:hover .system-message-pill,  #view-e2e .system-message:hover .system-message-pill,  #view-settings .system-message:hover .system-message-pill{
+    background: rgba(74, 111, 165, 0.22);
+    border-color: rgba(74, 111, 165, 0.38);
+    transform: translateY(-1px);
+}
+
+#view-chat .system-message-icon,  #view-e2e .system-message-icon,  #view-settings .system-message-icon{
+    display: inline-flex;
+    align-items: center;
+    color: #8fc0ff;
+    flex-shrink: 0;
+}
+
+#view-chat .system-message-icon svg,  #view-e2e .system-message-icon svg,  #view-settings .system-message-icon svg{
+    width: 14px;
+    height: 14px;
+}
+
+#view-chat .system-message-text,  #view-e2e .system-message-text,  #view-settings .system-message-text{
+    color: var(--chat-text-heading, #b8c7e6);
+    font-weight: 500;
+    text-align: center;
+}
+
+#view-chat .system-message-text .system-user,  #view-e2e .system-message-text .system-user,  #view-settings .system-message-text .system-user{
+    color: #8fc0ff;
+    font-weight: 600;
+}
+
+#view-chat .system-message-time,  #view-e2e .system-message-time,  #view-settings .system-message-time{
+    font-size: 0.68rem;
+    opacity: 0.65;
+    flex-shrink: 0;
+}
+
+#view-chat .last-msg.system-preview,  #view-e2e .last-msg.system-preview,  #view-settings .last-msg.system-preview{
+    color: #8fc0ff;
+    opacity: 0.85;
+}
+
+@keyframes systemMessageIn {
+    from { opacity: 0; transform: translateY(6px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #view-chat .system-message, #view-chat .system-message-pill, #view-e2e .system-message-pill, #view-settings .system-message-pill,  #view-e2e .system-message, #view-chat .system-message-pill, #view-e2e .system-message-pill, #view-settings .system-message-pill,  #view-settings .system-message, #view-chat .system-message-pill, #view-e2e .system-message-pill, #view-settings .system-message-pill{
+        animation: none !important;
+        transition: none !important;
+    }
+    #view-chat .system-message:hover .system-message-pill,  #view-e2e .system-message:hover .system-message-pill,  #view-settings .system-message:hover .system-message-pill{ transform: none; }
+}
+
+#view-chat .message--pending,  #view-e2e .message--pending,  #view-settings .message--pending{ opacity: 0.72; }
+
+#view-chat .pending-clock,  #view-e2e .pending-clock,  #view-settings .pending-clock{
+    color: var(--chat-text-muted);
+    font-size: 0.85em;
+}
+
+#view-chat .pending-failed,  #view-e2e .pending-failed,  #view-settings .pending-failed{
+    color: #ff9d9d;
+    cursor: pointer;
+    text-decoration: underline dotted;
+    font-size: 0.85em;
+}
+
+#view-chat .pending-discard,  #view-e2e .pending-discard,  #view-settings .pending-discard{
+    background: none;
+    border: none;
+    color: var(--chat-text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+#view-chat .pending-discard:hover,  #view-e2e .pending-discard:hover,  #view-settings .pending-discard:hover{ color: #ff8a8a; }

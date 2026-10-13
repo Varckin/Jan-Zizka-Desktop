@@ -1,0 +1,232 @@
+.view-chat .chat-app,
+.view-e2e .e2e-app {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    animation: none;
+}
+
+.view-e2e .e2e-vault-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1200;
+}
+
+.view-settings .profile-container,
+.view-profile .profile-container {
+    min-height: 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.view-settings .profile-card,
+.view-profile .profile-card {
+    min-height: 0;
+}
+
+.auth-page-content .auth-container {
+    min-height: 100%;
+}
+
+@media (max-width: 768px) {
+    .view-chat .chat-app,
+    .view-chat .chat-app .chat-main,
+    .view-chat .chat-app .chat-sidebar {
+        height: 100%;
+    }
+
+    .view-e2e .e2e-app {
+        height: 100%;
+    }
+}
+
+#view-profile .profile-container,
+#view-settings .profile-container {
+    display: block;
+    min-height: 0;
+    align-items: initial;
+    justify-content: initial;
+}
+
+#view-profile .profile-card,
+#view-settings .profile-card {
+    margin: 0 auto;
+}
+
+#view-e2e .e2e-vault-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1200;
+}
+
+#view-chat {
+    padding: 0;
+}
+
+#view-chat .chat-app {
+    background: var(--chat-bg-app);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+#view-chat .chat-sidebar {
+    background: rgba(26, 26, 46, 0.55);
+    border-right: 1px solid var(--chat-border);
+}
+
+#view-chat .chat-main {
+    background: transparent;
+}
+
+#view-settings .profile-container {
+    padding: 26px 30px 40px;
+}
+
+#view-settings .profile-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    max-width: 900px;
+    animation: none;
+}
+
+#view-settings .settings-block:first-child,
+#view-profile .settings-block:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#view-settings .settings-block:first-child h3,
+#view-profile .settings-block:first-child h3 {
+    margin-top: 0;
+}
+
+#view-settings .settings-block,
+#view-profile .settings-block {
+    display: grid;
+    grid-template-columns: minmax(180px, 260px) 180px minmax(0, 1fr);
+    column-gap: 18px;
+    row-gap: 14px;
+    align-items: center;
+}
+
+#view-settings .settings-block > h3,
+#view-profile .settings-block > h3 {
+    grid-column: 1 / -1;
+}
+
+#view-settings .settings-item,
+#view-profile .settings-item {
+    display: contents;
+}
+
+#view-settings .settings-item > label,
+#view-profile .settings-item > label,
+#view-settings .settings-item > .label,
+#view-profile .settings-item > .label {
+    margin: 0;
+}
+
+#view-settings .settings-item > .toggle-wrapper,
+#view-profile .settings-item > .toggle-wrapper,
+#view-settings .settings-item > .privacy-select,
+#view-profile .settings-item > .privacy-select,
+#view-settings .settings-item > .lang-switcher,
+#view-profile .settings-item > .lang-switcher {
+    justify-self: start;
+}
+
+#view-settings .settings-item > .hint,
+#view-profile .settings-item > .hint {
+    margin: 0;
+}
+
+#view-settings .privacy-select,
+#view-profile .privacy-select {
+    width: 100%;
+    max-width: 170px;
+}
+
+#view-settings .settings-item.about-item > .value {
+    grid-column: 2 / -1;
+    text-align: left;
+}
+
+#view-settings .about-actions {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+#view-chat .chat-app,
+#view-e2e .e2e-app {
+    height: 100%;
+}
+
+#view-profile .profile-container > * + *,
+#view-settings .profile-container > * + * {
+    margin-top: 26px;
+}
+
+.code-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    padding: 1px 7px;
+    border-radius: 7px;
+    background: rgba(74, 111, 165, 0.28);
+    border: 1px solid rgba(126, 180, 255, 0.35);
+    color: #bcd2ff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    vertical-align: middle;
+}
+
+#view-e2e {
+    padding: 0;
+}
+
+#view-e2e .e2e-app {
+    background: var(--chat-bg-app);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+#view-profile .settings-scroll,
+#view-settings .settings-scroll {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.auth-page-content {
+    display: block;
+}
+
+.auth-page-content .auth-container {
+    flex: 0 0 auto;
+}
+
+#view-settings .settings-block:first-child,
+#view-profile .settings-block:first-child {
+    border-top: none;
+}
+
+#view-profile,
+#view-settings {
+    background: var(--chat-bg-app);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}

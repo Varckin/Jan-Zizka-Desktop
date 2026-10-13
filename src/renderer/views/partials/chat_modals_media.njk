@@ -1,0 +1,68 @@
+<div id="photo-viewer-modal" class="modal">
+  <div class="modal-content photo-viewer-content">
+    <button class="close" id="photo-viewer-close" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="photo-viewer-nav">
+      <button id="photo-prev" class="btn-icon" type="button" title="{{ t('previous') }}">‹</button>
+      <img id="photo-viewer-img" src="data:," alt="photo">
+      <video id="photo-viewer-video" class="is-hidden" controls playsinline preload="metadata"></video>
+      <button id="photo-next" class="btn-icon" type="button" title="{{ t('next') }}">›</button>
+    </div>
+    <div class="photo-counter" id="photo-counter"></div>
+  </div>
+</div>
+
+<div id="gif-modal" class="modal">
+  <div class="modal-content modal-lg">
+    <button class="close" id="gif-modal-close" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <h2>{{ t('search_gifs') }}</h2>
+    <div class="search-field gif-search-field">
+      <input type="text" id="gif-search-input" class="search-field-input" placeholder="{{ t('gif_search_placeholder') }}" autocomplete="off" spellcheck="false">
+    </div>
+    <div id="gif-search-results" class="gif-results">
+      <div class="gif-empty">{{ t('search_gifs') }}</div>
+    </div>
+  </div>
+</div>
+
+{% set emoji_popup_id = 'emoji-modal' %}
+{% set emoji_grid_id = 'emoji-grid' %}
+{% include "partials/core_emoji_popup.njk" %}
+
+<div id="search-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="msg-search-title">
+  <div class="modal-content search-modal-content">
+    <button class="close" type="button" title="{{ t('close') }}" aria-label="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="search-modal-header">
+      <div class="search-modal-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <div class="search-modal-heading">
+        <h2 id="msg-search-title">{{ t('search_messages') }}</h2>
+        <p class="search-modal-status" id="msg-search-status" role="status" aria-live="polite">{{ t('search_messages_hint') }}</p>
+      </div>
+    </div>
+    <div class="search-field">
+      <input type="text" id="msg-search-input" class="search-field-input" placeholder="{{ t('search_placeholder') }}" autocomplete="off" spellcheck="false" aria-controls="msg-search-results">
+      <div class="search-field-spinner" id="msg-search-spinner" aria-hidden="true"></div>
+      <button class="search-field-clear" id="msg-search-clear" type="button" title="{{ t('search_clear') }}" aria-label="{{ t('search_clear') }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div id="msg-search-results" class="msg-search-results" role="listbox" aria-label="{{ t('search_messages') }}"></div>
+  </div>
+</div>

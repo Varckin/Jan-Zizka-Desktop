@@ -1,0 +1,156 @@
+body.no-scroll { overflow: hidden; }
+
+#view-chat .modal, #view-chat .e2e-modal, #view-e2e .e2e-modal, #view-settings .e2e-modal,  #view-e2e .modal, #view-chat .e2e-modal, #view-e2e .e2e-modal, #view-settings .e2e-modal,  #view-settings .modal, #view-chat .e2e-modal, #view-e2e .e2e-modal, #view-settings .e2e-modal{
+    position: fixed;
+    z-index: var(--chat-z-modal);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#view-chat .modal.is-open, #view-chat .e2e-modal.is-open, #view-e2e .e2e-modal.is-open, #view-settings .e2e-modal.is-open,  #view-e2e .modal.is-open, #view-chat .e2e-modal.is-open, #view-e2e .e2e-modal.is-open, #view-settings .e2e-modal.is-open,  #view-settings .modal.is-open, #view-chat .e2e-modal.is-open, #view-e2e .e2e-modal.is-open, #view-settings .e2e-modal.is-open{
+    display: flex;
+    animation: modalBackdropIn 0.28s ease forwards;
+}
+
+#view-chat .modal.is-open .modal-content, #view-chat .e2e-modal.is-open .e2e-modal-content, #view-e2e .e2e-modal.is-open .e2e-modal-content, #view-settings .e2e-modal.is-open .e2e-modal-content,  #view-e2e .modal.is-open .modal-content, #view-chat .e2e-modal.is-open .e2e-modal-content, #view-e2e .e2e-modal.is-open .e2e-modal-content, #view-settings .e2e-modal.is-open .e2e-modal-content,  #view-settings .modal.is-open .modal-content, #view-chat .e2e-modal.is-open .e2e-modal-content, #view-e2e .e2e-modal.is-open .e2e-modal-content, #view-settings .e2e-modal.is-open .e2e-modal-content{
+    animation: scaleIn 0.42s var(--chat-ease-soft) forwards;
+    will-change: transform, opacity;
+}
+
+#view-chat .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content,  #view-e2e .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content,  #view-settings .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content{
+    background: var(--chat-bg-panel);
+    padding: 30px;
+    border-radius: var(--chat-radius-lg);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: var(--chat-text);
+    box-shadow: var(--chat-shadow-lg);
+    position: relative;
+}
+
+#view-chat .modal-content,  #view-e2e .modal-content,  #view-settings .modal-content{
+    scrollbar-gutter: stable both-edges;
+}
+
+#view-chat .modal-content::-webkit-scrollbar,  #view-e2e .modal-content::-webkit-scrollbar,  #view-settings .modal-content::-webkit-scrollbar{ width: 8px; }
+
+#view-chat .modal-content::-webkit-scrollbar-track,  #view-e2e .modal-content::-webkit-scrollbar-track,  #view-settings .modal-content::-webkit-scrollbar-track{ background: transparent; }
+
+#view-chat .modal-content::-webkit-scrollbar-thumb,  #view-e2e .modal-content::-webkit-scrollbar-thumb,  #view-settings .modal-content::-webkit-scrollbar-thumb{
+    background: rgba(122, 140, 180, 0.25);
+    border-radius: 8px;
+}
+
+#view-chat .modal-content::-webkit-scrollbar-thumb:hover,  #view-e2e .modal-content::-webkit-scrollbar-thumb:hover,  #view-settings .modal-content::-webkit-scrollbar-thumb:hover{ background: rgba(122, 140, 180, 0.5); }
+
+#view-chat .modal-content.modal-lg,  #view-e2e .modal-content.modal-lg,  #view-settings .modal-content.modal-lg{ max-width: 700px; }
+
+#view-chat .modal .close,  #view-e2e .modal .close,  #view-settings .modal .close{
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    z-index: 2;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s, background 0.2s, transform 0.3s var(--chat-ease-soft);
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+#view-chat .modal .close:hover,  #view-e2e .modal .close:hover,  #view-settings .modal .close:hover{ color: #fff; background: rgba(255, 255, 255, 0.08); transform: rotate(90deg); }
+
+#view-chat .modal-content > h2,  #view-e2e .modal-content > h2,  #view-settings .modal-content > h2{ padding-right: 40px; }
+
+#view-chat .e2e-modal-close,  #view-e2e .e2e-modal-close,  #view-settings .e2e-modal-close{
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: color 0.2s, background 0.2s ease,
+                transform 0.3s var(--chat-ease-soft);
+}
+
+#view-chat .e2e-modal-close:hover,  #view-e2e .e2e-modal-close:hover,  #view-settings .e2e-modal-close:hover{
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    transform: rotate(90deg);
+}
+
+#view-chat .modal-content h2, #view-chat .e2e-modal-content h2, #view-e2e .e2e-modal-content h2, #view-settings .e2e-modal-content h2,  #view-e2e .modal-content h2, #view-chat .e2e-modal-content h2, #view-e2e .e2e-modal-content h2, #view-settings .e2e-modal-content h2,  #view-settings .modal-content h2, #view-chat .e2e-modal-content h2, #view-e2e .e2e-modal-content h2, #view-settings .e2e-modal-content h2{
+    margin-top: 0;
+    margin-bottom: 14px;
+    color: var(--chat-text-heading);
+    font-weight: 500;
+}
+
+#view-chat .modal-content label, #view-chat .e2e-modal-content label, #view-e2e .e2e-modal-content label, #view-settings .e2e-modal-content label,  #view-e2e .modal-content label, #view-chat .e2e-modal-content label, #view-e2e .e2e-modal-content label, #view-settings .e2e-modal-content label,  #view-settings .modal-content label, #view-chat .e2e-modal-content label, #view-e2e .e2e-modal-content label, #view-settings .e2e-modal-content label{
+    display: block;
+    margin: 12px 0 4px;
+    font-weight: 500;
+    color: var(--chat-text-heading);
+}
+
+#view-chat .modal-content input, #view-chat .modal-content textarea, #view-e2e .modal-content textarea, #view-settings .modal-content textarea, #view-chat .modal-content select, #view-e2e .modal-content select, #view-settings .modal-content select, #view-chat .e2e-modal-content input, #view-e2e .e2e-modal-content input, #view-settings .e2e-modal-content input, #view-chat .e2e-modal-content textarea, #view-e2e .e2e-modal-content textarea, #view-settings .e2e-modal-content textarea, #view-chat .e2e-modal-content select, #view-e2e .e2e-modal-content select, #view-settings .e2e-modal-content select,  #view-e2e .modal-content input, #view-chat .modal-content textarea, #view-e2e .modal-content textarea, #view-settings .modal-content textarea, #view-chat .modal-content select, #view-e2e .modal-content select, #view-settings .modal-content select, #view-chat .e2e-modal-content input, #view-e2e .e2e-modal-content input, #view-settings .e2e-modal-content input, #view-chat .e2e-modal-content textarea, #view-e2e .e2e-modal-content textarea, #view-settings .e2e-modal-content textarea, #view-chat .e2e-modal-content select, #view-e2e .e2e-modal-content select, #view-settings .e2e-modal-content select,  #view-settings .modal-content input, #view-chat .modal-content textarea, #view-e2e .modal-content textarea, #view-settings .modal-content textarea, #view-chat .modal-content select, #view-e2e .modal-content select, #view-settings .modal-content select, #view-chat .e2e-modal-content input, #view-e2e .e2e-modal-content input, #view-settings .e2e-modal-content input, #view-chat .e2e-modal-content textarea, #view-e2e .e2e-modal-content textarea, #view-settings .e2e-modal-content textarea, #view-chat .e2e-modal-content select, #view-e2e .e2e-modal-content select, #view-settings .e2e-modal-content select{
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--chat-radius-md);
+    border: 1px solid var(--chat-border);
+    background: var(--chat-bg-deep);
+    color: var(--chat-text);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s, background 0.25s ease;
+}
+
+#view-chat .modal-content input:focus, #view-chat .modal-content textarea:focus, #view-e2e .modal-content textarea:focus, #view-settings .modal-content textarea:focus, #view-chat .e2e-modal-content input:focus, #view-e2e .e2e-modal-content input:focus, #view-settings .e2e-modal-content input:focus, #view-chat .e2e-modal-content textarea:focus, #view-e2e .e2e-modal-content textarea:focus, #view-settings .e2e-modal-content textarea:focus,  #view-e2e .modal-content input:focus, #view-chat .modal-content textarea:focus, #view-e2e .modal-content textarea:focus, #view-settings .modal-content textarea:focus, #view-chat .e2e-modal-content input:focus, #view-e2e .e2e-modal-content input:focus, #view-settings .e2e-modal-content input:focus, #view-chat .e2e-modal-content textarea:focus, #view-e2e .e2e-modal-content textarea:focus, #view-settings .e2e-modal-content textarea:focus,  #view-settings .modal-content input:focus, #view-chat .modal-content textarea:focus, #view-e2e .modal-content textarea:focus, #view-settings .modal-content textarea:focus, #view-chat .e2e-modal-content input:focus, #view-e2e .e2e-modal-content input:focus, #view-settings .e2e-modal-content input:focus, #view-chat .e2e-modal-content textarea:focus, #view-e2e .e2e-modal-content textarea:focus, #view-settings .e2e-modal-content textarea:focus{
+    border-color: var(--chat-accent);
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+#view-chat .modal-content button[type="submit"],  #view-e2e .modal-content button[type="submit"],  #view-settings .modal-content button[type="submit"]{ margin-top: 8px; }
+
+#view-chat .modal-content .form-group,  #view-e2e .modal-content .form-group,  #view-settings .modal-content .form-group{ margin-bottom: 0.5rem; }
+
+#view-chat .modal-content .form-group label,  #view-e2e .modal-content .form-group label,  #view-settings .modal-content .form-group label{
+    display: block;
+    color: var(--chat-text-heading);
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+}
+
+#view-chat .modal-error, #view-chat .e2e-modal-error, #view-e2e .e2e-modal-error, #view-settings .e2e-modal-error,  #view-e2e .modal-error, #view-chat .e2e-modal-error, #view-e2e .e2e-modal-error, #view-settings .e2e-modal-error,  #view-settings .modal-error, #view-chat .e2e-modal-error, #view-e2e .e2e-modal-error, #view-settings .e2e-modal-error{
+    color: #ff9e9e;
+    font-size: 0.85rem;
+    min-height: 1.2em;
+    margin-bottom: 6px;
+    animation: shake 0.4s ease both;
+}
+
+#view-chat .modal-error:empty, #view-chat .e2e-modal-error:empty, #view-e2e .e2e-modal-error:empty, #view-settings .e2e-modal-error:empty,  #view-e2e .modal-error:empty, #view-chat .e2e-modal-error:empty, #view-e2e .e2e-modal-error:empty, #view-settings .e2e-modal-error:empty,  #view-settings .modal-error:empty, #view-chat .e2e-modal-error:empty, #view-e2e .e2e-modal-error:empty, #view-settings .e2e-modal-error:empty{ animation: none; }

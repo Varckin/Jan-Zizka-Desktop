@@ -1,0 +1,12 @@
+:root {
+    --card-bg: rgba(30, 30, 50, 0.7);
+    --border-color: #2a2a44;
+    --input-bg: #1f1f32;
+    --text-primary: #e8e8f0;
+    --text-secondary: #a0a0c0;
+    --accent: #4a6fa5;
+    --accent-hover: #3a5f8f;
+    --error: #ff6b6b;
+    --success: #4caf50;
+    --radius: 32px;
+}

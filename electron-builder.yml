@@ -1,0 +1,35 @@
+appId: jan.messenger.desktop
+productName: Jan Messenger
+copyright: Copyright © 2026 Markus Varckin
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - src/**/*
+  - package.json
+  - "!**/*.map"
+
+asar: true
+compression: maximum
+
+win:
+  target:
+    - target: portable
+      arch:
+        - x64
+  icon: build/icon.ico
+  artifactName: JanMessenger-${version}-portable-${arch}.${ext}
+  requestedExecutionLevel: user
+
+portable:
+  artifactName: JanMessenger-${version}-portable-${arch}.${ext}
+
+publish:
+  provider: github
+  owner: varckin
+  repo: jan-messenger-desktop
+  releaseType: release
+
+npmRebuild: false

@@ -1,0 +1,17 @@
+<div id="contacts-popup" class="contacts-popup is-hidden" role="dialog" aria-label="{{ t('contacts') }}">
+  <div class="contacts-popup-header">
+    <span class="contacts-popup-title">{{ t('contacts') }}</span>
+    <button id="contacts-popup-close" class="contacts-popup-close" type="button" title="{{ t('close') }}" aria-label="{{ t('close') }}">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="contacts-popup-search">
+    <svg class="icon icon-sm contacts-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" id="contacts-search-input" placeholder="{{ t('search_contacts_placeholder') }}" autocomplete="off">
+  </div>
+  <div id="contacts-list" class="contacts-popup-list"></div>
+</div>

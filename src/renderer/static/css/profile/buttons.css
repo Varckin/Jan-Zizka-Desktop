@@ -1,0 +1,114 @@
+#view-profile .profile-actions, #view-settings .profile-actions{
+    position: relative;
+    margin-left: auto;
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 38px;
+}
+
+#view-profile .profile-actions-toggle, #view-settings .profile-actions-toggle{
+    display: inline-grid;
+}
+
+#view-profile .profile-actions-view, #view-settings .profile-actions-view, #view-profile .profile-actions-edit, #view-settings .profile-actions-edit{
+    grid-area: 1 / 1;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    transition:
+        opacity 0.4s ease,
+        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+        visibility 0s;
+}
+
+#view-profile .profile-actions-view.is-hidden, #view-settings .profile-actions-view.is-hidden, #view-profile .profile-actions-edit.is-hidden, #view-settings .profile-actions-edit.is-hidden{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px) scale(0.85);
+    transition:
+        opacity 0.35s ease,
+        transform 0.3s ease,
+        visibility 0s linear 0.35s;
+}
+
+#view-profile .btn-edit, #view-settings .btn-edit, #view-profile .btn-save, #view-settings .btn-save, #view-profile .btn-cancel, #view-settings .btn-cancel, #view-profile .btn-change-password, #view-settings .btn-change-password{
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+    white-space: nowrap;
+}
+
+#view-profile .btn-edit, #view-settings .btn-edit{
+    background: #4a6fa5;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(74,111,165,0.3);
+}
+
+#view-profile .btn-edit:hover, #view-settings .btn-edit:hover{ background: #3a5f8f; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(74,111,165,0.4); }
+
+#view-profile .btn-save, #view-settings .btn-save{
+    background: #2a8a4a;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(42,138,74,0.3);
+}
+
+#view-profile .btn-save:hover, #view-settings .btn-save:hover{ background: #1f7a3a; transform: translateY(-2px); }
+
+#view-profile .btn-cancel, #view-settings .btn-cancel{
+    background: #6a2a2a;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(106,42,42,0.3);
+}
+
+#view-profile .btn-cancel:hover, #view-settings .btn-cancel:hover{ background: #5a1f1f; transform: translateY(-2px); }
+
+#view-profile .btn-change-password, #view-settings .btn-change-password{
+    background: #6a4a8a;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(106,74,138,0.3);
+}
+
+#view-profile .btn-change-password:hover, #view-settings .btn-change-password:hover{ background: #5a3a7a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(106,74,138,0.4); }
+
+#view-profile .btn-edit:active, #view-settings .btn-edit:active, #view-profile .btn-save:active, #view-settings .btn-save:active, #view-profile .btn-cancel:active, #view-settings .btn-cancel:active, #view-profile .btn-change-password:active, #view-settings .btn-change-password:active{ transform: scale(0.96); }
+
+#view-profile .btn-primary, #view-settings .btn-primary{
+    background: linear-gradient(135deg, #4a6fa5, #3a5f8f);
+    border: none;
+    padding: 8px 24px;
+    border-radius: 40px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(74,111,165,0.3);
+}
+
+#view-profile .btn-primary:hover, #view-settings .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 6px 20px rgba(74,111,165,0.4); }
+
+#view-profile .btn-primary:active, #view-settings .btn-primary:active{ transform: scale(0.97); }
+
+#view-profile .btn-secondary, #view-settings .btn-secondary{
+    background: #2a2a44;
+    border: 1px solid #4a6fa5;
+    padding: 8px 20px;
+    border-radius: 40px;
+    color: #b8c7e6;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+#view-profile .btn-secondary:hover, #view-settings .btn-secondary:hover{ background: #3a3a5a; color: #fff; transform: translateY(-1px); }
+
+#view-profile .btn-secondary:active, #view-settings .btn-secondary:active{ transform: scale(0.97); }

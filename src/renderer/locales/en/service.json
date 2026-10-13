@@ -1,0 +1,9 @@
+{
+  "service_unknown": "Unknown",
+  "service_new_session": "🔐 New sign-in to your account\n\nDevice: {device}\nBrowser: {browser}\nOS: {os}\nIP: {ip}\nLocation: {location}\nTime: {time}\n\nIf this wasn't you, change your password immediately and terminate all other sessions.",
+  "service_password_changed": "🔑 Your account password was changed.\n\nAll other sessions have been signed out.\nIf this wasn't you, reset your password immediately.",
+  "service_email_changed": "📧 Your account email was changed to {email}.\n\nAll sessions have been signed out.\nIf this wasn't you, change your password immediately and revert the email.",
+  "service_verified_badge": "Verified service account",
+  "staff_verified_badge": "Verified account",
+  "service_chat_readonly": "This chat does not accept messages"
+}

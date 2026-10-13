@@ -1,0 +1,19 @@
+<div class="titlebar" id="titlebar">
+    <div class="titlebar-drag">
+        <img class="titlebar-logo" src="/static/img/logo.png" alt="" draggable="false">
+        <span class="titlebar-title">{{ t('site_title') }}</span>
+    </div>
+    <div class="titlebar-spacer"></div>
+    <div class="titlebar-controls">
+        <button class="tb-ctl" id="tb-min" type="button" title="Minimize" aria-label="Minimize">
+            <svg viewBox="0 0 12 12" aria-hidden="true"><line x1="1" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+        <button class="tb-ctl" id="tb-max" type="button" title="Maximize" aria-label="Maximize">
+            <svg class="tb-ico-max" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+            <svg class="tb-ico-restore" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="3.5" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M4 3.5 V2.5 a1 1 0 0 1 1-1 h5.5 a1 1 0 0 1 1 1 V8 a1 1 0 0 1 -1 1 H10" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
+        </button>
+        <button class="tb-ctl tb-ctl-close" id="tb-close" type="button" title="Close" aria-label="Close">
+            <svg viewBox="0 0 12 12" aria-hidden="true"><line x1="2" y1="2" x2="10" y2="10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="10" y1="2" x2="2" y2="10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="settings-block">
+    <h3>{{ t('desktop_notifications_title') }}</h3>
+    <div class="settings-item">
+        <label for="desktop-notif-enabled">{{ t('desktop_notifications_enable') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-notif-enabled" checked>
+            <label for="desktop-notif-enabled" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_notifications_enable_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="desktop-notif-sound">{{ t('desktop_notifications_sound') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-notif-sound" checked>
+            <label for="desktop-notif-sound" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_notifications_sound_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="desktop-notif-preview">{{ t('desktop_notifications_preview') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-notif-preview" checked>
+            <label for="desktop-notif-preview" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_notifications_preview_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="desktop-notif-hidden">{{ t('desktop_notifications_hidden') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-notif-hidden" checked>
+            <label for="desktop-notif-hidden" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_notifications_hidden_hint') }}</small>
+    </div>
+</div>
+<div class="settings-block">
+    <h3>{{ t('desktop_app_title') }}</h3>
+    <div class="settings-item">
+        <label for="desktop-close-to-tray">{{ t('desktop_close_to_tray') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-close-to-tray" checked>
+            <label for="desktop-close-to-tray" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_close_to_tray_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="desktop-tray-enabled">{{ t('desktop_tray_icon') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-tray-enabled" checked>
+            <label for="desktop-tray-enabled" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_tray_icon_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="desktop-auto-start">{{ t('desktop_auto_start') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-auto-start">
+            <label for="desktop-auto-start" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_auto_start_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="desktop-auto-update">{{ t('desktop_auto_update') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-auto-update" checked>
+            <label for="desktop-auto-update" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_auto_update_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="desktop-clear-cache">{{ t('desktop_clear_cache') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-clear-cache" checked>
+            <label for="desktop-clear-cache" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_clear_cache_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="desktop-start-minimized">{{ t('desktop_start_minimized') }}</label>
+        <div class="toggle-wrapper">
+            <input type="checkbox" id="desktop-start-minimized">
+            <label for="desktop-start-minimized" class="toggle-label"></label>
+        </div>
+        <small class="hint">{{ t('desktop_start_minimized_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="lang-switcher">{{ t('desktop_interface_language') }}</label>
+        {% include "partials/lang_switcher.njk" %}
+        <small class="hint">{{ t('desktop_interface_language_hint') }}</small>
+    </div>
+</div>

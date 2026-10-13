@@ -1,0 +1,24 @@
+<div class="e2e-sidebar" id="e2e-sidebar">
+
+  <div class="e2e-sidebar-header">
+    <h2>{{ t('e2e_title') }}</h2>
+    <div class="e2e-sidebar-actions">
+      <button id="e2e-new-chat-btn" class="e2e-btn-icon" type="button" title="{{ t('e2e_new_chat') }}" aria-label="{{ t('e2e_new_chat') }}">＋</button>
+      <button id="e2e-vault-btn" class="e2e-btn-icon e2e-vault-btn" type="button" title="{{ t('e2e_vault_menu') }}" aria-label="{{ t('e2e_vault_menu') }}" aria-haspopup="menu" aria-expanded="false">
+        <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </button>
+      {% include "partials/e2e_vault_menu.njk" %}
+    </div>
+  </div>
+
+  <div class="e2e-search-box">
+    <input type="text" id="e2e-search" placeholder="{{ t('search_chats') }}" aria-label="{{ t('search_chats') }}">
+  </div>
+
+  <div class="e2e-chat-list" id="e2e-chat-list">
+    <div class="e2e-loading">{{ t('loading') }}</div>
+  </div>
+</div>

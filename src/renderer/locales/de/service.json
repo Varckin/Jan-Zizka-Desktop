@@ -1,0 +1,9 @@
+{
+  "service_unknown": "Unbekannt",
+  "service_new_session": "🔐 Neue Anmeldung bei deinem Konto\n\nGerät: {device}\nBrowser: {browser}\nOS: {os}\nIP: {ip}\nOrt: {location}\nZeit: {time}\n\nWenn du das nicht warst, ändere sofort dein Passwort und beende alle anderen Sitzungen.",
+  "service_password_changed": "🔑 Das Passwort deines Kontos wurde geändert.\n\nAlle anderen Sitzungen wurden abgemeldet.\nWenn du das nicht warst, setze dein Passwort sofort zurück.",
+  "service_email_changed": "📧 Die E-Mail-Adresse deines Kontos wurde zu {email} geändert.\n\nAlle Sitzungen wurden abgemeldet.\nWenn du das nicht warst, ändere sofort dein Passwort und mache die Änderung rückgängig.",
+  "service_verified_badge": "Verifiziertes Service-Konto",
+  "staff_verified_badge": "Verifiziertes Konto",
+  "service_chat_readonly": "Dieser Chat akzeptiert keine Nachrichten"
+}

@@ -1,0 +1,187 @@
+{% extends "layout.njk" %}
+
+{% block body_class %}app-page{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="/vendor/cropper/cropper.min.css">
+
+<link rel="stylesheet" href="/static/css/core_chat/variables.css">
+<link rel="stylesheet" href="/static/css/core_chat/animations.css">
+<link rel="stylesheet" href="/static/css/core_chat/base.css">
+<link rel="stylesheet" href="/static/css/core_chat/layout.css">
+<link rel="stylesheet" href="/static/css/core_chat/chat-list.css">
+<link rel="stylesheet" href="/static/css/core_chat/messages.css">
+<link rel="stylesheet" href="/static/css/core_chat/checks.css">
+<link rel="stylesheet" href="/static/css/core_chat/input.css">
+<link rel="stylesheet" href="/static/css/core_chat/dragdrop.css">
+<link rel="stylesheet" href="/static/css/core_chat/buttons.css">
+<link rel="stylesheet" href="/static/css/core_chat/modals.css">
+<link rel="stylesheet" href="/static/css/core_chat/emoji.css">
+<link rel="stylesheet" href="/static/css/core_chat/context-menu.css">
+<link rel="stylesheet" href="/static/css/core_chat/toast.css">
+<link rel="stylesheet" href="/static/css/core_chat/responsive.css">
+
+<link rel="stylesheet" href="/static/css/chat/dropdowns.css">
+<link rel="stylesheet" href="/static/css/chat/gif.css">
+<link rel="stylesheet" href="/static/css/chat/photo-viewer.css">
+<link rel="stylesheet" href="/static/css/chat/info-modal.css">
+<link rel="stylesheet" href="/static/css/chat/chat-media.css">
+<link rel="stylesheet" href="/static/css/chat/user-display.css">
+<link rel="stylesheet" href="/static/css/chat/channels.css">
+<link rel="stylesheet" href="/static/css/chat/sidebar.css">
+<link rel="stylesheet" href="/static/css/chat/modals.css">
+<link rel="stylesheet" href="/static/css/chat/admin-modals.css">
+<link rel="stylesheet" href="/static/css/chat/invite-links.css">
+<link rel="stylesheet" href="/static/css/chat/search-modal.css">
+<link rel="stylesheet" href="/static/css/chat/discover.css">
+<link rel="stylesheet" href="/static/css/chat/messages.css">
+<link rel="stylesheet" href="/static/css/chat/attachments.css">
+<link rel="stylesheet" href="/static/css/chat/contacts.css">
+<link rel="stylesheet" href="/static/css/chat/mentions.css">
+<link rel="stylesheet" href="/static/css/chat/voice-call.css">
+<link rel="stylesheet" href="/static/css/chat/group-voice.css">
+<link rel="stylesheet" href="/static/css/chat/folders.css">
+<link rel="stylesheet" href="/static/css/chat/responsive.css">
+
+<link rel="stylesheet" href="/static/css/e2e/layout.css">
+<link rel="stylesheet" href="/static/css/e2e/messages.css">
+<link rel="stylesheet" href="/static/css/e2e/modals.css">
+<link rel="stylesheet" href="/static/css/e2e/search.css">
+<link rel="stylesheet" href="/static/css/e2e/profile.css">
+<link rel="stylesheet" href="/static/css/e2e/vault.css">
+
+<link rel="stylesheet" href="/static/css/profile/animations.css">
+<link rel="stylesheet" href="/static/css/profile/card.css">
+<link rel="stylesheet" href="/static/css/profile/avatar.css">
+<link rel="stylesheet" href="/static/css/profile/info.css">
+<link rel="stylesheet" href="/static/css/profile/buttons.css">
+<link rel="stylesheet" href="/static/css/profile/sessions.css">
+<link rel="stylesheet" href="/static/css/profile/settings.css">
+<link rel="stylesheet" href="/static/css/profile/toast.css">
+<link rel="stylesheet" href="/static/css/profile/modals.css">
+<link rel="stylesheet" href="/static/css/profile/email-change.css">
+<link rel="stylesheet" href="/static/css/profile/responsive.css">
+<link rel="stylesheet" href="/static/css/password-strength.css">
+
+<link rel="stylesheet" href="/static/css/desktop/shell.css">
+<link rel="stylesheet" href="/static/css/desktop/overrides.css">
+{% endblock %}
+
+{% block chrome %}
+{% include "partials/titlebar.njk" %}
+{% endblock %}
+
+{% block content %}
+<div id="user-id">{{ user.id }}</div>
+<div id="e2e-current-user"
+     data-id="{{ user.id }}"
+     data-username="{{ user.username }}"
+     data-first-name="{{ user.first_name or '' }}"
+     data-last-name="{{ user.last_name or '' }}"
+     hidden>
+</div>
+
+<div class="app-shell">
+    <nav class="app-rail" id="app-rail">
+        <div class="app-rail-top">
+            <button class="rail-btn is-active" id="rail-btn-chat" type="button" data-view="chat" title="{{ t('mode_cloud') }}">
+                <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                </svg>
+                <span class="rail-badge is-hidden" id="rail-badge-chat"></span>
+            </button>
+            <button class="rail-btn" id="rail-btn-e2e" type="button" data-view="e2e" title="{{ t('mode_e2e') }}">
+                <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <span class="rail-badge is-hidden" id="rail-badge-e2e"></span>
+            </button>
+        </div>
+        <div class="app-rail-bottom">
+            <button class="rail-btn" id="rail-btn-settings" type="button" data-view="settings" title="{{ t('desktop_rail_settings') }}">
+                <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </button>
+            <button class="rail-user" id="rail-user-btn" type="button" title="{{ full_name }} — {{ t('desktop_rail_profile') }}">
+                {% if user.avatar %}
+                <img class="rail-user-avatar" id="rail-user-avatar" src="/profile/avatar/{{ user.username }}" alt="">
+                {% else %}
+                <span class="rail-user-avatar rail-user-initials">{{ user_initial }}</span>
+                {% endif %}
+            </button>
+        </div>
+    </nav>
+
+    <div class="app-content">
+        <div class="view view-chat is-active" id="view-chat">
+            {% include "partials/chat_view.njk" %}
+            {% include "partials/chat_modals_main.njk" %}
+            {% include "partials/chat_modals_folders.njk" %}
+            {% include "partials/chat_modals_media.njk" %}
+            {% include "partials/chat_modals_users.njk" %}
+            {% include "partials/chat_modals_channel.njk" %}
+            {% include "partials/chat_contacts_popup.njk" %}
+        </div>
+
+        <div class="view view-e2e" id="view-e2e">
+            <div class="e2e-app">
+                <div class="e2e-aurora" aria-hidden="true">
+                    <span class="e2e-aurora-wash"></span>
+                    <span class="e2e-aurora-noise"></span>
+                </div>
+                {% include "partials/e2e_sidebar.njk" %}
+                {% include "partials/e2e_chat.njk" %}
+            </div>
+            {% include "partials/e2e_vault_overlay.njk" %}
+            {% include "partials/e2e_modals.njk" %}
+            {% include "partials/e2e_ctx_menu.njk" %}
+        </div>
+
+        <div class="view view-profile" id="view-profile">
+            <div class="profile-container settings-scroll">
+                {% include "partials/settings_header.njk" %}
+                {% include "partials/settings_info.njk" %}
+                {% include "partials/settings_sessions.njk" %}
+                {% include "partials/settings_privacy.njk" %}
+            </div>
+            {% include "partials/settings_modals.njk" %}
+        </div>
+
+        <div class="view view-settings" id="view-settings">
+            <div class="profile-container settings-scroll">
+                {% include "partials/settings_desktop.njk" %}
+                {% include "partials/settings_about.njk" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="custom-dialog-overlay" class="dialog-overlay is-hidden">
+  <div class="custom-dialog">
+    <div class="dialog-content" id="dialog-content">
+      <p id="dialog-message"></p>
+      <div id="dialog-input-area" class="is-hidden">
+        <input type="text" id="dialog-input" placeholder="">
+      </div>
+      <div class="dialog-actions">
+        <button id="dialog-btn-ok" class="btn-primary" type="button">OK</button>
+        <button id="dialog-btn-cancel" class="btn-secondary is-hidden" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="toast-container" class="toast-container"></div>
+{% endblock %}
+
+{% block vendor_scripts %}
+<script src="/vendor/cropper/cropper.min.js"></script>
+<script src="/static/js/password-strength.js"></script>
+<script src="/desktop/profile-data.js"></script>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="/static/js/desktop/appEntry.js"></script>
+{% endblock %}

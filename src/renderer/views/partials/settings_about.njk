@@ -1,0 +1,16 @@
+<div class="settings-block">
+    <h3>{{ t('desktop_about_title') }}</h3>
+    <div class="settings-item about-item">
+        <span class="label">{{ t('desktop_about_version') }}</span>
+        <span class="value" id="about-version">—</span>
+    </div>
+    <div class="settings-item about-item">
+        <span class="label">{{ t('desktop_update_label') }}</span>
+        <span class="value" id="about-update-state">—</span>
+    </div>
+    <div class="about-actions">
+        <button type="button" class="btn-secondary" id="about-update-check">{{ t('desktop_update_check') }}</button>
+        <button type="button" class="btn-primary is-hidden" id="about-update-install">{{ t('desktop_update_install') }}</button>
+        <button type="button" class="btn-danger" id="about-logout">{{ t('logout') }}</button>
+    </div>
+</div>

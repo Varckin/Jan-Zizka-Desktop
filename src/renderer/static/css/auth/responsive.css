@@ -1,0 +1,31 @@
+@media (max-width: 640px) {
+    .auth-card { padding: 2rem 1.5rem; border-radius: 24px; }
+    .auth-card h1 { font-size: 1.8rem; }
+    .auth-card .subtitle { font-size: 0.95rem; }
+    .form-group input { padding: 0.7rem 1rem; font-size: 0.95rem; }
+    .auth-button { padding: 0.75rem; font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+    .auth-container { padding: 0.8rem; }
+    .auth-card { padding: 1.5rem 1rem; border-radius: 20px; }
+    .auth-card h1 { font-size: 1.6rem; }
+    .auth-card .subtitle { font-size: 0.9rem; }
+    .auth-bg-orb { filter: blur(50px); opacity: 0.22; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-container,
+    .auth-card,
+    .auth-card::before,
+    .auth-bg-orb,
+    .form-error.show,
+    .form-error.show.success,
+    .auth-button:disabled,
+    #verify-code:focus,
+    .auth-button .ripple {
+        animation: none !important;
+    }
+    .auth-card { opacity: 1 !important; transform: none !important; }
+    .auth-form-container { transition: none !important; }
+}

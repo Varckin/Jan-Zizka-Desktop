@@ -1,0 +1,20 @@
+<div class="settings-block">
+    <h3>{{ t('settings') }}</h3>
+    <div class="settings-item">
+        <label for="last-seen-select">{{ t('last_seen_setting') }}</label>
+        <select id="last-seen-select" class="privacy-select">
+            <option value="everyone" {% if privacy_settings.last_seen == 'everyone' %}selected{% endif %}>{{ t('privacy_everyone') }}</option>
+            <option value="contacts" {% if privacy_settings.last_seen == 'contacts' %}selected{% endif %}>{{ t('privacy_contacts') }}</option>
+            <option value="nobody" {% if privacy_settings.last_seen == 'nobody' %}selected{% endif %}>{{ t('privacy_nobody') }}</option>
+        </select>
+        <small class="hint">{{ t('last_seen_hint') }}</small>
+    </div>
+    <div class="settings-item">
+        <label for="who-can-message-select">{{ t('who_can_message_setting') }}</label>
+        <select id="who-can-message-select" class="privacy-select">
+            <option value="everyone" {% if privacy_settings.who_can_message == 'everyone' %}selected{% endif %}>{{ t('privacy_everyone') }}</option>
+            <option value="contacts" {% if privacy_settings.who_can_message == 'contacts' %}selected{% endif %}>{{ t('privacy_contacts') }}</option>
+        </select>
+        <small class="hint">{{ t('who_can_message_hint') }}</small>
+    </div>
+</div>

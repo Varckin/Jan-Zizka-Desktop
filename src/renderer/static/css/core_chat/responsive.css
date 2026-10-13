@@ -1,0 +1,124 @@
+@media (max-width: 768px) {
+    #view-chat .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app,  #view-e2e .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app,  #view-settings .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app{
+        flex-direction: column;
+        height: calc(100vh - 100px);
+        border-radius: 0;
+    }
+
+    #view-chat .chat-sidebar, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar,  #view-e2e .chat-sidebar, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar,  #view-settings .chat-sidebar, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar{
+        width: 100%;
+        min-width: unset;
+        flex: 1;
+        border-right: none;
+        border-bottom: 1px solid var(--chat-border);
+        display: flex;
+        animation: fadeIn 0.4s ease both;
+    }
+
+    #view-chat .chat-sidebar.hidden, #view-chat .e2e-sidebar.hidden, #view-e2e .e2e-sidebar.hidden, #view-settings .e2e-sidebar.hidden,  #view-e2e .chat-sidebar.hidden, #view-chat .e2e-sidebar.hidden, #view-e2e .e2e-sidebar.hidden, #view-settings .e2e-sidebar.hidden,  #view-settings .chat-sidebar.hidden, #view-chat .e2e-sidebar.hidden, #view-e2e .e2e-sidebar.hidden, #view-settings .e2e-sidebar.hidden{ display: none; }
+
+    #view-chat .chat-main, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main,  #view-e2e .chat-main, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main,  #view-settings .chat-main, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main{
+        display: none;
+        flex: 1;
+        animation: fadeIn 0.4s ease both;
+    }
+
+    #view-chat .chat-main.show-chat, #view-chat .e2e-main.show-chat, #view-e2e .e2e-main.show-chat, #view-settings .e2e-main.show-chat,  #view-e2e .chat-main.show-chat, #view-chat .e2e-main.show-chat, #view-e2e .e2e-main.show-chat, #view-settings .e2e-main.show-chat,  #view-settings .chat-main.show-chat, #view-chat .e2e-main.show-chat, #view-e2e .e2e-main.show-chat, #view-settings .e2e-main.show-chat{ display: flex; }
+
+    #view-chat .chat-main.hidden,  #view-e2e .chat-main.hidden,  #view-settings .chat-main.hidden{ display: none; }
+
+    #view-chat .btn-icon-hidden,  #view-e2e .btn-icon-hidden,  #view-settings .btn-icon-hidden{ display: flex !important; }
+    #view-chat .e2e-toggle-sidebar,  #view-e2e .e2e-toggle-sidebar,  #view-settings .e2e-toggle-sidebar{ display: inline-flex !important; }
+
+    #view-chat .chat-header, #view-chat .e2e-header, #view-e2e .e2e-header, #view-settings .e2e-header,  #view-e2e .chat-header, #view-chat .e2e-header, #view-e2e .e2e-header, #view-settings .e2e-header,  #view-settings .chat-header, #view-chat .e2e-header, #view-e2e .e2e-header, #view-settings .e2e-header{ padding: 10px 16px; }
+
+    #view-chat .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages,  #view-e2e .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages,  #view-settings .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages{ padding: 12px; }
+
+    #view-chat .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area,  #view-e2e .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area,  #view-settings .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area{ padding: 8px 16px; }
+
+    #view-chat .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon,  #view-e2e .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon,  #view-settings .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon{ min-width: 38px; min-height: 38px; padding: 7px; }
+
+    #view-chat .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content,  #view-e2e .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content,  #view-settings .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content{ width: 95%; padding: 20px; }
+
+    #view-chat #message-input, #view-chat #e2e-message-input, #view-e2e #e2e-message-input, #view-settings #e2e-message-input,  #view-e2e #message-input, #view-chat #e2e-message-input, #view-e2e #e2e-message-input, #view-settings #e2e-message-input,  #view-settings #message-input, #view-chat #e2e-message-input, #view-e2e #e2e-message-input, #view-settings #e2e-message-input{ font-size: 16px; }
+}
+
+@media (max-width: 640px) {
+    #view-chat .chat-sidebar, #view-chat .chat-main, #view-e2e .chat-main, #view-settings .chat-main, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main,  #view-e2e .chat-sidebar, #view-chat .chat-main, #view-e2e .chat-main, #view-settings .chat-main, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main,  #view-settings .chat-sidebar, #view-chat .chat-main, #view-e2e .chat-main, #view-settings .chat-main, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main{ flex: 1; }
+
+    #view-chat .chat-item, #view-chat .e2e-chat-item, #view-e2e .e2e-chat-item, #view-settings .e2e-chat-item,  #view-e2e .chat-item, #view-chat .e2e-chat-item, #view-e2e .e2e-chat-item, #view-settings .e2e-chat-item,  #view-settings .chat-item, #view-chat .e2e-chat-item, #view-e2e .e2e-chat-item, #view-settings .e2e-chat-item{ padding: 10px 14px; }
+
+    #view-chat .chat-item .avatar-wrapper, #view-chat .e2e-chat-item .e2e-chat-avatar-wrapper, #view-e2e .e2e-chat-item .e2e-chat-avatar-wrapper, #view-settings .e2e-chat-item .e2e-chat-avatar-wrapper,  #view-e2e .chat-item .avatar-wrapper, #view-chat .e2e-chat-item .e2e-chat-avatar-wrapper, #view-e2e .e2e-chat-item .e2e-chat-avatar-wrapper, #view-settings .e2e-chat-item .e2e-chat-avatar-wrapper,  #view-settings .chat-item .avatar-wrapper, #view-chat .e2e-chat-item .e2e-chat-avatar-wrapper, #view-e2e .e2e-chat-item .e2e-chat-avatar-wrapper, #view-settings .e2e-chat-item .e2e-chat-avatar-wrapper{
+        --chat-avatar-size: 34px;
+        margin-right: 8px;
+    }
+
+    #view-chat .chat-item .avatar-wrapper .online-dot, #view-chat .e2e-chat-item .e2e-online-dot, #view-e2e .e2e-chat-item .e2e-online-dot, #view-settings .e2e-chat-item .e2e-online-dot,  #view-e2e .chat-item .avatar-wrapper .online-dot, #view-chat .e2e-chat-item .e2e-online-dot, #view-e2e .e2e-chat-item .e2e-online-dot, #view-settings .e2e-chat-item .e2e-online-dot,  #view-settings .chat-item .avatar-wrapper .online-dot, #view-chat .e2e-chat-item .e2e-online-dot, #view-e2e .e2e-chat-item .e2e-online-dot, #view-settings .e2e-chat-item .e2e-online-dot{ width: 10px; height: 10px; }
+
+    #view-chat .btn-icon, #view-chat .e2e-btn-icon, #view-e2e .e2e-btn-icon, #view-settings .e2e-btn-icon,  #view-e2e .btn-icon, #view-chat .e2e-btn-icon, #view-e2e .e2e-btn-icon, #view-settings .e2e-btn-icon,  #view-settings .btn-icon, #view-chat .e2e-btn-icon, #view-e2e .e2e-btn-icon, #view-settings .e2e-btn-icon{ padding: 10px; }
+
+    #view-chat .chat-header .chat-actions .btn-icon, #view-chat .e2e-header .e2e-actions .e2e-btn-icon, #view-e2e .e2e-header .e2e-actions .e2e-btn-icon, #view-settings .e2e-header .e2e-actions .e2e-btn-icon,  #view-e2e .chat-header .chat-actions .btn-icon, #view-chat .e2e-header .e2e-actions .e2e-btn-icon, #view-e2e .e2e-header .e2e-actions .e2e-btn-icon, #view-settings .e2e-header .e2e-actions .e2e-btn-icon,  #view-settings .chat-header .chat-actions .btn-icon, #view-chat .e2e-header .e2e-actions .e2e-btn-icon, #view-e2e .e2e-header .e2e-actions .e2e-btn-icon, #view-settings .e2e-header .e2e-actions .e2e-btn-icon{ padding: 8px; }
+}
+
+@media (max-width: 480px) {
+    #view-chat .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app,  #view-e2e .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app,  #view-settings .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app{ height: calc(100vh - 80px); }
+
+    #view-chat .sidebar-header h2, #view-chat .e2e-sidebar-header h2, #view-e2e .e2e-sidebar-header h2, #view-settings .e2e-sidebar-header h2,  #view-e2e .sidebar-header h2, #view-chat .e2e-sidebar-header h2, #view-e2e .e2e-sidebar-header h2, #view-settings .e2e-sidebar-header h2,  #view-settings .sidebar-header h2, #view-chat .e2e-sidebar-header h2, #view-e2e .e2e-sidebar-header h2, #view-settings .e2e-sidebar-header h2{ font-size: 1rem; }
+
+    #view-chat .chat-name, #view-chat .e2e-name, #view-e2e .e2e-name, #view-settings .e2e-name,  #view-e2e .chat-name, #view-chat .e2e-name, #view-e2e .e2e-name, #view-settings .e2e-name,  #view-settings .chat-name, #view-chat .e2e-name, #view-e2e .e2e-name, #view-settings .e2e-name{ font-size: 1rem; }
+
+    #view-chat .chat-name,  #view-e2e .chat-name,  #view-settings .chat-name{ max-width: 38vw; }
+
+    #view-chat .members-count,  #view-e2e .members-count,  #view-settings .members-count{ font-size: 0.7rem; gap: 4px; }
+
+    #view-chat .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area,  #view-e2e .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area,  #view-settings .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area{ padding: 8px 10px; }
+
+    #view-chat .input-stack,  #view-e2e .input-stack,  #view-settings .input-stack{ gap: 6px; }
+
+    #view-chat .input-toolbar,  #view-e2e .input-toolbar,  #view-settings .input-toolbar{ min-height: 36px; gap: 4px; }
+
+    #view-chat .toolbar-group,  #view-e2e .toolbar-group,  #view-settings .toolbar-group{ gap: 4px; }
+
+    #view-chat .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon,  #view-e2e .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon,  #view-settings .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon{ min-width: 36px; min-height: 36px; padding: 6px; }
+
+    #view-chat .input-stack textarea,  #view-e2e .input-stack textarea,  #view-settings .input-stack textarea{ min-height: 42px; padding: 9px 14px; }
+
+    #view-chat #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn,  #view-e2e #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn,  #view-settings #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn{ min-height: 38px; padding: 0 16px; font-size: 0.85rem; gap: 6px; }
+
+    #view-chat .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages,  #view-e2e .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages,  #view-settings .chat-messages, #view-chat .e2e-messages, #view-e2e .e2e-messages, #view-settings .e2e-messages{ padding: 10px; }
+
+    #view-chat .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message,  #view-e2e .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message,  #view-settings .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message{ padding: 8px 12px; font-size: 0.9rem; }
+
+    #view-chat .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content,  #view-e2e .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content,  #view-settings .modal-content, #view-chat .e2e-modal-content, #view-e2e .e2e-modal-content, #view-settings .e2e-modal-content{ padding: 16px; width: 95%; max-height: 90vh; }
+
+    #view-chat .modal-content h2, #view-chat .e2e-modal-content h2, #view-e2e .e2e-modal-content h2, #view-settings .e2e-modal-content h2,  #view-e2e .modal-content h2, #view-chat .e2e-modal-content h2, #view-e2e .e2e-modal-content h2, #view-settings .e2e-modal-content h2,  #view-settings .modal-content h2, #view-chat .e2e-modal-content h2, #view-e2e .e2e-modal-content h2, #view-settings .e2e-modal-content h2{ font-size: 1.2rem; }
+
+    #view-chat .modal-content input, #view-chat .modal-content textarea, #view-e2e .modal-content textarea, #view-settings .modal-content textarea, #view-chat .modal-content select, #view-e2e .modal-content select, #view-settings .modal-content select, #view-chat .e2e-modal-content input, #view-e2e .e2e-modal-content input, #view-settings .e2e-modal-content input, #view-chat .e2e-modal-content textarea, #view-e2e .e2e-modal-content textarea, #view-settings .e2e-modal-content textarea,  #view-e2e .modal-content input, #view-chat .modal-content textarea, #view-e2e .modal-content textarea, #view-settings .modal-content textarea, #view-chat .modal-content select, #view-e2e .modal-content select, #view-settings .modal-content select, #view-chat .e2e-modal-content input, #view-e2e .e2e-modal-content input, #view-settings .e2e-modal-content input, #view-chat .e2e-modal-content textarea, #view-e2e .e2e-modal-content textarea, #view-settings .e2e-modal-content textarea,  #view-settings .modal-content input, #view-chat .modal-content textarea, #view-e2e .modal-content textarea, #view-settings .modal-content textarea, #view-chat .modal-content select, #view-e2e .modal-content select, #view-settings .modal-content select, #view-chat .e2e-modal-content input, #view-e2e .e2e-modal-content input, #view-settings .e2e-modal-content input, #view-chat .e2e-modal-content textarea, #view-e2e .e2e-modal-content textarea, #view-settings .e2e-modal-content textarea{
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    #view-chat .btn-primary, #view-chat .e2e-btn-primary, #view-e2e .e2e-btn-primary, #view-settings .e2e-btn-primary,  #view-e2e .btn-primary, #view-chat .e2e-btn-primary, #view-e2e .e2e-btn-primary, #view-settings .e2e-btn-primary,  #view-settings .btn-primary, #view-chat .e2e-btn-primary, #view-e2e .e2e-btn-primary, #view-settings .e2e-btn-primary{ padding: 8px 16px; font-size: 0.9rem; }
+}
+
+@media (max-width: 360px) {
+    #view-chat .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area,  #view-e2e .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area,  #view-settings .chat-input-area, #view-chat .e2e-input-area, #view-e2e .e2e-input-area, #view-settings .e2e-input-area{ padding: 6px 8px 8px; }
+
+    #view-chat .input-toolbar,  #view-e2e .input-toolbar,  #view-settings .input-toolbar{ gap: 2px; }
+
+    #view-chat .toolbar-group,  #view-e2e .toolbar-group,  #view-settings .toolbar-group{ gap: 2px; }
+
+    #view-chat .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon,  #view-e2e .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon,  #view-settings .input-toolbar .btn-icon, #view-chat .input-toolbar .e2e-btn-icon, #view-e2e .input-toolbar .e2e-btn-icon, #view-settings .input-toolbar .e2e-btn-icon{
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+        padding: 4px;
+    }
+
+    #view-chat .input-toolbar .icon-md,  #view-e2e .input-toolbar .icon-md,  #view-settings .input-toolbar .icon-md{ width: 18px; height: 18px; }
+
+    #view-chat #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn,  #view-e2e #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn,  #view-settings #send-btn, #view-chat #e2e-send-btn, #view-e2e #e2e-send-btn, #view-settings #e2e-send-btn{ height: 34px; min-height: 34px; padding: 0 12px; font-size: 0.78rem; }
+
+    #view-chat #send-btn .send-icon, #view-chat #e2e-send-btn .send-icon, #view-e2e #e2e-send-btn .send-icon, #view-settings #e2e-send-btn .send-icon,  #view-e2e #send-btn .send-icon, #view-chat #e2e-send-btn .send-icon, #view-e2e #e2e-send-btn .send-icon, #view-settings #e2e-send-btn .send-icon,  #view-settings #send-btn .send-icon, #view-chat #e2e-send-btn .send-icon, #view-e2e #e2e-send-btn .send-icon, #view-settings #e2e-send-btn .send-icon{ width: 14px; height: 14px; }
+}

@@ -1,0 +1,9 @@
+{
+  "service_unknown": "Desconocido",
+  "service_new_session": "🔐 Nuevo inicio de sesión en tu cuenta\n\nDispositivo: {device}\nNavegador: {browser}\nSO: {os}\nIP: {ip}\nUbicación: {location}\nHora: {time}\n\nSi no fuiste tú, cambia tu contraseña de inmediato y cierra todas las demás sesiones.",
+  "service_password_changed": "🔑 La contraseña de tu cuenta fue cambiada.\n\nTodas las demás sesiones se cerraron.\nSi no fuiste tú, restablece tu contraseña de inmediato.",
+  "service_email_changed": "📧 El correo de tu cuenta cambió a {email}.\n\nTodas las sesiones se cerraron.\nSi no fuiste tú, cambia tu contraseña de inmediato y revierte el correo.",
+  "service_verified_badge": "Cuenta de servicio verificada",
+  "staff_verified_badge": "Cuenta verificada",
+  "service_chat_readonly": "Este chat no acepta mensajes"
+}

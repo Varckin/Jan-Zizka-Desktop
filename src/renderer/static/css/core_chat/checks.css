@@ -1,0 +1,97 @@
+#view-chat .msg-checks,  #view-e2e .msg-checks,  #view-settings .msg-checks{
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    width: 12px;
+    height: 12px;
+    overflow: hidden;
+    color: inherit;
+    vertical-align: middle;
+    animation: msg-checks-in 0.42s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+    transition:
+        width 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.3s ease;
+}
+
+#view-chat .msg-checks.is-read,  #view-e2e .msg-checks.is-read,  #view-settings .msg-checks.is-read{
+    width: 18px;
+    color: var(--chat-accent-bright, #7eb4ff);
+}
+
+#view-chat .msg-checks__svg,  #view-e2e .msg-checks__svg,  #view-settings .msg-checks__svg{
+    display: block;
+    flex: 0 0 auto;
+    width: 18px;
+    height: 12px;
+}
+
+#view-chat .msg-checks__tick,  #view-e2e .msg-checks__tick,  #view-settings .msg-checks__tick{
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#view-chat .msg-checks__tick--first,  #view-e2e .msg-checks__tick--first,  #view-settings .msg-checks__tick--first{
+    stroke-dasharray: 14;
+    animation: msg-checks-draw 0.42s cubic-bezier(0.65, 0, 0.35, 1) 0.06s both;
+}
+
+#view-chat .msg-checks__tick--second,  #view-e2e .msg-checks__tick--second,  #view-settings .msg-checks__tick--second{
+    stroke-dasharray: 14;
+    stroke-dashoffset: 14;
+    opacity: 0;
+}
+
+#view-chat .msg-checks.is-read .msg-checks__tick--second,  #view-e2e .msg-checks.is-read .msg-checks__tick--second,  #view-settings .msg-checks.is-read .msg-checks__tick--second{
+    animation: msg-checks-draw-second 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.1s both;
+}
+
+@keyframes msg-checks-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.45);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes msg-checks-draw {
+    0% {
+        stroke-dashoffset: 14;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes msg-checks-draw-second {
+    0% {
+        stroke-dashoffset: 14;
+        opacity: 0;
+        transform: translateX(-2px);
+    }
+    35% {
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #view-chat .msg-checks, #view-chat .msg-checks__tick--first, #view-e2e .msg-checks__tick--first, #view-settings .msg-checks__tick--first, #view-chat .msg-checks.is-read .msg-checks__tick--second, #view-e2e .msg-checks.is-read .msg-checks__tick--second, #view-settings .msg-checks.is-read .msg-checks__tick--second,  #view-e2e .msg-checks, #view-chat .msg-checks__tick--first, #view-e2e .msg-checks__tick--first, #view-settings .msg-checks__tick--first, #view-chat .msg-checks.is-read .msg-checks__tick--second, #view-e2e .msg-checks.is-read .msg-checks__tick--second, #view-settings .msg-checks.is-read .msg-checks__tick--second,  #view-settings .msg-checks, #view-chat .msg-checks__tick--first, #view-e2e .msg-checks__tick--first, #view-settings .msg-checks__tick--first, #view-chat .msg-checks.is-read .msg-checks__tick--second, #view-e2e .msg-checks.is-read .msg-checks__tick--second, #view-settings .msg-checks.is-read .msg-checks__tick--second{
+        animation: none;
+        transition: none;
+    }
+
+    #view-chat .msg-checks__tick--first, #view-chat .msg-checks.is-read .msg-checks__tick--second, #view-e2e .msg-checks.is-read .msg-checks__tick--second, #view-settings .msg-checks.is-read .msg-checks__tick--second,  #view-e2e .msg-checks__tick--first, #view-chat .msg-checks.is-read .msg-checks__tick--second, #view-e2e .msg-checks.is-read .msg-checks__tick--second, #view-settings .msg-checks.is-read .msg-checks__tick--second,  #view-settings .msg-checks__tick--first, #view-chat .msg-checks.is-read .msg-checks__tick--second, #view-e2e .msg-checks.is-read .msg-checks__tick--second, #view-settings .msg-checks.is-read .msg-checks__tick--second{
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "last_seen_setting": "Последний визит и онлайн",
+  "last_seen_hint": "Кто может видеть, когда вы были в сети последний раз",
+  "who_can_message_setting": "Кто может писать мне",
+  "who_can_message_hint": "Ограничьте, кто может начинать переписку с вами",
+  "privacy_everyone": "Все",
+  "privacy_contacts": "Мои контакты",
+  "privacy_nobody": "Никто",
+  "privacy_updated": "Настройки приватности обновлены"
+}

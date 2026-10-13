@@ -1,0 +1,157 @@
+.starfall-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.starfall-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 50% at 20% 10%, rgba(74, 111, 165, 0.12), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 85% 25%, rgba(106, 74, 138, 0.10), transparent 70%),
+        radial-gradient(ellipse 55% 55% at 50% 95%, rgba(74, 111, 165, 0.07), transparent 70%);
+    pointer-events: none;
+}
+
+.sf-star {
+    position: absolute;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 4px rgba(200, 220, 255, 0.65);
+    opacity: 0;
+    animation-name: sfTwinkle;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    will-change: transform, opacity;
+}
+
+@keyframes sfTwinkle {
+    0%, 100% {
+        opacity: 0.12;
+        transform: scale(0.75);
+    }
+    45% {
+        opacity: 0.85;
+        transform: scale(1.05);
+    }
+    55% {
+        opacity: 1;
+        transform: scale(1.18);
+    }
+}
+
+.sf-meteor {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow:
+        0 0 6px 1px rgba(220, 235, 255, 0.9),
+        0 0 14px 3px rgba(140, 180, 255, 0.45);
+    opacity: 0;
+    animation-name: sfMeteorFall;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    will-change: transform, opacity;
+}
+
+.sf-meteor::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--sf-tail, 130px);
+    height: 1.5px;
+    background: linear-gradient(
+        to right,
+        rgba(230, 240, 255, 0.95) 0%,
+        rgba(180, 210, 255, 0.55) 35%,
+        rgba(140, 180, 255, 0.15) 70%,
+        transparent 100%
+    );
+    border-radius: 2px;
+    transform-origin: 0 0;
+    transform: rotate(-45deg);
+    filter: blur(0.3px);
+}
+
+.sf-meteor::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 220, 255, 0.55), transparent 70%);
+    pointer-events: none;
+}
+
+@keyframes sfMeteorFall {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    8% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-90vw, 120vh);
+        opacity: 0;
+    }
+}
+
+.sf-meteor.sf-meteor--cool {
+    background: #dbe6ff;
+    box-shadow:
+        0 0 6px 1px rgba(200, 220, 255, 0.95),
+        0 0 16px 4px rgba(120, 170, 255, 0.5);
+}
+
+.sf-meteor.sf-meteor--warm {
+    background: #fff2d6;
+    box-shadow:
+        0 0 6px 1px rgba(255, 236, 200, 0.9),
+        0 0 16px 4px rgba(255, 190, 120, 0.4);
+}
+.sf-meteor.sf-meteor--warm::before {
+    background: linear-gradient(
+        to right,
+        rgba(255, 240, 210, 0.95) 0%,
+        rgba(255, 210, 150, 0.5) 40%,
+        transparent 100%
+    );
+}
+
+@media (max-width: 640px) {
+    .sf-meteor::before {
+        width: calc(var(--sf-tail, 130px) * 0.75);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sf-star,
+    .sf-meteor {
+        animation: none !important;
+    }
+    .sf-star {
+        opacity: 0.5 !important;
+    }
+    .sf-meteor {
+        opacity: 0 !important;
+    }
+    .sf-meteor::before,
+    .sf-meteor::after {
+        display: none !important;
+    }
+}

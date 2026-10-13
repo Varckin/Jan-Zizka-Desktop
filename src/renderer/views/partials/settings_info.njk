@@ -1,0 +1,91 @@
+<div class="profile-body">
+    <div class="profile-info view-mode">
+        <div class="info-item">
+            <span class="label">{{ t('full_name') }}</span>
+            <span class="value" id="view-fullname">
+                {% if user.first_name or user.last_name %}{{ user.first_name or '' }} {{ user.last_name or '' }}{% else %}{{ t('not_specified') }}{% endif %}
+            </span>
+        </div>
+        <div class="info-item">
+            <span class="label">{{ t('username') }}</span>
+            <span class="value" id="view-username">{{ user.username }}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">{{ t('email') }}</span>
+            <span class="value" id="view-email">{{ user.email }}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">{{ t('bio') }}</span>
+            <span class="value" id="view-bio">{{ user.bio or t('no_bio') }}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">{{ t('language') }}</span>
+            <span class="value" id="view-lang">{% if user_lang_code %}<span class="code-badge">{{ user_lang_code | upper }}</span> {{ user_lang_name }}{% else %}{{ t('not_specified') }}{% endif %}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">{{ t('location') }}</span>
+            <span class="value" id="view-geo">{% if user_geo_code %}<span class="code-badge">{{ user_geo_code | upper }}</span> {{ user_geo_name }}{% else %}{{ t('not_specified') }}{% endif %}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">{{ t('joined') }}</span>
+            <span class="value">{{ joined_display }}</span>
+        </div>
+    </div>
+
+    <div class="profile-info edit-mode" id="edit-mode">
+        <form id="profile-form">
+            <div class="form-group">
+                <label for="edit-first-name">{{ t('first_name') }}</label>
+                <input type="text" id="edit-first-name" value="{{ user.first_name or '' }}" maxlength="64" required aria-required="true">
+            </div>
+            <div class="form-group">
+                <label for="edit-last-name">{{ t('last_name') }}</label>
+                <input type="text" id="edit-last-name" value="{{ user.last_name or '' }}" maxlength="64">
+            </div>
+            <div class="form-group">
+                <label for="edit-username">{{ t('username') }}</label>
+                <input type="text" id="edit-username" value="{{ user.username }}">
+            </div>
+            <div class="form-group">
+                <label for="edit-email">{{ t('email') }}</label>
+                <div class="email-field-row">
+                    <input type="email" id="edit-email" value="{{ user.email }}" readonly tabindex="-1">
+                    <button type="button" class="btn-change-email" id="change-email-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                        <span>{{ t('change_email') }}</span>
+                    </button>
+                </div>
+                <small class="hint">{{ t('email_change_field_hint') }}</small>
+            </div>
+            <div class="form-group">
+                <label for="edit-bio">{{ t('bio') }}</label>
+                <textarea id="edit-bio" rows="3">{{ user.bio or '' }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="edit-lang">{{ t('language') }}</label>
+                <select id="edit-lang">
+                    <option value="">{{ t('select_language') }}</option>
+                    {% for code, info in LANGUAGES %}
+                        <option value="{{ code }}" {% if user.lang == code %}selected{% endif %}>{{ info.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>{{ t('location') }}</label>
+                {% if has_geo %}
+                    <div class="readonly-field">
+                        <span>{{ user_geo_display }}</span>
+                        <small class="hint">{{ t('location_locked') }}</small>
+                    </div>
+                {% else %}
+                    <select id="edit-geo">
+                        <option value="">{{ t('select_country') }}</option>
+                        {% for code, info in COUNTRIES %}
+                            <option value="{{ code }}">{{ info.name }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>

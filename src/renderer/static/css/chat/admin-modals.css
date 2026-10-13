@@ -1,0 +1,622 @@
+#view-chat #group-modal.is-open .modal-content > *:not(.close), #view-chat #chat-settings-modal.is-open .modal-content > *:not(.close), #view-chat #channel-modal.is-open .modal-content > *:not(.close), #view-chat #channel-settings-modal.is-open .modal-content > *:not(.close), #view-chat #channel-info-modal.is-open .modal-content > *:not(.close){
+    animation: amRowIn 0.5s var(--chat-ease-soft) both;
+}
+
+#view-chat #group-modal.is-open .modal-content > *:nth-child(2), #view-chat #chat-settings-modal.is-open .modal-content > *:nth-child(2), #view-chat #channel-modal.is-open .modal-content > *:nth-child(2), #view-chat #channel-settings-modal.is-open .modal-content > *:nth-child(2), #view-chat #channel-info-modal.is-open .modal-content > *:nth-child(2){ animation-delay: 0.05s; }
+
+#view-chat #group-modal.is-open .modal-content > *:nth-child(3), #view-chat #chat-settings-modal.is-open .modal-content > *:nth-child(3), #view-chat #channel-modal.is-open .modal-content > *:nth-child(3), #view-chat #channel-settings-modal.is-open .modal-content > *:nth-child(3), #view-chat #channel-info-modal.is-open .modal-content > *:nth-child(3){ animation-delay: 0.1s; }
+
+#view-chat #group-modal.is-open .modal-content > *:nth-child(4), #view-chat #chat-settings-modal.is-open .modal-content > *:nth-child(4), #view-chat #channel-modal.is-open .modal-content > *:nth-child(4), #view-chat #channel-settings-modal.is-open .modal-content > *:nth-child(4), #view-chat #channel-info-modal.is-open .modal-content > *:nth-child(4){ animation-delay: 0.15s; }
+
+#view-chat #group-modal.is-open .modal-content > *:nth-child(5), #view-chat #chat-settings-modal.is-open .modal-content > *:nth-child(5), #view-chat #channel-modal.is-open .modal-content > *:nth-child(5), #view-chat #channel-settings-modal.is-open .modal-content > *:nth-child(5), #view-chat #channel-info-modal.is-open .modal-content > *:nth-child(5){ animation-delay: 0.2s; }
+
+#view-chat #group-modal.is-open .modal-content > *:nth-child(n+6), #view-chat #chat-settings-modal.is-open .modal-content > *:nth-child(n+6), #view-chat #channel-modal.is-open .modal-content > *:nth-child(n+6), #view-chat #channel-settings-modal.is-open .modal-content > *:nth-child(n+6), #view-chat #channel-info-modal.is-open .modal-content > *:nth-child(n+6){ animation-delay: 0.25s; }
+
+#view-chat #group-modal .modal-content > h2, #view-chat #chat-settings-modal .modal-content > h2, #view-chat #channel-modal .modal-content > h2, #view-chat #channel-settings-modal .modal-content > h2{
+    position: relative;
+    padding-bottom: 14px;
+    background: linear-gradient(92deg, #f2f5fb 15%, #a9c3ef 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#view-chat #group-modal .modal-content > h2::after, #view-chat #chat-settings-modal .modal-content > h2::after, #view-chat #channel-modal .modal-content > h2::after, #view-chat #channel-settings-modal .modal-content > h2::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 62px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--chat-accent-bright), var(--chat-accent));
+    box-shadow: 0 0 14px rgba(126, 180, 255, 0.5);
+    transform-origin: left center;
+    animation: amUnderlineIn 0.6s 0.18s var(--chat-ease-soft) both;
+}
+
+#view-chat #group-modal .modal .close:hover, #view-chat #chat-settings-modal .modal .close:hover, #view-chat #channel-modal .modal .close:hover, #view-chat #channel-settings-modal .modal .close:hover, #view-chat #channel-info-modal .modal .close:hover{
+    color: #ff9e9e;
+    background: rgba(255, 107, 107, 0.12);
+    box-shadow: 0 0 0 1px rgba(255, 107, 107, 0.28), 0 4px 14px rgba(255, 107, 107, 0.18);
+    transform: rotate(90deg) scale(1.1);
+}
+
+#view-chat #group-modal .modal-content input, #view-chat #group-modal .modal-content textarea, #view-chat #chat-settings-modal .modal-content input, #view-chat #chat-settings-modal .modal-content textarea, #view-chat #channel-modal .modal-content input, #view-chat #channel-modal .modal-content textarea, #view-chat #channel-settings-modal .modal-content input, #view-chat #channel-settings-modal .modal-content textarea{
+    border-radius: 12px;
+    background: rgba(15, 15, 26, 0.55);
+    border: 1px solid var(--chat-border);
+    transition: border-color 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+#view-chat #group-modal .modal-content input:hover, #view-chat #group-modal .modal-content textarea:hover, #view-chat #chat-settings-modal .modal-content input:hover, #view-chat #chat-settings-modal .modal-content textarea:hover, #view-chat #channel-modal .modal-content input:hover, #view-chat #channel-modal .modal-content textarea:hover, #view-chat #channel-settings-modal .modal-content input:hover, #view-chat #channel-settings-modal .modal-content textarea:hover{
+    border-color: rgba(126, 180, 255, 0.28);
+}
+
+#view-chat #group-modal .modal-content input:focus, #view-chat #group-modal .modal-content textarea:focus, #view-chat #chat-settings-modal .modal-content input:focus, #view-chat #chat-settings-modal .modal-content textarea:focus, #view-chat #channel-modal .modal-content input:focus, #view-chat #channel-modal .modal-content textarea:focus, #view-chat #channel-settings-modal .modal-content input:focus, #view-chat #channel-settings-modal .modal-content textarea:focus{
+    border-color: rgba(126, 180, 255, 0.6);
+    background: rgba(15, 15, 26, 0.75);
+    box-shadow: 0 0 0 4px rgba(74, 111, 165, 0.18), 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+#view-chat #group-modal .modal-content label, #view-chat #chat-settings-modal .modal-content label, #view-chat #channel-modal .modal-content label, #view-chat #channel-settings-modal .modal-content label{
+    font-size: 0.82rem;
+    letter-spacing: 0.4px;
+    color: var(--chat-text-muted);
+    transition: color 0.25s ease;
+}
+
+#view-chat #group-modal input[type="file"]::file-selector-button{
+    background: var(--chat-bg-elevated);
+    color: var(--chat-text-heading);
+    border: 1px solid var(--chat-border);
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin-right: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s var(--chat-ease-spring), box-shadow 0.25s ease;
+}
+
+#view-chat #group-modal input[type="file"]::file-selector-button:hover{
+    border-color: var(--chat-accent);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 111, 165, 0.3);
+}
+
+#view-chat #chat-settings-modal .settings-tabs, #view-chat #channel-settings-modal .settings-tabs{
+    gap: 6px;
+    padding: 5px;
+    margin: 18px 0 20px;
+    background: rgba(15, 15, 26, 0.55);
+    border: 1px solid var(--chat-border);
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+#view-chat #chat-settings-modal .settings-tab, #view-chat #channel-settings-modal .settings-tab{
+    flex: 1;
+    padding: 9px 18px;
+    border-radius: 10px;
+    border-bottom: none;
+    font-weight: 600;
+    color: var(--chat-text-muted);
+    transition: color 0.25s ease, background 0.3s var(--chat-ease-soft), transform 0.25s var(--chat-ease-spring), box-shadow 0.3s ease;
+}
+
+#view-chat #chat-settings-modal .settings-tab:hover, #view-chat #channel-settings-modal .settings-tab:hover{
+    color: var(--chat-text-bright);
+    background: rgba(74, 111, 165, 0.14);
+    transform: translateY(-1px);
+}
+
+#view-chat #chat-settings-modal .settings-tab.active, #view-chat #channel-settings-modal .settings-tab.active{
+    color: #fff;
+    background: linear-gradient(135deg, rgba(90, 128, 184, 0.65), rgba(58, 95, 143, 0.4));
+    box-shadow: 0 4px 14px rgba(74, 111, 165, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+#view-chat #chat-settings-modal .settings-tab-content:not(.is-hidden), #view-chat #channel-settings-modal .settings-tab-content:not(.is-hidden){
+    animation: amContentIn 0.4s var(--chat-ease-soft) both;
+}
+
+#view-chat #group-modal .btn-primary, #view-chat #chat-settings-modal .btn-primary, #view-chat #channel-modal .btn-primary, #view-chat #channel-settings-modal .btn-primary, #view-chat #channel-info-modal .btn-primary{
+    border-radius: 14px;
+    padding: 11px 22px;
+    background: linear-gradient(135deg, #5a80b8, var(--chat-accent) 45%, var(--chat-accent-hover));
+    background-size: 170% 170%;
+    background-position: 0% 50%;
+    box-shadow: var(--chat-glow-accent), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s var(--chat-ease-spring), box-shadow 0.35s ease, filter 0.3s ease, background-position 0.55s ease;
+}
+
+#view-chat #group-modal .btn-primary:hover, #view-chat #chat-settings-modal .btn-primary:hover, #view-chat #channel-modal .btn-primary:hover, #view-chat #channel-settings-modal .btn-primary:hover, #view-chat #channel-info-modal .btn-primary:hover{
+    background-position: 100% 50%;
+    box-shadow: var(--chat-glow-accent-strong), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px) scale(1.02);
+}
+
+#view-chat #group-modal .btn-primary:active, #view-chat #chat-settings-modal .btn-primary:active, #view-chat #channel-modal .btn-primary:active, #view-chat #channel-settings-modal .btn-primary:active, #view-chat #channel-info-modal .btn-primary:active{
+    transform: scale(0.96);
+}
+
+#view-chat #group-modal .btn-primary .icon, #view-chat #chat-settings-modal .btn-primary .icon, #view-chat #channel-modal .btn-primary .icon, #view-chat #channel-settings-modal .btn-primary .icon, #view-chat #chat-settings-modal .btn-danger .icon, #view-chat #channel-settings-modal .btn-danger .icon{
+    width: 16px;
+    height: 16px;
+    transition: transform 0.35s var(--chat-ease-spring);
+}
+
+#view-chat #group-modal .btn-primary:hover .icon, #view-chat #chat-settings-modal .btn-primary:hover .icon, #view-chat #channel-modal .btn-primary:hover .icon, #view-chat #channel-settings-modal .btn-primary:hover .icon{
+    transform: scale(1.2) rotate(-8deg);
+}
+
+#view-chat #group-modal form > .btn-primary, #view-chat #channel-modal form > .btn-primary{
+    width: 100%;
+    margin-top: 16px;
+    padding: 13px 22px;
+    font-size: 0.98rem;
+}
+
+#view-chat #chat-settings-modal .btn-danger, #view-chat #channel-settings-modal .btn-danger{
+    border-radius: 14px;
+    background: linear-gradient(135deg, #c25e5e, var(--chat-danger-solid));
+    box-shadow: 0 4px 14px rgba(165, 74, 74, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: transform 0.3s var(--chat-ease-spring), box-shadow 0.35s ease, filter 0.3s ease;
+}
+
+#view-chat #chat-settings-modal .btn-danger:hover, #view-chat #channel-settings-modal .btn-danger:hover{
+    box-shadow: 0 6px 22px rgba(255, 107, 107, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px) scale(1.02);
+    filter: brightness(1.07);
+}
+
+#view-chat #chat-settings-modal .btn-danger:hover .icon, #view-chat #channel-settings-modal .btn-danger:hover .icon{
+    transform: scale(1.2) rotate(6deg);
+}
+
+#view-chat #chat-settings-modal .settings-actions, #view-chat #channel-settings-modal .settings-actions{
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--chat-border-soft);
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+#view-chat #chat-settings-modal .settings-actions .btn-primary, #view-chat #chat-settings-modal .settings-actions .btn-danger, #view-chat #channel-settings-modal .settings-actions .btn-primary, #view-chat #channel-settings-modal .settings-actions .btn-danger{
+    flex: 1 1 0;
+    min-width: 0;
+    margin-top: 0;
+    padding: 11px 22px;
+}
+
+#view-chat #chat-settings-modal #settings-members-list .member-item, #view-chat #channel-settings-modal .channel-admin-item, #view-chat #channel-settings-modal .channel-subscriber-item, #view-chat #channel-info-modal .channel-admin-item{
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, rgba(42, 42, 68, 0.4), rgba(26, 26, 46, 0.28));
+    border: 1px solid var(--chat-border-soft);
+    border-radius: 14px;
+    transition: transform 0.28s var(--chat-ease-soft), border-color 0.28s ease, box-shadow 0.3s ease, background 0.3s ease;
+    animation: amRowIn 0.45s var(--chat-ease-soft) both;
+}
+
+#view-chat #chat-settings-modal #settings-members-list .member-item:nth-child(2), #view-chat #channel-settings-modal .channel-admin-item:nth-child(2), #view-chat #channel-settings-modal .channel-subscriber-item:nth-child(2){ animation-delay: 0.04s; }
+
+#view-chat #chat-settings-modal #settings-members-list .member-item:nth-child(3), #view-chat #channel-settings-modal .channel-admin-item:nth-child(3), #view-chat #channel-settings-modal .channel-subscriber-item:nth-child(3){ animation-delay: 0.08s; }
+
+#view-chat #chat-settings-modal #settings-members-list .member-item:nth-child(4), #view-chat #channel-settings-modal .channel-admin-item:nth-child(4), #view-chat #channel-settings-modal .channel-subscriber-item:nth-child(4){ animation-delay: 0.12s; }
+
+#view-chat #chat-settings-modal #settings-members-list .member-item:nth-child(5), #view-chat #channel-settings-modal .channel-admin-item:nth-child(5), #view-chat #channel-settings-modal .channel-subscriber-item:nth-child(5){ animation-delay: 0.16s; }
+
+#view-chat #chat-settings-modal #settings-members-list .member-item:nth-child(n+6), #view-chat #channel-settings-modal .channel-admin-item:nth-child(n+6), #view-chat #channel-settings-modal .channel-subscriber-item:nth-child(n+6){ animation-delay: 0.2s; }
+
+#view-chat #chat-settings-modal #settings-members-list .member-item:hover, #view-chat #channel-settings-modal .channel-admin-item:hover, #view-chat #channel-settings-modal .channel-subscriber-item:hover, #view-chat #channel-info-modal .channel-admin-item:hover{
+    border-color: rgba(126, 180, 255, 0.35);
+    background: linear-gradient(135deg, rgba(52, 52, 84, 0.5), rgba(32, 32, 56, 0.35));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(74, 111, 165, 0.14);
+}
+
+#view-chat #chat-settings-modal #settings-members-list{
+    overflow-x: hidden;
+}
+
+#view-chat #chat-settings-modal #settings-members-list .member-item{
+    box-sizing: border-box;
+    gap: 8px;
+    max-width: 100%;
+    flex-wrap: nowrap;
+}
+
+#view-chat #chat-settings-modal #settings-members-list .member-info{
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+#view-chat #chat-settings-modal #settings-members-list .member-name-text{
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#view-chat #chat-settings-modal #settings-members-list .member-actions{
+    flex: 0 0 205px;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-left: auto;
+}
+
+#view-chat #chat-settings-modal .member-avatar.is-clickable{
+    cursor: pointer;
+}
+
+#view-chat #channel-settings-modal .channel-admin-name, #view-chat #channel-settings-modal .channel-subscriber-name, #view-chat #channel-info-modal .channel-admin-name{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#view-chat #chat-settings-modal .member-avatar, #view-chat #channel-settings-modal .channel-admin-avatar, #view-chat #channel-settings-modal .channel-subscriber-avatar, #view-chat #channel-info-modal .channel-admin-avatar{
+    box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+    transition: transform 0.3s var(--chat-ease-spring), box-shadow 0.3s ease;
+}
+
+#view-chat #chat-settings-modal .member-item:hover .member-avatar, #view-chat #channel-settings-modal .channel-admin-item:hover .channel-admin-avatar, #view-chat #channel-settings-modal .channel-subscriber-item:hover .channel-subscriber-avatar, #view-chat #channel-info-modal .channel-admin-item:hover .channel-admin-avatar{
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px rgba(126, 180, 255, 0.4), 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+#view-chat #chat-settings-modal .member-online-dot:not(.is-hidden){
+    animation: amDotPulse 2.2s ease-out infinite;
+}
+
+#view-chat #chat-settings-modal .member-actions select{
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 6px 22px 6px 8px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: inherit;
+    color: var(--chat-text);
+    background-color: var(--chat-bg-deep);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%238a8aa0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 9px center;
+    background-size: 13px;
+    border: 1px solid var(--chat-border);
+    cursor: pointer;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+#view-chat #chat-settings-modal .member-actions select:hover{
+    border-color: rgba(126, 180, 255, 0.4);
+}
+
+#view-chat #chat-settings-modal .member-actions select:focus{
+    outline: none;
+    border-color: rgba(126, 180, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+}
+
+#view-chat #chat-settings-modal .member-actions .btn-secondary, #view-chat #channel-settings-modal .channel-admin-actions .btn-secondary, #view-chat #channel-settings-modal .channel-subscriber-actions .btn-secondary{
+    flex: 0 0 auto;
+}
+
+#view-chat #chat-settings-modal .member-actions select{
+    flex: 0 1 auto;
+    min-width: 56px;
+    max-width: 104px;
+}
+
+#view-chat #chat-settings-modal .member-actions .btn-secondary, #view-chat #channel-settings-modal .channel-admin-actions .btn-secondary, #view-chat #channel-settings-modal .channel-subscriber-actions .btn-secondary{
+    box-sizing: border-box;
+    text-align: center;
+    white-space: nowrap;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+    background: rgba(42, 42, 68, 0.6);
+    border: 1px solid var(--chat-border);
+    color: var(--chat-text-muted);
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, transform 0.25s var(--chat-ease-spring), box-shadow 0.25s ease;
+}
+
+#view-chat #chat-settings-modal .member-actions .btn-secondary:hover, #view-chat #channel-settings-modal .channel-admin-actions .btn-secondary:hover, #view-chat #channel-settings-modal .channel-subscriber-actions .btn-secondary:hover{
+    color: #ff9e9e;
+    border-color: rgba(255, 107, 107, 0.45);
+    background: rgba(165, 74, 74, 0.14);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(165, 74, 74, 0.28);
+}
+
+#view-chat #chat-settings-modal .member-actions .btn-secondary:active, #view-chat #channel-settings-modal .channel-admin-actions .btn-secondary:active, #view-chat #channel-settings-modal .channel-subscriber-actions .btn-secondary:active{
+    transform: scale(0.94);
+}
+
+#view-chat #chat-settings-modal .member-role-plain{
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #b8c7e6;
+    background: linear-gradient(135deg, rgba(74, 111, 165, 0.28), rgba(74, 111, 165, 0.12));
+    border: 1px solid rgba(126, 180, 255, 0.2);
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+#view-chat #channel-settings-modal .channel-admin-role, #view-chat #channel-info-modal .channel-admin-role{
+    background: linear-gradient(135deg, rgba(74, 111, 165, 0.28), rgba(74, 111, 165, 0.12));
+    border: 1px solid rgba(126, 180, 255, 0.22);
+    color: #b8c7e6;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+#view-chat #chat-settings-modal #settings-add-member-area, #view-chat #channel-settings-modal #ch-add-admin-area, #view-chat #channel-settings-modal #ch-add-subscriber-area{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px dashed rgba(126, 180, 255, 0.28);
+    border-radius: 14px;
+    background: rgba(74, 111, 165, 0.05);
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+#view-chat #chat-settings-modal #settings-add-member-area:focus-within, #view-chat #channel-settings-modal #ch-add-admin-area:focus-within, #view-chat #channel-settings-modal #ch-add-subscriber-area:focus-within{
+    border-color: rgba(126, 180, 255, 0.55);
+    background: rgba(74, 111, 165, 0.09);
+    box-shadow: 0 0 0 4px rgba(74, 111, 165, 0.1);
+}
+
+#view-chat #chat-settings-modal #settings-add-member-area input, #view-chat #channel-settings-modal #ch-add-admin-area input[type="text"], #view-chat #channel-settings-modal #ch-add-subscriber-area input{
+    flex: 1;
+    min-width: 140px;
+    margin-bottom: 0;
+}
+
+#view-chat #chat-settings-modal #settings-add-member-btn, #view-chat #channel-settings-modal #ch-add-admin-btn, #view-chat #channel-settings-modal #ch-add-subscriber-btn{
+    padding: 9px 18px;
+}
+
+#view-chat #chat-settings-modal .avatar-upload{
+    gap: 14px;
+}
+
+#view-chat #chat-settings-modal .avatar-upload .avatar-preview{
+    width: 76px;
+    height: 76px;
+    max-width: 76px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background:
+        linear-gradient(var(--chat-bg-panel), var(--chat-bg-panel)) padding-box,
+        linear-gradient(135deg, var(--chat-accent-bright), var(--chat-accent-hover)) border-box;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.35s var(--chat-ease-spring), box-shadow 0.35s ease;
+    animation: amPopIn 0.5s var(--chat-ease-spring) both;
+}
+
+#view-chat #chat-settings-modal .avatar-upload .avatar-preview:hover{
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 0 4px rgba(74, 111, 165, 0.25);
+}
+
+#view-chat #chat-settings-modal .avatar-upload .btn-secondary{
+    border-radius: 12px;
+    padding: 9px 18px;
+}
+
+#view-chat #channel-modal .username-input-wrapper, #view-chat #channel-settings-modal .username-input-wrapper{
+    border-radius: 12px;
+}
+
+#view-chat #channel-modal .username-prefix, #view-chat #channel-settings-modal .username-prefix{
+    color: var(--chat-accent-bright);
+    background: rgba(74, 111, 165, 0.14);
+    font-weight: 700;
+}
+
+#view-chat #channel-info-modal .channel-info-avatar{
+    animation: amAvatarIn 0.6s var(--chat-ease-spring) both, amAvatarGlow 3.4s 0.6s ease-in-out infinite;
+}
+
+#view-chat #channel-info-modal .channel-info-main h2{
+    background: linear-gradient(92deg, #f2f5fb 15%, #a9c3ef 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#view-chat #channel-info-modal .channel-info-description{
+    background: linear-gradient(135deg, rgba(42, 42, 68, 0.5), rgba(26, 26, 46, 0.35));
+    border: 1px solid var(--chat-border-soft);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+#view-chat #channel-info-modal .channel-info-actions .channel-action-btn{
+    border-radius: 14px;
+}
+
+#view-chat #channel-info-modal .channel-action-btn.is-done{
+    background: rgba(68, 183, 0, 0.1);
+}
+
+#view-chat #channel-settings-modal .subscribers-count-display{
+    background: linear-gradient(135deg, rgba(74, 111, 165, 0.18), rgba(74, 111, 165, 0.05));
+    border: 1px solid rgba(126, 180, 255, 0.18);
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    animation: amPopIn 0.45s var(--chat-ease-spring) both;
+}
+
+@keyframes amRowIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes amContentIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.995); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes amUnderlineIn {
+    from { opacity: 0; transform: scaleX(0); }
+    to { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes amPopIn {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes amDotPulse {
+    0% { box-shadow: 0 0 0 0 rgba(68, 183, 0, 0.45); }
+    70% { box-shadow: 0 0 0 7px rgba(68, 183, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(68, 183, 0, 0); }
+}
+
+@keyframes amAvatarIn {
+    from { opacity: 0; transform: scale(0.65) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes amAvatarGlow {
+    0%, 100% { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 4px rgba(74, 111, 165, 0.18); }
+    50% { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 0 0 9px rgba(74, 111, 165, 0.07), 0 0 28px rgba(126, 180, 255, 0.24); }
+}
+
+@media (max-width: 640px) {
+    #view-chat #chat-settings-modal .settings-actions .btn-primary, #view-chat #chat-settings-modal .settings-actions .btn-danger, #view-chat #channel-settings-modal .settings-actions .btn-primary, #view-chat #channel-settings-modal .settings-actions .btn-danger{
+        flex: 1 1 100%;
+    }
+
+    #view-chat #chat-settings-modal .member-actions select{
+        padding: 5px 20px 5px 8px;
+        font-size: 0.72rem;
+        max-width: 84px;
+    }
+
+    #view-chat #chat-settings-modal #settings-members-list .member-actions{
+        flex-basis: 172px;
+    }
+
+    #view-chat #chat-settings-modal .member-actions .btn-secondary, #view-chat #channel-settings-modal .channel-admin-actions .btn-secondary, #view-chat #channel-settings-modal .channel-subscriber-actions .btn-secondary{
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    #view-chat #chat-settings-modal .settings-tab, #view-chat #channel-settings-modal .settings-tab{
+        padding: 9px 10px;
+        font-size: 0.88rem;
+    }
+
+    #view-chat #chat-settings-modal #settings-members-list .member-item, #view-chat #channel-settings-modal .channel-admin-item, #view-chat #channel-settings-modal .channel-subscriber-item{
+        padding: 10px;
+    }
+}
+
+
+#view-chat #group-modal .modal-content textarea, #view-chat #chat-settings-modal .modal-content textarea, #view-chat #channel-modal .modal-content textarea, #view-chat #channel-settings-modal .modal-content textarea{
+    resize: none;
+}
+
+#view-chat #chat-settings-modal .settings-tabs.am-has-thumb, #view-chat #channel-settings-modal .settings-tabs.am-has-thumb{
+    position: relative;
+}
+
+#view-chat .am-tab-thumb{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(90, 128, 184, 0.65), rgba(58, 95, 143, 0.4));
+    box-shadow: 0 4px 14px rgba(74, 111, 165, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+    transition: transform 0.4s var(--chat-ease-spring), width 0.4s var(--chat-ease-spring), height 0.3s ease, opacity 0.25s ease;
+}
+
+#view-chat .am-has-thumb .settings-tab{
+    position: relative;
+    z-index: 1;
+}
+
+#view-chat #chat-settings-modal .settings-tabs.am-has-thumb .settings-tab.active, #view-chat #channel-settings-modal .settings-tabs.am-has-thumb .settings-tab.active{
+    background: transparent;
+    box-shadow: none;
+}
+
+#view-chat #chat-settings-modal .settings-tabs[data-am-dir="fwd"] ~ .settings-tab-content:not(.is-hidden), #view-chat #channel-settings-modal .settings-tabs[data-am-dir="fwd"] ~ .settings-tab-content:not(.is-hidden){
+    animation-name: amContentFwd;
+}
+
+#view-chat #chat-settings-modal .settings-tabs[data-am-dir="back"] ~ .settings-tab-content:not(.is-hidden), #view-chat #channel-settings-modal .settings-tabs[data-am-dir="back"] ~ .settings-tab-content:not(.is-hidden){
+    animation-name: amContentBack;
+}
+
+@keyframes amContentFwd {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes amContentBack {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+#view-chat #group-modal :is(.btn-secondary, .btn-danger), #view-chat #chat-settings-modal :is(.btn-secondary, .btn-danger), #view-chat #channel-modal :is(.btn-secondary, .btn-danger), #view-chat #channel-settings-modal :is(.btn-secondary, .btn-danger), #view-chat #channel-info-modal :is(.btn-primary, .btn-secondary, .btn-danger){
+    position: relative;
+    overflow: hidden;
+}
+
+#view-chat .am-ripple{
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.14) 55%, transparent 70%);
+    transform: scale(0);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+    animation: amRipple 0.55s ease-out forwards;
+}
+
+@keyframes amRipple {
+    to { transform: scale(1); opacity: 0; }
+}
+
+#view-chat .am-count-pop{
+    animation: amCountPop 0.55s var(--chat-ease-spring);
+}
+
+@keyframes amCountPop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.07); text-shadow: 0 0 18px rgba(126, 180, 255, 0.55); }
+    100% { transform: scale(1); text-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #view-chat #group-modal .modal-content > *, #view-chat #chat-settings-modal .modal-content > *, #view-chat #channel-modal .modal-content > *, #view-chat #channel-settings-modal .modal-content > *, #view-chat #channel-info-modal .modal-content > *, #view-chat #chat-settings-modal .settings-tab-content, #view-chat #channel-settings-modal .settings-tab-content, #view-chat #chat-settings-modal #settings-members-list .member-item, #view-chat #channel-settings-modal .channel-admin-item, #view-chat #channel-settings-modal .channel-subscriber-item, #view-chat #channel-info-modal .channel-admin-item, #view-chat #chat-settings-modal .avatar-upload .avatar-preview, #view-chat #channel-info-modal .channel-info-avatar, #view-chat #channel-settings-modal .subscribers-count-display, #view-chat #chat-settings-modal .member-online-dot, #view-chat .am-ripple, #view-chat .am-count-pop{
+        animation: none !important;
+    }
+
+    #view-chat .am-tab-thumb{
+        transition: none !important;
+    }
+}

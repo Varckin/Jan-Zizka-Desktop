@@ -1,0 +1,119 @@
+<div id="channel-modal" class="modal">
+  <div class="modal-content">
+    <button class="close" data-modal-close="channel-modal" type="button" title="{{ t('close') }}">✕</button>
+    <h2>{{ t('create_channel') }}</h2>
+    <form id="channel-form">
+      <div class="form-group">
+        <label>{{ t('channel_name') }}</label>
+        <input type="text" id="channel-name" required maxlength="255">
+      </div>
+      <div class="form-group">
+        <label>{{ t('channel_username') }} <small>({{ t('optional') }})</small></label>
+        <div class="username-input-wrapper">
+          <span class="username-prefix">@</span>
+          <input type="text" id="channel-username" maxlength="32" pattern="[a-zA-Z0-9_]{3,32}" placeholder="{{ t('channel_username_placeholder') }}">
+        </div>
+        <small class="hint">{{ t('channel_username_hint') }}</small>
+      </div>
+      <div class="form-group">
+        <label>{{ t('description') }}</label>
+        <textarea id="channel-description" rows="3" placeholder="{{ t('channel_description_placeholder') }}"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        <span>{{ t('create') }}</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div id="channel-info-modal" class="modal">
+  <div class="modal-content channel-info-content">
+    <button class="close" data-modal-close="channel-info-modal" type="button" title="{{ t('close') }}">✕</button>
+    <div class="channel-info-header">
+      <div class="channel-info-avatar" id="channel-info-avatar"></div>
+      <div class="channel-info-main">
+        <h2 id="channel-info-name"></h2>
+        <div class="channel-info-username" id="channel-info-username"></div>
+        <div class="channel-info-meta">
+          <span id="channel-info-subs" class="channel-subs-count"></span>
+          <span id="channel-info-created" class="channel-created-date is-hidden"></span>
+        </div>
+      </div>
+    </div>
+    <div class="channel-info-description" id="channel-info-description"></div>
+    <div id="channel-media-section" class="chat-media-section is-hidden">
+      <h3>{{ t('attachments_title') }}</h3>
+      <div id="channel-media-browser" class="chat-media-browser-host"></div>
+    </div>
+    <div class="channel-info-actions" id="channel-info-actions"></div>
+    <div class="channel-info-admins is-hidden" id="channel-info-admins">
+      <h3>{{ t('administrators') }}</h3>
+      <div id="channel-admins-list"></div>
+    </div>
+  </div>
+</div>
+
+<div id="channel-settings-modal" class="modal">
+  <div class="modal-content modal-lg">
+    <button class="close" data-modal-close="channel-settings-modal" type="button" title="{{ t('close') }}">✕</button>
+    <h2>{{ t('channel_settings') }}</h2>
+    <div class="settings-tabs">
+      <button class="settings-tab active" data-tab="ch-general" type="button">{{ t('general') }}</button>
+      <button class="settings-tab is-hidden" data-tab="ch-admins" type="button">{{ t('administrators') }}</button>
+      <button class="settings-tab is-hidden" data-tab="ch-subscribers" type="button">{{ t('subscribers') }}</button>
+    </div>
+    <div id="settings-tab-ch-general" class="settings-tab-content">
+      <form id="channel-settings-form">
+        <div class="form-group">
+          <label>{{ t('channel_name') }}</label>
+          <input type="text" id="ch-settings-name">
+        </div>
+        <div class="form-group">
+          <label>{{ t('channel_username') }}</label>
+          <div class="username-input-wrapper">
+            <span class="username-prefix">@</span>
+            <input type="text" id="ch-settings-username" maxlength="32">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{ t('description') }}</label>
+          <textarea id="ch-settings-description" rows="3"></textarea>
+        </div>
+        <div class="settings-actions">
+          <button type="submit" class="btn-primary">
+            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>{{ t('save') }}</span>
+          </button>
+          <button type="button" id="delete-channel-btn" class="btn-danger is-hidden">
+            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+            <span>{{ t('delete_channel') }}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="settings-tab-ch-admins" class="settings-tab-content is-hidden">
+      <div id="ch-admins-list"></div>
+      <div id="ch-add-admin-area">
+        <input type="text" id="ch-add-admin-input" placeholder="{{ t('username_to_add') }}">
+        <input type="hidden" id="ch-add-admin-role" value="admin">
+        <span class="admin-role-label">{{ t('admin_role') }}</span>
+        <button id="ch-add-admin-btn" class="btn-primary" type="button">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>{{ t('add') }}</span>
+        </button>
+      </div>
+    </div>
+    <div id="settings-tab-ch-subscribers" class="settings-tab-content is-hidden">
+      <div id="ch-subscribers-count" class="subscribers-count-display"></div>
+      <div id="ch-add-subscriber-area">
+        <input type="text" id="ch-add-subscriber-input" placeholder="{{ t('username_to_add') }}" maxlength="32">
+        <button id="ch-add-subscriber-btn" class="btn-primary" type="button">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          <span>{{ t('add') }}</span>
+        </button>
+      </div>
+      <div id="ch-subscribers-list"></div>
+    </div>
+  </div>
+</div>

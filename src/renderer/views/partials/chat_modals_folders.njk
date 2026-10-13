@@ -1,0 +1,43 @@
+<div id="folder-modal" class="modal">
+  <div class="modal-content modal-lg folder-modal-content">
+    <button class="close" id="folder-modal-close" type="button" title="{{ t('close') }}">
+      <svg class="icon icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <h2 id="folder-modal-title">{{ t('folders_new') }}</h2>
+    <form id="folder-form">
+      <div class="folder-preview">
+        <span class="folder-preview-icon" id="folder-preview-icon"></span>
+        <span class="folder-preview-name" id="folder-preview-name"></span>
+      </div>
+      <label for="folder-name-input">{{ t('folders_name') }}</label>
+      <input type="text" id="folder-name-input" maxlength="32" autocomplete="off" required>
+      <label>{{ t('folders_icon') }}</label>
+      <div class="folder-icon-grid" id="folder-icon-grid"></div>
+      <label>{{ t('folders_color') }}</label>
+      <div class="folder-color-row">
+        <div class="folder-color-swatches" id="folder-color-swatches"></div>
+        <input type="color" id="folder-color-custom" class="folder-color-custom" value="#7eb4ff" title="{{ t('folders_color') }}">
+      </div>
+      <div id="folder-chats-section" class="folder-chats-section is-hidden">
+        <label>{{ t('folders_chats') }} (<span id="folder-chats-count">0/20</span>)</label>
+        <div class="folder-chats-list" id="folder-chats-list"></div>
+        <label>{{ t('folders_add_chat') }}</label>
+        <input type="text" id="folder-add-chat-input" placeholder="{{ t('folders_add_chat_placeholder') }}" autocomplete="off">
+        <div class="folder-add-chat-results" id="folder-add-chat-results"></div>
+      </div>
+      <div class="modal-error" id="folder-modal-error"></div>
+      <div class="settings-actions">
+        <button type="submit" class="btn-primary">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>{{ t('save') }}</span>
+        </button>
+        <button type="button" id="folder-delete-btn" class="btn-danger is-hidden">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span>{{ t('folders_delete') }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

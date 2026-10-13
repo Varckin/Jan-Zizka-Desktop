@@ -1,0 +1,349 @@
+@keyframes chatItemAppear {
+    from { opacity: 0; transform: translateX(-14px) scale(0.96); filter: blur(2px); }
+    to   { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    0%   { opacity: 0; transform: translateX(-18px) scale(0.94); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes slideInRight {
+    0%   { opacity: 0; transform: translateX(18px) scale(0.94); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes slideDown {
+    0%   { opacity: 0; transform: translateY(-12px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    0%   { transform: scale(0.92) translateY(8px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes popIn {
+    0%   { opacity: 0; transform: scale(0.5); }
+    65%  { opacity: 1; transform: scale(1.12); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes messageIn {
+    0%   { opacity: 0; transform: translateY(14px) scale(0.94); filter: blur(3px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes messageSentIn {
+    0%   { opacity: 0; transform: translateY(14px) translateX(18px) scale(0.94); filter: blur(3px); }
+    100% { opacity: 1; transform: translateY(0) translateX(0) scale(1); filter: blur(0); }
+}
+
+@keyframes messageHighlight {
+    0%   { box-shadow: 0 0 0 0 rgba(74, 111, 165, 0.8); }
+    40%  { box-shadow: 0 0 0 8px rgba(74, 111, 165, 0.25); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 111, 165, 0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50%      { opacity: 1; }
+}
+
+@keyframes onlinePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(68, 183, 0, 0.55); }
+    70%      { box-shadow: 0 0 0 7px rgba(68, 183, 0, 0); }
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(68, 183, 0, 0.55);
+    }
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 6px rgba(68, 183, 0, 0);
+    }
+}
+
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+    30%           { transform: translateY(-4px); opacity: 1; }
+}
+
+@keyframes modalBackdropIn {
+    from { backdrop-filter: blur(0); background: rgba(0, 0, 0, 0); }
+    to   { backdrop-filter: blur(4px); background: rgba(0, 0, 0, 0.7); }
+}
+
+@keyframes dropdownIn {
+    from { opacity: 0; transform: translateY(-6px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes badgePop {
+    0%   { transform: scale(0.4); }
+    60%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-3px); }
+    40%      { transform: translateX(3px); }
+    60%      { transform: translateX(-2px); }
+    80%      { transform: translateX(2px); }
+}
+
+@keyframes buttonPress {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(0.94); }
+    100% { transform: scale(1); }
+}
+
+@keyframes floatGlow {
+    0%, 100% { box-shadow: 0 4px 12px rgba(74, 111, 165, 0.30); }
+    50%      { box-shadow: 0 8px 22px rgba(74, 111, 165, 0.55); }
+}
+
+@keyframes buttonRipple {
+    0%   { transform: scale(0); opacity: 0.6; }
+    100% { transform: scale(3);  opacity: 0; }
+}
+
+@keyframes rippleOut {
+    0%   { transform: scale(0); opacity: 0.55; }
+    100% { transform: scale(2.6); opacity: 0; }
+}
+
+@keyframes sendBurst {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(0.88); }
+    70%  { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(126, 180, 255, 0.25); }
+    100% { transform: scale(1); box-shadow: 0 4px 14px rgba(74, 111, 165, 0.4); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% 50%; }
+    100% { background-position:  200% 50%; }
+}
+
+@keyframes breathBorder {
+    0%, 100% {
+        border-color: rgba(74, 111, 165, 0.35);
+        box-shadow: 0 0 0 0 rgba(74, 111, 165, 0);
+    }
+    50% {
+        border-color: rgba(120, 160, 230, 0.65);
+        box-shadow: 0 0 18px 0 rgba(94, 141, 205, 0.28);
+    }
+}
+
+@keyframes lockGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 4px rgba(126, 180, 255, 0.5));
+        opacity: 0.85;
+    }
+    50% {
+        filter: drop-shadow(0 0 10px rgba(160, 205, 255, 0.95));
+        opacity: 1;
+    }
+}
+
+@keyframes avatarShine {
+    0%   { background-position: -150% 0; }
+    100% { background-position:  250% 0; }
+}
+
+@keyframes spinnerRotate {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes e2eFadeIn        { from { opacity: 0; } to { opacity: 1; } }
+@keyframes e2eSlideUp       { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes e2eSlideDown     { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes e2eSlideInLeft   { from { opacity: 0; transform: translateX(-22px) scale(0.97); } to { opacity: 1; transform: translateX(0) scale(1); } }
+@keyframes e2eSlideInRight  { from { opacity: 0; transform: translateX(22px) scale(0.97); } to { opacity: 1; transform: translateX(0) scale(1); } }
+@keyframes e2eScaleIn {
+    0%   { opacity: 0; transform: scale(0.85); }
+    60%  { opacity: 1; transform: scale(1.03); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes e2ePopIn {
+    0%   { opacity: 0; transform: scale(0.5); }
+    65%  { opacity: 1; transform: scale(1.12); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes e2eMessageIn {
+    0%   { opacity: 0; transform: translateY(14px) scale(0.94); filter: blur(3px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes e2eMessageSentIn {
+    0%   { opacity: 0; transform: translateY(14px) translateX(18px) scale(0.94); filter: blur(3px); }
+    100% { opacity: 1; transform: translateY(0) translateX(0) scale(1); filter: blur(0); }
+}
+@keyframes e2eTypingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+    30%           { transform: translateY(-4px); opacity: 1; }
+}
+@keyframes e2ePulseDot {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(68, 183, 0, 0.55); }
+    50%      { transform: scale(1.08); box-shadow: 0 0 0 6px rgba(68, 183, 0, 0); }
+}
+@keyframes e2eLockGlow {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(126, 180, 255, 0.5)); opacity: 0.85; }
+    50%      { filter: drop-shadow(0 0 10px rgba(160, 205, 255, 0.95)); opacity: 1; }
+}
+@keyframes e2eShimmer   { 0% { background-position: -200% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes e2eAuroraDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(40px, -30px) scale(1.12); }
+    66%      { transform: translate(-30px, 25px) scale(0.94); }
+}
+@keyframes e2eGridFloat { 0% { background-position: 0 0, 0 0; } 100% { background-position: 60px 60px, -60px -60px; } }
+@keyframes e2eRipple    { 0% { transform: scale(0); opacity: 0.55; } 100% { transform: scale(2.6); opacity: 0; } }
+@keyframes e2eShake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-3px); }
+    40%      { transform: translateX(3px); }
+    60%      { transform: translateX(-2px); }
+    80%      { transform: translateX(2px); }
+}
+@keyframes e2eFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes e2eBreathBorder {
+    0%, 100% { border-color: rgba(74, 111, 165, 0.35); box-shadow: 0 0 0 0 rgba(74, 111, 165, 0); }
+    50%      { border-color: rgba(120, 160, 230, 0.65); box-shadow: 0 0 18px 0 rgba(94, 141, 205, 0.28); }
+}
+@keyframes e2eButtonRipple { 0% { transform: scale(0); opacity: 0.6; } 100% { transform: scale(3); opacity: 0; } }
+@keyframes e2eAvatarShine { 0% { background-position: -150% 0; } 100% { background-position: 250% 0; } }
+@keyframes e2eSendBurst {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(0.88); }
+    70%  { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(126, 180, 255, 0.25); }
+    100% { transform: scale(1); box-shadow: 0 4px 14px rgba(74, 111, 165, 0.4); }
+}
+@keyframes e2eDeletePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 6px rgba(200, 74, 74, 0.06), 0 12px 32px rgba(200, 60, 60, 0.18);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 12px rgba(200, 74, 74, 0.1), 0 14px 40px rgba(200, 60, 60, 0.3);
+        transform: scale(1.04);
+    }
+}
+@keyframes e2eOlderSpin { to { transform: rotate(360deg); } }
+
+@keyframes toolbarRowIn {
+    from { opacity: 0; transform: translateY(7px) scale(0.985); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes emojiWiggle {
+    0%   { transform: rotate(0deg) scale(1); }
+    30%  { transform: rotate(-14deg) scale(1.12); }
+    60%  { transform: rotate(12deg) scale(1.12); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes attachSwing {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-16deg); }
+    55%  { transform: rotate(12deg); }
+    80%  { transform: rotate(-6deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes gifPop {
+    0%   { transform: scale(1); }
+    45%  { transform: scale(1.18) rotate(-3deg); }
+    100% { transform: scale(1); }
+}
+
+@keyframes micBounce {
+    0%, 100% { transform: translateY(0); }
+    40%      { transform: translateY(-3px); }
+    70%      { transform: translateY(1px); }
+}
+
+@keyframes micPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.45); }
+    55%      { box-shadow: 0 0 0 9px rgba(255, 107, 107, 0); }
+}
+
+@keyframes voiceDotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.4); opacity: 0.5; }
+}
+
+@keyframes sendReadyGlow {
+    0%, 100% { box-shadow: var(--chat-glow-accent); }
+    50%      { box-shadow: var(--chat-glow-accent-strong); }
+}
+
+.cc-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    pointer-events: none;
+    animation: buttonRipple 0.65s var(--chat-ease-soft) forwards;
+}
+
+.cc-burst { animation: sendBurst 0.55s var(--chat-ease-spring) both; }
+
+.cc-cursor-glow { position: relative; }
+
+.cc-cursor-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mx, 50%) var(--my, 50%),
+        rgba(150, 190, 240, 0.22),
+        transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.cc-cursor-glow:hover::after { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .chat-item,
+    .e2e-chat-item {
+        opacity: 1 !important;
+        transform: none !important;
+        max-height: none !important;
+    }
+
+    .chat-item.removing { display: none !important; }
+}

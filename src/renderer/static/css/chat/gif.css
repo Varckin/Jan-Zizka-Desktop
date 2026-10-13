@@ -1,0 +1,31 @@
+#view-chat .gif-results{
+    margin-top: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+#view-chat .gif-empty{
+    color: var(--chat-text-muted);
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+}
+
+#view-chat .gif-search-field{ margin-bottom: 4px; }
+
+#view-chat .gif-search-field .search-field-input{ padding-right: 16px; }
+
+#view-chat .gif-item{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s var(--chat-ease-soft);
+}
+
+#view-chat .gif-item:hover{ transform: scale(1.05); }

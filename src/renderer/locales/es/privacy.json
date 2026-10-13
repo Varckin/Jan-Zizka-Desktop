@@ -1,0 +1,10 @@
+{
+  "last_seen_setting": "Última vez y en línea",
+  "last_seen_hint": "Quién puede ver cuándo te conectaste por última vez",
+  "who_can_message_setting": "Quién puede escribirme",
+  "who_can_message_hint": "Limita quién puede iniciar una conversación contigo",
+  "privacy_everyone": "Todos",
+  "privacy_contacts": "Mis contactos",
+  "privacy_nobody": "Nadie",
+  "privacy_updated": "Ajustes de privacidad actualizados"
+}

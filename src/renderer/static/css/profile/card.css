@@ -1,0 +1,56 @@
+#view-profile [hidden], #view-settings [hidden]{ display: none !important; }
+
+#view-profile .hint, #view-settings .hint{
+    display: block;
+    color: #8a8aa0;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+#view-profile .profile-container, #view-settings .profile-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 2rem;
+}
+
+#view-profile .profile-card, #view-settings .profile-card{
+    background: rgba(30, 30, 50, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 32px;
+    border: 1px solid #2a2a44;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    padding: 2.5rem 3rem;
+    width: 100%;
+    max-width: 700px;
+    animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: box-shadow 0.3s ease;
+}
+
+#view-profile .profile-card:hover, #view-settings .profile-card:hover{ box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+
+#view-profile .profile-name h1, #view-settings .profile-name h1{
+    margin: 0;
+    color: #e8e8f0;
+    font-size: 1.8rem;
+    transition: color 0.3s;
+    line-height: 1.2;
+}
+
+#view-profile .profile-username-small, #view-settings .profile-username-small{
+    display: inline-block;
+    font-size: 0.95rem;
+    color: #8a8aa0;
+    font-weight: 400;
+    margin-top: 0.2rem;
+}
+
+#view-profile .profile-role, #view-settings .profile-role{
+    font-size: 0.9rem;
+    color: #8a8aa0;
+    background: #2a2a44;
+    padding: 0.2rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+}

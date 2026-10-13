@@ -1,0 +1,10 @@
+{
+  "push_notifications": "Push-уведомления",
+  "push_hint": "Получайте уведомления о новых сообщениях, даже когда вы не в сети",
+  "push_enabled_toast": "Push-уведомления включены",
+  "push_disabled_toast": "Push-уведомления отключены",
+  "push_msg_direct_title": "Новое сообщение от {sender}",
+  "push_msg_chat_title": "Новое сообщение в {name}",
+  "push_msg_group_body": "{sender}: {text}",
+  "push_msg_attachment": "Вложение"
+}

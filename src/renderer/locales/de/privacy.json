@@ -1,0 +1,10 @@
+{
+  "last_seen_setting": "Zuletzt online",
+  "last_seen_hint": "Wer sehen kann, wann du zuletzt online warst",
+  "who_can_message_setting": "Wer mir schreiben kann",
+  "who_can_message_hint": "Schränke ein, wer eine Unterhaltung mit dir starten darf",
+  "privacy_everyone": "Alle",
+  "privacy_contacts": "Meine Kontakte",
+  "privacy_nobody": "Niemand",
+  "privacy_updated": "Datenschutzeinstellungen aktualisiert"
+}

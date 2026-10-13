@@ -1,0 +1,55 @@
+#view-chat #photo-viewer-modal .modal-content{
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    border: none;
+    box-shadow: none;
+    padding: 20px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#view-chat #photo-viewer-modal .photo-viewer-content{ background: transparent; position: relative; }
+
+#view-chat #photo-viewer-modal .photo-viewer-nav{ display: flex; align-items: center; gap: 20px; width: 100%; justify-content: center; }
+
+#view-chat #photo-viewer-modal .photo-viewer-nav img{
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: var(--chat-radius-md);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+}
+
+#view-chat #photo-viewer-modal .photo-viewer-nav video{
+    max-width: 80vw;
+    max-height: 80vh;
+    border-radius: var(--chat-radius-md);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+    background: #000;
+    outline: none;
+}
+
+#view-chat #photo-viewer-modal{
+    z-index: calc(var(--chat-z-modal) + 20);
+}
+
+#view-chat #photo-viewer-modal .photo-viewer-nav button{
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    padding: 8px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+    line-height: 1;
+}
+
+#view-chat #photo-viewer-modal .photo-viewer-nav button:hover{ background: rgba(255, 255, 255, 0.2); }
+#view-chat #photo-viewer-modal .photo-counter{ color: #aaa; margin-top: 12px; font-size: 0.9rem; }
+#view-chat #photo-viewer-modal .close{ position: absolute; top: 10px; right: 10px; width: auto; height: auto; color: #fff; font-size: 1.8rem; background: rgba(0, 0, 0, 0.5); border-radius: 50%; padding: 4px 10px; border: none; cursor: pointer; transition: background 0.2s; }
+#view-chat #photo-viewer-modal .close:hover{ background: rgba(255, 255, 255, 0.2); }

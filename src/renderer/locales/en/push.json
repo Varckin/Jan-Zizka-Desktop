@@ -1,0 +1,10 @@
+{
+  "push_notifications": "Push notifications",
+  "push_hint": "Receive notifications about new messages even when you are offline",
+  "push_enabled_toast": "Push notifications enabled",
+  "push_disabled_toast": "Push notifications disabled",
+  "push_msg_direct_title": "New message from {sender}",
+  "push_msg_chat_title": "New message in {name}",
+  "push_msg_group_body": "{sender}: {text}",
+  "push_msg_attachment": "Attachment"
+}

@@ -1,0 +1,40 @@
+<div class="lang-switcher" id="lang-switcher" data-current="{{ locale }}">
+    <button type="button"
+            class="lang-switcher__button"
+            id="lang-switcher-button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-label="{{ t('select_language') }}">
+        <span class="lang-switcher__globe" aria-hidden="true">🌐</span>
+        <span class="lang-switcher__current-flag code-badge" id="lang-current-flag" aria-hidden="true">EN</span>
+        <span class="lang-switcher__current-name" id="lang-current-name">English</span>
+        <svg class="lang-switcher__chevron" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+        </svg>
+    </button>
+    <ul class="lang-switcher__menu" id="lang-switcher-menu" role="listbox"
+        aria-label="{{ t('select_language') }}">
+        <li class="lang-switcher__item" data-lang="en" role="option" tabindex="0">
+            <span class="lang-switcher__flag code-badge" aria-hidden="true">EN</span>
+            <span class="lang-switcher__name">English</span>
+            <span class="lang-switcher__check" aria-hidden="true">✓</span>
+        </li>
+        <li class="lang-switcher__item" data-lang="ru" role="option" tabindex="0">
+            <span class="lang-switcher__flag code-badge" aria-hidden="true">RU</span>
+            <span class="lang-switcher__name">Русский</span>
+            <span class="lang-switcher__check" aria-hidden="true">✓</span>
+        </li>
+        <li class="lang-switcher__item" data-lang="es" role="option" tabindex="0">
+            <span class="lang-switcher__flag code-badge" aria-hidden="true">ES</span>
+            <span class="lang-switcher__name">Español</span>
+            <span class="lang-switcher__check" aria-hidden="true">✓</span>
+        </li>
+        <li class="lang-switcher__item" data-lang="de" role="option" tabindex="0">
+            <span class="lang-switcher__flag code-badge" aria-hidden="true">DE</span>
+            <span class="lang-switcher__name">Deutsch</span>
+            <span class="lang-switcher__check" aria-hidden="true">✓</span>
+        </li>
+    </ul>
+</div>

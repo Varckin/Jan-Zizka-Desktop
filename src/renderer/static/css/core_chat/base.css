@@ -1,0 +1,91 @@
+.is-hidden { display: none !important; }
+
+.icon { display: inline-block; flex-shrink: 0; vertical-align: middle; }
+.icon-sm { width: 18px; height: 18px; }
+.icon-md { width: 24px; height: 24px; }
+.icon-lg { width: 32px; height: 32px; }
+
+.loading,
+.e2e-loading {
+    text-align: center;
+    color: var(--chat-text-muted);
+    padding: 20px;
+    animation: fadeIn 0.5s ease both;
+}
+
+.empty-state,
+.e2e-empty {
+    text-align: center;
+    color: var(--chat-text-muted);
+    margin: auto;
+    padding: 20px;
+    animation: fadeIn 0.5s ease both;
+}
+
+.error {
+    color: var(--chat-danger);
+    text-align: center;
+    padding: 20px;
+}
+
+.chat-list::-webkit-scrollbar,
+.e2e-chat-list::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar,
+.e2e-messages::-webkit-scrollbar { width: 8px; }
+
+.chat-list::-webkit-scrollbar-thumb,
+.e2e-chat-list::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb,
+.e2e-messages::-webkit-scrollbar-thumb {
+    background: rgba(122, 140, 180, 0.25);
+    border-radius: 8px;
+    transition: background 0.25s ease;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover,
+.e2e-chat-list::-webkit-scrollbar-thumb:hover,
+.chat-messages::-webkit-scrollbar-thumb:hover,
+.e2e-messages::-webkit-scrollbar-thumb:hover { background: rgba(122, 140, 180, 0.5); }
+
+.chat-app ::selection,
+.e2e-app ::selection {
+    background: rgba(74, 111, 165, 0.45);
+    color: var(--chat-text-bright);
+}
+
+.chat-mode-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 8px 10px 0;
+    border-bottom: 1px solid var(--chat-border);
+    background: rgba(15, 15, 26, 0.4);
+}
+
+.chat-mode-tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--chat-text-muted);
+    text-decoration: none;
+    border-radius: var(--chat-radius-sm) var(--chat-radius-sm) 0 0;
+    border: 1px solid transparent;
+    border-bottom: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s var(--chat-ease-soft);
+    white-space: nowrap;
+}
+
+.chat-mode-tab:hover {
+    color: var(--chat-text-heading);
+    background: rgba(74, 111, 165, 0.08);
+    transform: translateY(-1px);
+}
+
+.chat-mode-tab.is-active {
+    color: var(--chat-text-bright);
+    background: var(--chat-bg-panel);
+    border-color: var(--chat-border);
+    position: relative;
+    top: 1px;
+}

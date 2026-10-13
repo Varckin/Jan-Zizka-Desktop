@@ -1,0 +1,141 @@
+#view-chat .username-input-wrapper{
+    display: flex;
+    align-items: center;
+    background: var(--chat-bg-deep);
+    border: 1px solid var(--chat-border);
+    border-radius: var(--chat-radius-md);
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.25s ease;
+}
+
+#view-chat .username-input-wrapper:focus-within{ border-color: rgba(126, 180, 255, 0.55); box-shadow: 0 0 0 4px rgba(74, 111, 165, 0.18); }
+#view-chat .username-input-wrapper .username-prefix{ padding: 10px 12px; color: var(--chat-text-muted); font-weight: 600; background: var(--chat-bg-panel); border-right: 1px solid var(--chat-border); }
+#view-chat .username-input-wrapper input{ flex: 1; background: transparent !important; border: none !important; box-shadow: none !important; color: var(--chat-text); padding: 10px 12px; font-size: 0.95rem; outline: none; margin-bottom: 0 !important; }
+
+#view-chat .hint{ display: block; color: var(--chat-text-muted); font-size: 0.8rem; margin-top: 4px; }
+
+#view-chat .channel-info-content{ max-width: 520px; }
+
+#view-chat .channel-info-header{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+#view-chat .channel-info-avatar{
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--chat-accent), var(--chat-accent-soft));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2.4rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 3px solid var(--chat-accent);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+#view-chat .channel-info-avatar img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+#view-chat .channel-info-main{ flex: none; min-width: 0; width: 100%; text-align: center; }
+#view-chat .channel-info-main h2{ margin: 0 0 4px 0; color: var(--chat-text-bright); font-size: 1.5rem; overflow-wrap: anywhere; }
+#view-chat .channel-info-username{ color: var(--chat-text-muted); font-size: 0.95rem; margin-bottom: 6px; user-select: text; -webkit-user-select: text; }
+#view-chat .channel-info-meta{ display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 12px; color: #a0a0c0; font-size: 0.85rem; }
+#view-chat .channel-created-date{ color: var(--chat-text-muted); }
+#view-chat .channel-info-description{ background: var(--chat-bg-elevated); padding: 12px 16px; border-radius: var(--chat-radius-md); color: #d0d0e0; font-size: 0.9rem; line-height: 1.5; margin: 12px 0; white-space: pre-wrap; word-break: break-word; }
+
+#view-chat .channel-info-actions{ display: flex; gap: 10px; margin: 16px 0 4px; }
+
+#view-chat .channel-info-actions .channel-action-btn{
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 11px 14px;
+    font-size: 0.88rem;
+}
+
+#view-chat .channel-info-actions.is-visible .channel-action-btn{ animation: toolbarRowIn 0.4s var(--chat-ease-soft) both; }
+#view-chat .channel-info-actions.is-visible .channel-action-btn:nth-child(2){ animation-delay: 0.07s; }
+
+#view-chat .channel-action-btn.is-done{
+    color: var(--chat-success);
+    border-color: rgba(68, 183, 0, 0.4);
+}
+
+#view-chat .channel-admin-item, #view-chat .channel-subscriber-item{ display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--chat-border-soft); }
+
+#view-chat .channel-admin-avatar, #view-chat .channel-subscriber-avatar{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--chat-bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b8c7e6;
+    font-weight: 600;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+#view-chat .channel-admin-avatar img, #view-chat .channel-subscriber-avatar img{ width: 100%; height: 100%; object-fit: cover; }
+
+#view-chat .channel-subscriber-avatar.is-clickable{
+    cursor: pointer;
+    transition: transform 0.2s var(--chat-ease-soft), box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent;
+}
+
+#view-chat .channel-subscriber-avatar.is-clickable:hover{
+    transform: scale(1.12);
+    border-color: var(--chat-border-accent);
+    box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.3), 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+#view-chat .channel-subscriber-avatar.is-clickable:active{ transform: scale(0.96); }
+
+#view-chat .channel-subscriber-avatar.is-clickable:focus-visible{
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(126, 180, 255, 0.45);
+}
+#view-chat .channel-admin-info, #view-chat .channel-subscriber-info{ flex: 1; min-width: 0; }
+#view-chat .channel-admin-name, #view-chat .channel-subscriber-name{ color: var(--chat-text); font-weight: 500; }
+#view-chat .channel-admin-role{ font-size: 0.75rem; color: var(--chat-text-muted); background: var(--chat-bg-elevated); padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
+#view-chat .channel-admin-actions, #view-chat .channel-subscriber-actions{ display: flex; gap: 6px; flex-shrink: 0; }
+
+#view-chat .subscribers-count-display{ text-align: center; padding: 16px; color: #b8c7e6; font-size: 1.1rem; font-weight: 600; background: rgba(74, 111, 165, 0.08); border-radius: var(--chat-radius-md); margin-bottom: 12px; }
+
+#view-chat .admin-role-label{ color: var(--chat-text-muted); font-size: 0.85rem; padding: 0 8px; }
+
+@media (max-width: 640px) {
+    #view-chat #channel-info-modal .channel-info-actions{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #view-chat #channel-info-modal .channel-info-actions .channel-action-btn{
+        flex: 1 1 auto;
+        width: 100%;
+        min-height: 46px;
+        padding: 13px 18px;
+        font-size: 0.92rem;
+        white-space: normal;
+        line-height: 1.25;
+    }
+}
+
+#view-chat #channel-settings-modal .username-input-wrapper input:disabled{
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: rgba(15, 15, 26, 0.35);
+}
+
+#view-chat #channel-settings-modal .username-input-wrapper:has(input:disabled) .username-prefix{
+    opacity: 0.55;
+}

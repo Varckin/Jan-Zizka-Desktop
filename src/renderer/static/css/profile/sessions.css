@@ -1,0 +1,132 @@
+#view-profile .sessions-block, #view-settings .sessions-block{
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a44;
+}
+
+#view-profile .sessions-header, #view-settings .sessions-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+#view-profile .sessions-header h3, #view-settings .sessions-header h3{
+    margin: 0;
+    color: #e8e8f0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#view-profile .btn-terminate-other, #view-settings .btn-terminate-other{
+    background: #6a2a2a;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#view-profile .btn-terminate-other:hover, #view-settings .btn-terminate-other:hover{ background: #8f3a3a; transform: translateY(-1px); }
+
+#view-profile .sessions-list, #view-settings .sessions-list{ display: flex; flex-direction: column; gap: 0.6rem; }
+
+#view-profile .session-card, #view-settings .session-card{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid #2a2a44;
+    border-radius: 14px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+#view-profile .session-card:hover, #view-settings .session-card:hover{ background: rgba(255, 255, 255, 0.04); border-color: #3a3a5a; }
+
+#view-profile .session-card.session-current, #view-settings .session-card.session-current{ border-color: #4a6fa5; background: rgba(74, 111, 165, 0.08); }
+
+#view-profile .session-device-icon, #view-settings .session-device-icon{
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2a2a44;
+    border-radius: 50%;
+}
+
+#view-profile .session-current .session-device-icon, #view-settings .session-current .session-device-icon{ background: rgba(74, 111, 165, 0.2); }
+
+#view-profile .session-info, #view-settings .session-info{ flex: 1; min-width: 0; }
+
+#view-profile .session-title, #view-settings .session-title{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+}
+
+#view-profile .session-browser, #view-settings .session-browser{ color: #e8e8f0; font-weight: 600; font-size: 0.95rem; }
+
+#view-profile .session-os, #view-settings .session-os{ color: #8a8aa0; font-size: 0.85rem; }
+
+#view-profile .session-badge-current, #view-settings .session-badge-current{
+    background: #4a6fa5;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 0.4rem;
+}
+
+#view-profile .session-meta, #view-settings .session-meta{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.2rem;
+}
+
+#view-profile .session-ip, #view-settings .session-ip{ color: #b8c7e6; font-size: 0.85rem; font-family: 'Courier New', monospace; }
+
+#view-profile .session-geo, #view-settings .session-geo{ color: #8a8aa0; font-size: 0.85rem; }
+
+#view-profile .session-time, #view-settings .session-time{ color: #8a8aa0; font-size: 0.8rem; }
+
+#view-profile .btn-terminate-session, #view-settings .btn-terminate-session{
+    background: transparent;
+    border: 1px solid #6a2a2a;
+    color: #c74a4a;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#view-profile .btn-terminate-session:hover, #view-settings .btn-terminate-session:hover{ background: #6a2a2a; color: #fff; transform: scale(1.08); }
+
+#view-profile .sessions-empty, #view-settings .sessions-empty{
+    text-align: center;
+    color: #8a8aa0;
+    padding: 1.5rem;
+    font-style: italic;
+}

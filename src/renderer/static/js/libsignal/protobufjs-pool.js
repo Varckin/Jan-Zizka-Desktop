@@ -1,0 +1,1 @@
+var u,a;function b(){if(a)return u;a=1,u=l;function l(t,n,p){var _=p||8192,e=_>>>1,f=null,r=_;return function(o){if(o<1||o>e)return t(o);r+o>_&&(f=t(_),r=0);var v=n.call(f,r,r+=o);return r&7&&(r=(r|7)+1),v}}return u}var i=b();export{i as default};

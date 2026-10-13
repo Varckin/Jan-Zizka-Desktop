@@ -1,0 +1,200 @@
+#view-chat .chat-app *, #view-chat .e2e-app *, #view-e2e .e2e-app *, #view-settings .e2e-app *,  #view-e2e .chat-app *, #view-chat .e2e-app *, #view-e2e .e2e-app *, #view-settings .e2e-app *,  #view-settings .chat-app *, #view-chat .e2e-app *, #view-e2e .e2e-app *, #view-settings .e2e-app *{ box-sizing: border-box; }
+
+#view-chat .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app,  #view-e2e .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app,  #view-settings .chat-app, #view-chat .e2e-app, #view-e2e .e2e-app, #view-settings .e2e-app{
+    display: flex;
+    height: calc(100vh - 140px);
+    min-height: 0;
+    background: var(--chat-bg-app);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--chat-border);
+    position: relative;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    isolation: isolate;
+    animation: fadeIn 0.5s ease both;
+}
+
+#view-chat .chat-sidebar, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar,  #view-e2e .chat-sidebar, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar,  #view-settings .chat-sidebar, #view-chat .e2e-sidebar, #view-e2e .e2e-sidebar, #view-settings .e2e-sidebar{
+    position: relative;
+    z-index: 1;
+    width: 300px;
+    min-width: 200px;
+    background: rgba(26, 26, 46, 0.55);
+    border-right: 1px solid var(--chat-border);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+#view-chat .sidebar-header, #view-chat .e2e-sidebar-header, #view-e2e .e2e-sidebar-header, #view-settings .e2e-sidebar-header,  #view-e2e .sidebar-header, #view-chat .e2e-sidebar-header, #view-e2e .e2e-sidebar-header, #view-settings .e2e-sidebar-header,  #view-settings .sidebar-header, #view-chat .e2e-sidebar-header, #view-e2e .e2e-sidebar-header, #view-settings .e2e-sidebar-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--chat-border);
+    animation: slideDown 0.4s var(--chat-ease-soft);
+}
+
+#view-chat .sidebar-header h2, #view-chat .e2e-sidebar-header h2, #view-e2e .e2e-sidebar-header h2, #view-settings .e2e-sidebar-header h2,  #view-e2e .sidebar-header h2, #view-chat .e2e-sidebar-header h2, #view-e2e .e2e-sidebar-header h2, #view-settings .e2e-sidebar-header h2,  #view-settings .sidebar-header h2, #view-chat .e2e-sidebar-header h2, #view-e2e .e2e-sidebar-header h2, #view-settings .e2e-sidebar-header h2{
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--chat-text-heading);
+}
+
+#view-chat .sidebar-actions, #view-chat .e2e-sidebar-actions, #view-e2e .e2e-sidebar-actions, #view-settings .e2e-sidebar-actions,  #view-e2e .sidebar-actions, #view-chat .e2e-sidebar-actions, #view-e2e .e2e-sidebar-actions, #view-settings .e2e-sidebar-actions,  #view-settings .sidebar-actions, #view-chat .e2e-sidebar-actions, #view-e2e .e2e-sidebar-actions, #view-settings .e2e-sidebar-actions{ display: flex; gap: 6px; }
+
+#view-chat .search-box, #view-chat .e2e-search-box, #view-e2e .e2e-search-box, #view-settings .e2e-search-box,  #view-e2e .search-box, #view-chat .e2e-search-box, #view-e2e .e2e-search-box, #view-settings .e2e-search-box,  #view-settings .search-box, #view-chat .e2e-search-box, #view-e2e .e2e-search-box, #view-settings .e2e-search-box{
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--chat-border);
+}
+
+#view-chat .search-box input, #view-chat .e2e-search-box input, #view-e2e .e2e-search-box input, #view-settings .e2e-search-box input,  #view-e2e .search-box input, #view-chat .e2e-search-box input, #view-e2e .e2e-search-box input, #view-settings .e2e-search-box input,  #view-settings .search-box input, #view-chat .e2e-search-box input, #view-e2e .e2e-search-box input, #view-settings .e2e-search-box input{
+    width: 100%;
+    padding: 8px 14px;
+    border-radius: var(--chat-radius-pill);
+    border: 1px solid var(--chat-border);
+    background: var(--chat-bg-deep);
+    color: var(--chat-text);
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease, background 0.3s ease;
+}
+
+#view-chat .search-box input:focus, #view-chat .e2e-search-box input:focus, #view-e2e .e2e-search-box input:focus, #view-settings .e2e-search-box input:focus,  #view-e2e .search-box input:focus, #view-chat .e2e-search-box input:focus, #view-e2e .e2e-search-box input:focus, #view-settings .e2e-search-box input:focus,  #view-settings .search-box input:focus, #view-chat .e2e-search-box input:focus, #view-e2e .e2e-search-box input:focus, #view-settings .e2e-search-box input:focus{
+    border-color: var(--chat-accent);
+    box-shadow: 0 0 0 3px var(--chat-accent-glow);
+    transform: translateY(-1px);
+}
+
+#view-chat .chat-list, #view-chat .e2e-chat-list, #view-e2e .e2e-chat-list, #view-settings .e2e-chat-list,  #view-e2e .chat-list, #view-chat .e2e-chat-list, #view-e2e .e2e-chat-list, #view-settings .e2e-chat-list,  #view-settings .chat-list, #view-chat .e2e-chat-list, #view-e2e .e2e-chat-list, #view-settings .e2e-chat-list{
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 8px 0;
+    scrollbar-gutter: stable;
+    overscroll-behavior: contain;
+}
+
+#view-chat .chat-main, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main,  #view-e2e .chat-main, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main,  #view-settings .chat-main, #view-chat .e2e-main, #view-e2e .e2e-main, #view-settings .e2e-main{
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: rgba(15, 15, 26, 0.5);
+    min-height: 0;
+}
+
+#view-chat .chat-header, #view-chat .e2e-header, #view-e2e .e2e-header, #view-settings .e2e-header,  #view-e2e .chat-header, #view-chat .e2e-header, #view-e2e .e2e-header, #view-settings .e2e-header,  #view-settings .chat-header, #view-chat .e2e-header, #view-e2e .e2e-header, #view-settings .e2e-header{
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--chat-border);
+    background: rgba(26, 26, 46, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    transition: box-shadow 0.25s ease, background 0.25s ease;
+    animation: slideDown 0.4s var(--chat-ease-soft);
+}
+
+#view-chat .chat-header:hover, #view-chat .e2e-header:hover, #view-e2e .e2e-header:hover, #view-settings .e2e-header:hover,  #view-e2e .chat-header:hover, #view-chat .e2e-header:hover, #view-e2e .e2e-header:hover, #view-settings .e2e-header:hover,  #view-settings .chat-header:hover, #view-chat .e2e-header:hover, #view-e2e .e2e-header:hover, #view-settings .e2e-header:hover{ box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25); }
+
+#view-chat .chat-info, #view-chat .e2e-info, #view-e2e .e2e-info, #view-settings .e2e-info,  #view-e2e .chat-info, #view-chat .e2e-info, #view-e2e .e2e-info, #view-settings .e2e-info,  #view-settings .chat-info, #view-chat .e2e-info, #view-e2e .e2e-info, #view-settings .e2e-info{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    min-width: 0;
+}
+
+#view-chat .chat-name, #view-chat .e2e-name, #view-e2e .e2e-name, #view-settings .e2e-name,  #view-e2e .chat-name, #view-chat .e2e-name, #view-e2e .e2e-name, #view-settings .e2e-name,  #view-settings .chat-name, #view-chat .e2e-name, #view-e2e .e2e-name, #view-settings .e2e-name{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--chat-text-bright);
+    transition: color 0.25s ease, transform 0.25s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60vw;
+}
+
+#view-chat .chat-info:hover .chat-name, #view-chat .chat-info:hover .e2e-name, #view-e2e .chat-info:hover .e2e-name, #view-settings .chat-info:hover .e2e-name, #view-chat .e2e-info:hover .e2e-name, #view-e2e .e2e-info:hover .e2e-name, #view-settings .e2e-info:hover .e2e-name,  #view-e2e .chat-info:hover .chat-name, #view-chat .chat-info:hover .e2e-name, #view-e2e .chat-info:hover .e2e-name, #view-settings .chat-info:hover .e2e-name, #view-chat .e2e-info:hover .e2e-name, #view-e2e .e2e-info:hover .e2e-name, #view-settings .e2e-info:hover .e2e-name,  #view-settings .chat-info:hover .chat-name, #view-chat .chat-info:hover .e2e-name, #view-e2e .chat-info:hover .e2e-name, #view-settings .chat-info:hover .e2e-name, #view-chat .e2e-info:hover .e2e-name, #view-e2e .e2e-info:hover .e2e-name, #view-settings .e2e-info:hover .e2e-name{
+    color: #d8e3ff;
+    transform: translateX(2px);
+}
+
+#view-chat .e2e-name:focus-visible,  #view-e2e .e2e-name:focus-visible,  #view-settings .e2e-name:focus-visible{
+    outline: 2px solid var(--chat-accent);
+    outline-offset: 2px;
+}
+
+#view-chat .chat-actions, #view-chat .e2e-actions, #view-e2e .e2e-actions, #view-settings .e2e-actions,  #view-e2e .chat-actions, #view-chat .e2e-actions, #view-e2e .e2e-actions, #view-settings .e2e-actions,  #view-settings .chat-actions, #view-chat .e2e-actions, #view-e2e .e2e-actions, #view-settings .e2e-actions{ display: flex; gap: 6px; align-items: center; }
+
+#view-chat .chat-typing, #view-chat .e2e-typing, #view-e2e .e2e-typing, #view-settings .e2e-typing,  #view-e2e .chat-typing, #view-chat .e2e-typing, #view-e2e .e2e-typing, #view-settings .e2e-typing,  #view-settings .chat-typing, #view-chat .e2e-typing, #view-e2e .e2e-typing, #view-settings .e2e-typing{
+    font-size: 0.9rem;
+    color: var(--chat-text-muted);
+    margin-left: 8px;
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+#view-chat .online-status, #view-chat .e2e-online, #view-e2e .e2e-online, #view-settings .e2e-online,  #view-e2e .online-status, #view-chat .e2e-online, #view-e2e .e2e-online, #view-settings .e2e-online,  #view-settings .online-status, #view-chat .e2e-online, #view-e2e .e2e-online, #view-settings .e2e-online{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--chat-success);
+    border-radius: 50%;
+    margin-left: -6px;
+    vertical-align: middle;
+    box-shadow: 0 0 8px rgba(68, 183, 0, 0.6);
+    animation: pulseDot 2.2s ease-in-out infinite;
+    flex-shrink: 0;
+    cursor: default;
+}
+
+#view-chat .online-status.last-seen-mode, #view-chat .e2e-online--text, #view-e2e .e2e-online--text, #view-settings .e2e-online--text, #view-chat .e2e-online.e2e-online--text, #view-e2e .e2e-online.e2e-online--text, #view-settings .e2e-online.e2e-online--text,  #view-e2e .online-status.last-seen-mode, #view-chat .e2e-online--text, #view-e2e .e2e-online--text, #view-settings .e2e-online--text, #view-chat .e2e-online.e2e-online--text, #view-e2e .e2e-online.e2e-online--text, #view-settings .e2e-online.e2e-online--text,  #view-settings .online-status.last-seen-mode, #view-chat .e2e-online--text, #view-e2e .e2e-online--text, #view-settings .e2e-online--text, #view-chat .e2e-online.e2e-online--text, #view-e2e .e2e-online.e2e-online--text, #view-settings .e2e-online.e2e-online--text{
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+    color: var(--chat-text-muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-left: 6px;
+    vertical-align: middle;
+    white-space: nowrap;
+    user-select: text;
+    -webkit-user-select: text;
+    cursor: text;
+}
+
+#view-chat .members-count,  #view-e2e .members-count,  #view-settings .members-count{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--chat-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
+    user-select: none;
+    cursor: default;
+}
+
+#view-chat .members-count .members-sep,  #view-e2e .members-count .members-sep,  #view-settings .members-count .members-sep{ opacity: 0.55; }
+
+#view-chat .members-count .members-online,  #view-e2e .members-count .members-online,  #view-settings .members-count .members-online{
+    color: var(--chat-success);
+    font-variant-numeric: tabular-nums;
+}
+
+#view-chat .members-count .members-total,  #view-e2e .members-count .members-total,  #view-settings .members-count .members-total{ font-variant-numeric: tabular-nums; }

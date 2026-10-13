@@ -1,0 +1,45 @@
+.auth-switch {
+    text-align: center;
+    margin-top: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.auth-switch a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s, text-shadow 0.2s, opacity 0.2s;
+    position: relative;
+}
+
+.auth-switch a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.auth-switch a:hover { color: #6a8fc0; text-shadow: 0 0 8px rgba(74, 111, 165, 0.3); }
+
+.auth-switch a:hover::after { width: 100%; }
+
+.auth-switch a.link-disabled { opacity: 0.5; pointer-events: none; }
+
+.auth-links {
+    text-align: center;
+    margin-top: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.auth-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.auth-links a:hover { color: #6a8fc0; }
