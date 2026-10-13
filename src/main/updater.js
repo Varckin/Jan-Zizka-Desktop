@@ -161,6 +161,60 @@ async function verifyPendingUpdate(info) {
     if (!verifyUpdateSignature(sig, fields)) throw new Error('update signature verification failed');
 }
 
+function getPortableUpdateContext() {
+    if (process.platform !== 'win32') return null;
+    const exeFile = process.env.PORTABLE_EXECUTABLE_FILE;
+    if (!exeFile || !fs.existsSync(exeFile)) return null;
+    const helper = autoUpdater.downloadedUpdateHelper;
+    const downloaded = helper ? helper.file : null;
+    if (!downloaded || !fs.existsSync(downloaded)) return null;
+    return { exeFile, downloaded };
+}
+
+function clearPendingCache() {
+    try {
+        const helper = autoUpdater.downloadedUpdateHelper;
+        if (helper && typeof helper.clear === 'function') {
+            Promise.resolve(helper.clear()).catch(() => { });
+        }
+    } catch {
+    }
+}
+
+function replacePortableExecutable(context) {
+    const backupPath = context.exeFile + '.old';
+    let renamed = false;
+    try {
+        try {
+            fs.rmSync(backupPath, { force: true });
+        } catch {
+        }
+        fs.renameSync(context.exeFile, backupPath);
+        renamed = true;
+        fs.copyFileSync(context.downloaded, context.exeFile);
+        return true;
+    } catch {
+        if (renamed) {
+            try {
+                fs.rmSync(context.exeFile, { force: true });
+            } catch {
+            }
+            try {
+                fs.renameSync(backupPath, context.exeFile);
+            } catch {
+            }
+        }
+        return false;
+    }
+}
+
+function applyPortableUpdateOnQuit() {
+    if (!state.supported || state.status !== 'downloaded') return;
+    const context = getPortableUpdateContext();
+    if (!context) return;
+    if (replacePortableExecutable(context)) clearPendingCache();
+}
+
 function buildUpdateConfigYaml() {
     return [
         'provider: github',
@@ -202,7 +256,7 @@ function initUpdater(onState) {
     ensureUpdateConfigFile();
 
     autoUpdater.autoDownload = false;
-    autoUpdater.autoInstallOnAppQuit = true;
+    autoUpdater.autoInstallOnAppQuit = false;
     autoUpdater.allowPrerelease = false;
     autoUpdater.disableDifferentialDownload = true;
     autoUpdater.requestHeaders = { 'user-agent': `JanDesktop/${app.getVersion()}` };
@@ -235,6 +289,7 @@ function initUpdater(onState) {
             setStatus('error', { error: String(err && err.message || err) });
         }
     });
+    app.on('quit', applyPortableUpdateOnQuit);
 
     setStatus('idle');
     if (enabled()) schedule(FIRST_CHECK_DELAY_MS);
@@ -253,6 +308,13 @@ function quitAndInstall() {
     if (!state.supported || state.status !== 'downloaded') return false;
     const windowManager = require('./window');
     windowManager.setQuitting(true);
+    const context = getPortableUpdateContext();
+    if (context && replacePortableExecutable(context)) {
+        clearPendingCache();
+        app.relaunch({ execPath: context.exeFile, args: ['--updated'] });
+        setImmediate(() => app.exit(0));
+        return true;
+    }
     setImmediate(() => autoUpdater.quitAndInstall(false, true));
     return true;
 }
