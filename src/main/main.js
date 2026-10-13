@@ -1,16 +1,6 @@
 const path = require('path');
-const fs = require('fs');
 const { app, BrowserWindow, Menu } = require('electron');
 const { DEFAULT_SERVER_URL, APP_PROTOCOL } = require('./config');
-
-if (process.env.PORTABLE_EXECUTABLE_DIR) {
-    const portableData = path.join(process.env.PORTABLE_EXECUTABLE_DIR, 'jan-data');
-    try {
-        fs.mkdirSync(portableData, { recursive: true });
-        app.setPath('userData', portableData);
-    } catch {
-    }
-}
 
 const settings = require('./settings');
 const localServer = require('./localServer');

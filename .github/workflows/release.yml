@@ -47,7 +47,7 @@ jobs:
         if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
         uses: actions/upload-artifact@v4
         with:
-          name: portable-build
+          name: nsis-build
           path: release/*.exe
 
       - name: Prepare and sign update manifest
