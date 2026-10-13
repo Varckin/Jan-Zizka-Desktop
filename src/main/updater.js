@@ -141,8 +141,34 @@ function sigAssetUrl(release) {
     return asset ? asset.browser_download_url : null;
 }
 
+async function fetchReleaseByTag(tag) {
+    const url = `https://api.github.com/repos/${UPDATE_OWNER}/${UPDATE_REPO}/releases/tags/${encodeURIComponent(tag)}`;
+    const res = await fetch(url, { headers: { 'accept': 'application/vnd.github+json', 'user-agent': `JanDesktop/${app.getVersion()}` } });
+    if (!res.ok) {
+        const err = new Error(`release api ${res.status}`);
+        err.backoff = res.status === 403 || res.status === 429;
+        throw err;
+    }
+    return res.json();
+}
+
+async function resolveUpdateRelease(info) {
+    const tag = info && info.tag != null ? String(info.tag) : null;
+    if (tag) {
+        if (lastRelease && lastRelease.tag_name === tag) return lastRelease;
+        return fetchReleaseByTag(tag);
+    }
+    if (lastRelease) return lastRelease;
+    return (await fetchLatestRelease()).release;
+}
+
 async function verifyPendingUpdate(info) {
-    const release = lastRelease || (await fetchLatestRelease()).release;
+    const release = await resolveUpdateRelease(info);
+    if (!release) throw new Error('update release info not available');
+    const expectedVersion = info && info.version != null ? String(info.version) : null;
+    if (expectedVersion && release.tag_name && String(release.tag_name).replace(/^v/i, '') !== expectedVersion) {
+        throw new Error(`release tag ${release.tag_name} does not match update version ${expectedVersion}`);
+    }
     const url = sigAssetUrl(release);
     if (!url) throw new Error('update signature asset not found');
     const res = await fetch(url, { headers: { 'user-agent': `JanDesktop/${app.getVersion()}`, 'accept': 'application/octet-stream' } });
