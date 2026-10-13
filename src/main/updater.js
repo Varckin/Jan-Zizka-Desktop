@@ -30,6 +30,8 @@ let busy = false;
 let lastEtag = null;
 let lastRelease = null;
 let signatureNotified = false;
+let replacedExePath = null;
+let replacedVersion = null;
 
 function publish() {
     if (emitter) emitter(Object.assign({}, state));
@@ -208,11 +210,16 @@ function replacePortableExecutable(context) {
     }
 }
 
-function applyPortableUpdateOnQuit() {
+function applyPortableUpdateSilently(version) {
     if (!state.supported || state.status !== 'downloaded') return;
+    if (replacedExePath && (!version || version === replacedVersion)) return;
     const context = getPortableUpdateContext();
     if (!context) return;
-    if (replacePortableExecutable(context)) clearPendingCache();
+    if (replacePortableExecutable(context)) {
+        replacedExePath = context.exeFile;
+        if (version) replacedVersion = version;
+        clearPendingCache();
+    }
 }
 
 function buildUpdateConfigYaml() {
@@ -282,6 +289,7 @@ function initUpdater(onState) {
     });
     autoUpdater.on('update-downloaded', info => {
         setStatus('downloaded', { version: info.version });
+        applyPortableUpdateSilently(info && info.version != null ? String(info.version) : null);
     });
     autoUpdater.on('error', err => {
         if (state.status === 'checking' || state.status === 'downloading' || state.status === 'available') {
@@ -289,7 +297,9 @@ function initUpdater(onState) {
             setStatus('error', { error: String(err && err.message || err) });
         }
     });
-    app.on('quit', applyPortableUpdateOnQuit);
+    app.on('before-quit', () => applyPortableUpdateSilently());
+    app.on('will-quit', () => applyPortableUpdateSilently());
+    app.on('quit', () => applyPortableUpdateSilently());
 
     setStatus('idle');
     if (enabled()) schedule(FIRST_CHECK_DELAY_MS);
@@ -308,10 +318,17 @@ function quitAndInstall() {
     if (!state.supported || state.status !== 'downloaded') return false;
     const windowManager = require('./window');
     windowManager.setQuitting(true);
-    const context = getPortableUpdateContext();
-    if (context && replacePortableExecutable(context)) {
-        clearPendingCache();
-        app.relaunch({ execPath: context.exeFile, args: ['--updated'] });
+    let target = replacedExePath && fs.existsSync(replacedExePath) ? replacedExePath : null;
+    if (!target) {
+        const context = getPortableUpdateContext();
+        if (context && replacePortableExecutable(context)) {
+            target = context.exeFile;
+            replacedExePath = target;
+            clearPendingCache();
+        }
+    }
+    if (target) {
+        app.relaunch({ execPath: target, args: ['--updated'] });
         setImmediate(() => app.exit(0));
         return true;
     }
