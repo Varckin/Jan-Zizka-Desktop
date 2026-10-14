@@ -5,6 +5,7 @@ const { resolveFromApp, IS_PACKAGED } = require('./paths');
 
 let mainWindow = null;
 let isQuitting = false;
+let pendingMaximize = false;
 let isFocused = true;
 let isMaximizedState = false;
 
@@ -51,13 +52,20 @@ function createMainWindow(localOrigin) {
         },
     });
 
-    if (saved.maximized) {
-        mainWindow.maximize();
-    }
+    const startMinimized = settings.get('window.startMinimized');
+    pendingMaximize = !!saved.maximized && startMinimized && settings.get('tray.enabled');
 
     mainWindow.once('ready-to-show', () => {
-        if (!settings.get('window.startMinimized')) mainWindow.show();
-        else mainWindow.minimize();
+        if (!startMinimized) {
+            if (saved.maximized) mainWindow.maximize();
+            else mainWindow.show();
+            return;
+        }
+        if (settings.get('tray.enabled')) {
+            mainWindow.hide();
+        } else {
+            mainWindow.minimize();
+        }
     });
 
     mainWindow.on('resize', persistBounds);
@@ -180,6 +188,12 @@ function getWindow() {
 
 function show() {
     if (!mainWindow) return;
+    if (pendingMaximize) {
+        pendingMaximize = false;
+        mainWindow.maximize();
+        mainWindow.focus();
+        return;
+    }
     if (mainWindow.isMinimized()) mainWindow.restore();
     mainWindow.show();
     mainWindow.focus();

@@ -1,4 +1,3 @@
-const path = require('path');
 const { ipcMain, shell, app, nativeImage, powerSaveBlocker, dialog } = require('electron');
 const windowManager = require('./window');
 const settings = require('./settings');
@@ -100,12 +99,11 @@ function register(localOrigin) {
 }
 
 function applyAutoStart(enabled) {
+    if (!app.isPackaged) return;
     try {
-        const args = process.defaultApp ? [path.resolve(process.argv[1]), '--'] : ['--'];
         app.setLoginItemSettings({
             openAtLogin: !!enabled,
             path: process.execPath,
-            args,
         });
     } catch {
     }
