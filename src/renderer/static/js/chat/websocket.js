@@ -25,6 +25,7 @@ export async function connectWebSocket(chatId, onMessageCallback) {
     chatSocket = createManagedSocket({
         url: wsUrl(`/chat/ws/${chatId}`),
         logPrefix: 'ChatWS',
+        pingOnlyWhenActive: true,
         onMessage: (data) => {
             if (currentOnMessageCallback) currentOnMessageCallback(data);
         },
@@ -59,6 +60,7 @@ export function connectGlobalWebSocket(onMessageCallback) {
     globalSocket = createManagedSocket({
         url: wsUrl('/chat/ws/global'),
         logPrefix: 'GlobalWS',
+        pingOnlyWhenActive: true,
         onMessage: (data) => {
             if (onMessageCallback) onMessageCallback(data);
         },

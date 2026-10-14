@@ -18,6 +18,7 @@ export function connectChatSocket(chatId, onMessage) {
         url: wsUrl(`/e2e/ws/${chatId}`),
         logPrefix: 'E2E WS',
         pongTimeout: PONG_TIMEOUT_MS,
+        pingOnlyWhenActive: true,
         onMessage: (data) => {
             if (typeof onMessage === 'function') onMessage(data);
         },
@@ -68,6 +69,7 @@ export function connectGlobalSocket(onMessage) {
         url: wsUrl('/e2e/ws/global'),
         logPrefix: 'E2E global WS',
         pongTimeout: PONG_TIMEOUT_MS,
+        pingOnlyWhenActive: true,
         onMessage: (data) => {
             if (typeof onMessage === 'function') onMessage(data);
         },

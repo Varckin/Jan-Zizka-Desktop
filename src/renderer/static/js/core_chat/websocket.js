@@ -1,3 +1,7 @@
+import { isWindowActive, onWindowActiveChange } from './windowActivity.js';
+
+const RESUME_PROBE_GRACE_MS = 10000;
+
 export function wsUrl(path) {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     return `${protocol}//${window.location.host}${path}`;
@@ -11,6 +15,7 @@ export function createManagedSocket(options) {
         onClose,
         pingInterval = 30000,
         pongTimeout = 0,
+        pingOnlyWhenActive = false,
         reconnectDelay = 3000,
         openTimeout = 5000,
         shouldReconnect = () => true,
@@ -24,6 +29,7 @@ export function createManagedSocket(options) {
     let settleFn = null;
     let lastPongAt = 0;
     let visibilityHandler = null;
+    let detachActivity = null;
 
     function settle(value) {
         if (settleFn) {
@@ -45,13 +51,45 @@ export function createManagedSocket(options) {
             document.removeEventListener('visibilitychange', visibilityHandler);
             visibilityHandler = null;
         }
+        if (detachActivity) {
+            try { detachActivity(); } catch { }
+            detachActivity = null;
+        }
+    }
+
+    function pingsAllowed() {
+        return !pingOnlyWhenActive || isWindowActive();
     }
 
     function socketIsStale() {
-        return pongTimeout > 0 && lastPongAt > 0 && Date.now() - lastPongAt > pongTimeout;
+        if (pongTimeout <= 0 || lastPongAt <= 0) return false;
+        if (!pingsAllowed()) return false;
+        return Date.now() - lastPongAt > pongTimeout;
+    }
+
+    function sendPing(socket) {
+        try {
+            socket.send(JSON.stringify({ type: 'ping' }));
+        } catch { }
+    }
+
+    function handleActivityResumed() {
+        const socket = ws;
+        if (!socket || socket.readyState !== WebSocket.OPEN) return;
+        if (pongTimeout > 0) {
+            lastPongAt = Date.now() - Math.max(0, pongTimeout - RESUME_PROBE_GRACE_MS);
+        }
+        sendPing(socket);
     }
 
     function attachVisibility() {
+        if (pingOnlyWhenActive) {
+            if (pingInterval <= 0 || detachActivity) return;
+            detachActivity = onWindowActiveChange(resumed => {
+                if (resumed) handleActivityResumed();
+            });
+            return;
+        }
         if (pongTimeout <= 0 || visibilityHandler) return;
         visibilityHandler = () => {
             if (document.visibilityState !== 'visible') return;
@@ -104,9 +142,8 @@ export function createManagedSocket(options) {
                             try { socket.close(); } catch { }
                             return;
                         }
-                        try {
-                            socket.send(JSON.stringify({ type: 'ping' }));
-                        } catch { }
+                        if (!pingsAllowed()) return;
+                        sendPing(socket);
                     }, pingInterval);
                 }
                 attachVisibility();
