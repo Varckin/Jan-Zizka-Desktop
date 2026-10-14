@@ -57,7 +57,7 @@ function updateViewFromResult(result) {
         const wrapper = geoSelectEdit.closest('.form-group');
         if (wrapper) {
             const geoInfo = COUNTRIES[user.geo_code] || null;
-            const displayText = geoInfo ? `${String(user.geo_code).toUpperCase()} · ${geoInfo.name}` : user.geo_code;
+            const displayText = geoInfo ? `${String(user.geo_code).toUpperCase()} \u00b7 ${geoInfo.name}` : String(user.geo_code).toUpperCase();
             wrapper.textContent = '';
             const label = document.createElement('label');
             label.textContent = i18n.location || 'Location';
@@ -206,8 +206,9 @@ export async function refreshProfileView() {
         if (user.geo_code != null) {
             const viewGeo = document.getElementById('view-geo');
             if (viewGeo) {
-                viewGeo.textContent = COUNTRIES[user.geo_code]
-                    ? `${String(user.geo_code).toUpperCase()} · ${COUNTRIES[user.geo_code].name}`
+                const info = COUNTRIES[user.geo_code];
+                viewGeo.textContent = user.geo_code && info
+                    ? `${String(user.geo_code).toUpperCase()} \u00b7 ${info.name}`
                     : (i18n.not_specified || 'Not specified');
             }
         }

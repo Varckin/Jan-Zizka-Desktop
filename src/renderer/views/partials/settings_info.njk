@@ -24,7 +24,7 @@
         </div>
         <div class="info-item">
             <span class="label">{{ t('location') }}</span>
-            <span class="value" id="view-geo">{% if user_geo_code %}<span class="code-badge">{{ user_geo_code | upper }}</span> {{ user_geo_name }}{% else %}{{ t('not_specified') }}{% endif %}</span>
+            <span class="value" id="view-geo">{% if user_geo_code %}{{ user_geo_display }}{% else %}{{ t('not_specified') }}{% endif %}</span>
         </div>
         <div class="info-item">
             <span class="label">{{ t('joined') }}</span>
