@@ -179,6 +179,7 @@ export function handleFoldersUpdated() {
 export function renderFolderRail() {
     const rail = DOM.folderRail;
     if (!rail) return;
+    const savedScrollTop = rail.scrollTop;
     rail.innerHTML = '';
     rail.classList.remove('is-hidden');
     const hasFolders = STATE.folders.length > 0;
@@ -225,6 +226,7 @@ export function renderFolderRail() {
         addBtn.innerHTML = `<span class="folder-tab-icon">${ADD_FOLDER_ICON_SVG}</span>`;
         rail.appendChild(addBtn);
     }
+    rail.scrollTop = savedScrollTop;
 }
 
 function folderUnreadCount(folder) {

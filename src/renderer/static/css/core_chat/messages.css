@@ -8,6 +8,7 @@
     gap: 6px;
     overscroll-behavior: contain;
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 #view-chat .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message,  #view-e2e .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message,  #view-settings .message, #view-chat .e2e-message, #view-e2e .e2e-message, #view-settings .e2e-message{

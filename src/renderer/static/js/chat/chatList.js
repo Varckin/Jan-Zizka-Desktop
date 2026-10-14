@@ -95,6 +95,7 @@ export async function loadChats(silent = false, query = '') {
 
         const visibleChats = filterChatsForFolderView(chats);
         const inFolderView = !!getActiveFolder();
+        const savedScrollTop = DOM.chatList.scrollTop;
         DOM.chatList.innerHTML = '';
         if (visibleChats.length === 0) {
             const emptyText = (inFolderView && !query)
@@ -118,6 +119,7 @@ export async function loadChats(silent = false, query = '') {
             item.addEventListener('click', () => selectChat(chat.id, chat.name));
             DOM.chatList.appendChild(item);
         });
+        DOM.chatList.scrollTop = savedScrollTop;
         hasRenderedChats = true;
         if (currentId && STATE.chatsMap[currentId]) {
             const activeItem = document.querySelector(`.chat-item[data-chat-id="${currentId}"]`);

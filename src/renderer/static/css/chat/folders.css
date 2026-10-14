@@ -12,6 +12,7 @@
     padding: 10px 6px;
     overflow-y: auto;
     overflow-x: hidden;
+    scrollbar-width: none;
     border-right: 1px solid var(--chat-border);
     background: rgba(18, 18, 34, 0.6);
     scrollbar-width: thin;
@@ -124,6 +125,7 @@
     gap: 8px;
     max-height: 236px;
     overflow-y: auto;
+    scrollbar-gutter: stable;
     padding: 8px;
     border: 1px solid var(--chat-border);
     border-radius: var(--chat-radius-md);
@@ -201,6 +203,7 @@
     gap: 4px;
     max-height: 224px;
     overflow-y: auto;
+    scrollbar-gutter: stable;
     padding: 6px;
     border: 1px solid var(--chat-border);
     border-radius: var(--chat-radius-md);
@@ -275,6 +278,7 @@
     gap: 2px;
     max-height: 180px;
     overflow-y: auto;
+    scrollbar-gutter: stable;
 }#view-chat .folder-add-chat-results:empty{ display: none; }#view-chat .folder-add-chat-row{
     display: flex;
     align-items: center;
@@ -368,6 +372,7 @@
     max-width: 240px;
     max-height: 264px;
     overflow-y: auto;
+    scrollbar-gutter: stable;
     padding: 5px;
     background: var(--chat-bg-panel);
     border: 1px solid var(--chat-border);
@@ -439,3 +444,5 @@
         transition: none !important;
     }#view-chat .modal.is-open .folder-modal-content{ animation: none !important; }
 }
+
+#view-chat .folder-rail::-webkit-scrollbar{ width: 0; height: 0; }
