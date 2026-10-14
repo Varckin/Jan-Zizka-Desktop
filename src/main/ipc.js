@@ -1,3 +1,4 @@
+const { execFile } = require('child_process');
 const { ipcMain, shell, app, nativeImage, powerSaveBlocker, dialog } = require('electron');
 const windowManager = require('./window');
 const settings = require('./settings');
@@ -98,14 +99,25 @@ function register(localOrigin) {
 
 }
 
-function applyAutoStart(enabled) {
-    if (!app.isPackaged) return;
+const AUTOSTART_ENTRY_NAME = 'jan.messenger.desktop';
+const AUTOSTART_RUN_KEY = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
+const AUTOSTART_APPROVED_KEY = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\StartupApproved\\Run';
+
+function runReg(args) {
     try {
-        app.setLoginItemSettings({
-            openAtLogin: !!enabled,
-            path: process.execPath,
-        });
+        execFile('reg', args, { windowsHide: true }, () => { });
     } catch {
+    }
+}
+
+function applyAutoStart(enabled) {
+    if (!app.isPackaged || process.platform !== 'win32') return;
+    if (enabled) {
+        runReg(['add', AUTOSTART_RUN_KEY, '/v', AUTOSTART_ENTRY_NAME, '/t', 'REG_SZ', '/d', `"${process.execPath}"`, '/f']);
+        runReg(['delete', AUTOSTART_APPROVED_KEY, '/v', AUTOSTART_ENTRY_NAME, '/f']);
+    } else {
+        runReg(['delete', AUTOSTART_RUN_KEY, '/v', AUTOSTART_ENTRY_NAME, '/f']);
+        runReg(['delete', AUTOSTART_APPROVED_KEY, '/v', AUTOSTART_ENTRY_NAME, '/f']);
     }
 }
 
