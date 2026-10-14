@@ -141,11 +141,11 @@ export async function openUserProfileModal(user) {
             DOM.infoBioContainer.classList.remove('is-hidden');
         }
         if (profile.geo_code) {
-            DOM.infoGeo.textContent = formatGeoDisplay(profile.geo_code);
+            setInfoTag(DOM.infoGeo, profile.geo_code, geoTagName(profile.geo_code));
             DOM.infoGeoItem.classList.remove('is-hidden');
         }
         if (profile.lang) {
-            DOM.infoLang.textContent = formatLanguageDisplay(profile.lang);
+            setInfoTag(DOM.infoLang, profile.lang, langTagName(profile.lang));
             DOM.infoLangItem.classList.remove('is-hidden');
         }
         if (profile.is_service) {
@@ -432,7 +432,7 @@ async function renderDirectInfo() {
         }
 
         if (profile.geo_code) {
-            DOM.infoGeo.textContent = formatGeoDisplay(profile.geo_code);
+            setInfoTag(DOM.infoGeo, profile.geo_code, geoTagName(profile.geo_code));
             DOM.infoGeoItem.classList.remove('is-hidden');
         } else {
             DOM.infoGeo.textContent = '';
@@ -440,7 +440,7 @@ async function renderDirectInfo() {
         }
 
         if (profile.lang) {
-            DOM.infoLang.textContent = formatLanguageDisplay(profile.lang);
+            setInfoTag(DOM.infoLang, profile.lang, langTagName(profile.lang));
             DOM.infoLangItem.classList.remove('is-hidden');
         } else {
             DOM.infoLang.textContent = '';
@@ -466,35 +466,28 @@ async function renderDirectInfo() {
     }
 }
 
-function currentLocale() {
-    return (document.documentElement.lang || 'en').split('-')[0];
+function geoTagName(geoCode) {
+    const code = String(geoCode || '').replace(/[^a-zA-Z]/g, '').toUpperCase();
+    if (!code) return '';
+    const info = (window.COUNTRIES || {})[code];
+    return info && info.name ? info.name : '';
 }
 
-function countryFlag(code) {
-    const cleaned = String(code || '').replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 2);
-    if (cleaned.length !== 2) return '';
-    return cleaned;
+function langTagName(langCode) {
+    const raw = String(langCode || '').trim();
+    if (!raw) return '';
+    const info = (window.LANGUAGES || {})[raw.toLowerCase()];
+    return info && info.name ? info.name : '';
 }
 
-function formatGeoDisplay(geoCode) {
-    const flag = countryFlag(geoCode);
-    let name = '';
-    try {
-        name = new Intl.DisplayNames([currentLocale()], { type: 'region' })
-            .of(String(geoCode).toUpperCase()) || '';
-    } catch {
-        name = '';
-    }
-    return [flag, name || String(geoCode).toUpperCase()].filter(Boolean).join(' · ');
-}
-
-function formatLanguageDisplay(langCode) {
-    let name = '';
-    try {
-        name = new Intl.DisplayNames([currentLocale()], { type: 'language' })
-            .of(String(langCode)) || '';
-    } catch {
-        name = '';
-    }
-    return name || String(langCode);
+function setInfoTag(el, code, name) {
+    if (!el) return;
+    el.textContent = '';
+    const cleanCode = String(code || '').replace(/[^a-zA-Z]/g, '').toUpperCase();
+    if (!cleanCode) return;
+    const badge = document.createElement('span');
+    badge.className = 'code-badge';
+    badge.textContent = cleanCode;
+    el.appendChild(badge);
+    if (name) el.appendChild(document.createTextNode(' ' + name));
 }

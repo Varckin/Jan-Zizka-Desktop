@@ -1,6 +1,21 @@
 import { DOM, LANGUAGES, COUNTRIES, i18n } from './core.js';
 import { showToast } from './toast.js';
 
+function setCodeTag(el, code, name, fallback) {
+    if (!el) return;
+    const cleanCode = String(code || '').trim().toUpperCase();
+    el.textContent = '';
+    if (!cleanCode) {
+        el.textContent = fallback || '';
+        return;
+    }
+    const badge = document.createElement('span');
+    badge.className = 'code-badge';
+    badge.textContent = cleanCode;
+    el.appendChild(badge);
+    if (name) el.appendChild(document.createTextNode(' ' + name));
+}
+
 async function loadProfile() {
     try {
         const res = await fetch('/profile/me');
@@ -43,37 +58,36 @@ function updateViewFromResult(result) {
     DOM.initials.textContent = user.username.slice(0, 1).toUpperCase();
 
     const viewLang = document.getElementById('view-lang');
-    viewLang.textContent = user.lang && LANGUAGES[user.lang]
-        ? `${String(user.lang).toUpperCase()} · ${LANGUAGES[user.lang].name}`
-        : (i18n.not_specified || 'Not specified');
+    setCodeTag(viewLang, user.lang, LANGUAGES[user.lang] ? LANGUAGES[user.lang].name : '', i18n.not_specified || 'Not specified');
 
     const viewGeo = document.getElementById('view-geo');
-    viewGeo.textContent = user.geo_code && COUNTRIES[user.geo_code]
-        ? `${String(user.geo_code).toUpperCase()} · ${COUNTRIES[user.geo_code].name}`
-        : (i18n.not_specified || 'Not specified');
+    setCodeTag(viewGeo, user.geo_code, COUNTRIES[user.geo_code] ? COUNTRIES[user.geo_code].name : '', i18n.not_specified || 'Not specified');
 
+    lockGeoField(user.geo_code);
+}
+
+function lockGeoField(geoCode) {
+    const code = String(geoCode || '').trim();
+    if (!code) return;
     const geoSelectEdit = document.getElementById('edit-geo');
-    if (geoSelectEdit && user.geo_code && user.geo_code.trim()) {
-        const wrapper = geoSelectEdit.closest('.form-group');
-        if (wrapper) {
-            const geoInfo = COUNTRIES[user.geo_code] || null;
-            const displayText = geoInfo ? `${String(user.geo_code).toUpperCase()} \u00b7 ${geoInfo.name}` : String(user.geo_code).toUpperCase();
-            wrapper.textContent = '';
-            const label = document.createElement('label');
-            label.textContent = i18n.location || 'Location';
-            wrapper.appendChild(label);
-            const readonly = document.createElement('div');
-            readonly.className = 'readonly-field';
-            const span = document.createElement('span');
-            span.textContent = displayText;
-            readonly.appendChild(span);
-            const hint = document.createElement('small');
-            hint.className = 'hint';
-            hint.textContent = i18n.location_locked || 'Location cannot be changed after it is set';
-            readonly.appendChild(hint);
-            wrapper.appendChild(readonly);
-        }
-    }
+    if (!geoSelectEdit) return;
+    const wrapper = geoSelectEdit.closest('.form-group');
+    if (!wrapper) return;
+    const geoInfo = COUNTRIES[code] || null;
+    wrapper.textContent = '';
+    const label = document.createElement('label');
+    label.textContent = i18n.location || 'Location';
+    wrapper.appendChild(label);
+    const readonly = document.createElement('div');
+    readonly.className = 'readonly-field';
+    const span = document.createElement('span');
+    setCodeTag(span, code, geoInfo ? geoInfo.name : '', '');
+    readonly.appendChild(span);
+    const hint = document.createElement('small');
+    hint.className = 'hint';
+    hint.textContent = i18n.location_locked || 'Location cannot be changed after it is set';
+    readonly.appendChild(hint);
+    wrapper.appendChild(readonly);
 }
 
 async function saveProfile() {
@@ -84,11 +98,13 @@ async function saveProfile() {
         username: document.getElementById('edit-username'),
         bio: document.getElementById('edit-bio'),
         lang: document.getElementById('edit-lang'),
-        geo_code: document.getElementById('edit-geo'),
     };
     for (const [key, el] of Object.entries(fields)) {
         if (el) data[key] = el.value.trim();
     }
+    const geoEl = document.getElementById('edit-geo');
+    const sentGeoCode = geoEl ? geoEl.value.trim() : '';
+    if (sentGeoCode) data.geo_code = sentGeoCode;
 
     if (!data.first_name) {
         showToast(i18n.first_name_required || 'First name is required', 'error');
@@ -117,6 +133,7 @@ async function saveProfile() {
         }
         const result = await res.json();
         updateViewFromResult(result);
+        if (sentGeoCode) lockGeoField(sentGeoCode);
         showToast(i18n.profile_updated || 'Profile updated successfully!', 'success');
         DOM.cancelBtn.click();
     } catch (err) {
@@ -197,20 +214,12 @@ export async function refreshProfileView() {
         }
         if (user.lang != null) {
             const viewLang = document.getElementById('view-lang');
-            if (viewLang) {
-                viewLang.textContent = LANGUAGES[user.lang]
-                    ? `${String(user.lang).toUpperCase()} · ${LANGUAGES[user.lang].name}`
-                    : (i18n.not_specified || 'Not specified');
-            }
+            setCodeTag(viewLang, user.lang, LANGUAGES[user.lang] ? LANGUAGES[user.lang].name : '', i18n.not_specified || 'Not specified');
         }
         if (user.geo_code != null) {
             const viewGeo = document.getElementById('view-geo');
-            if (viewGeo) {
-                const info = COUNTRIES[user.geo_code];
-                viewGeo.textContent = user.geo_code && info
-                    ? `${String(user.geo_code).toUpperCase()} \u00b7 ${info.name}`
-                    : (i18n.not_specified || 'Not specified');
-            }
+            const info = COUNTRIES[user.geo_code];
+            setCodeTag(viewGeo, user.geo_code, info ? info.name : '', i18n.not_specified || 'Not specified');
         }
     } catch {
     }

@@ -285,13 +285,6 @@ async function handleAppPage(req, res, url) {
     ctx.invite = url.searchParams.get('invite') || '';
     ctx.query = url.search;
     ctx.has_geo = !!(ctx.user.geo_code && String(ctx.user.geo_code).trim());
-    if (ctx.has_geo) {
-        const geoInfoForDisplay = (ctx.COUNTRIES || {})[ctx.user.geo_code];
-        const geoName = geoInfoForDisplay ? geoInfoForDisplay.name : '';
-        ctx.user_geo_display = [String(ctx.user.geo_code).trim().toUpperCase(), geoName].filter(Boolean).join(' \u00b7 ');
-    } else {
-        ctx.user_geo_display = '';
-    }
     lastAppContext = ctx;
     ctx.cspMeta = CSP_APP;
     const html = await templates.renderAsync('app.njk', ctx);
