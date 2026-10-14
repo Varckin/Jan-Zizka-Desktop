@@ -1,8 +1,8 @@
-import { bindEditMode } from './edit.js';
+import { bindEditMode, refreshProfileView } from './edit.js';
 import { bindAvatar } from './avatar.js';
 import { bindPasswordModal } from './password.js';
 import { bindEmailChange } from './emailChange.js';
-import { initSessions } from './sessions.js';
+import { initSessions, refreshSessions } from './sessions.js';
 import { bindPushToggle } from './push.js';
 import { bindPrivacySettings } from './privacy.js';
 
@@ -14,4 +14,15 @@ export function init() {
     initSessions();
     bindPushToggle();
     bindPrivacySettings();
+}
+
+export function refresh() {
+    try {
+        refreshProfileView().catch(() => { });
+    } catch {
+    }
+    try {
+        refreshSessions().catch(() => { });
+    } catch {
+    }
 }

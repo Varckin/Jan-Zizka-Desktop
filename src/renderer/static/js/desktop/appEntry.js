@@ -12,6 +12,9 @@ let e2eLoadPromise = null;
 let e2eLoadFailed = false;
 let settingsInitPromise = null;
 let profileInitPromise = null;
+let profileMod = null;
+let lastProfileRefreshAt = 0;
+const PROFILE_REFRESH_INTERVAL_MS = 30000;
 
 function importChatList() {
     if (!chatApiPromise) chatApiPromise = import('../chat/chatList.js');
@@ -37,6 +40,7 @@ async function loadProfileWithRetry() {
         try {
             const mod = await import('../profile/init.js');
             mod.init();
+            profileMod = mod;
             return true;
         } catch (err) {
             console.warn('profile init attempt failed', attempt + 1, err);
@@ -44,6 +48,17 @@ async function loadProfileWithRetry() {
         }
     }
     return false;
+}
+
+function refreshProfileThrottled() {
+    if (!profileMod || typeof profileMod.refresh !== 'function') return;
+    const now = Date.now();
+    if (now - lastProfileRefreshAt < PROFILE_REFRESH_INTERVAL_MS) return;
+    lastProfileRefreshAt = now;
+    try {
+        profileMod.refresh();
+    } catch {
+    }
 }
 
 function initProfileView() {
@@ -56,7 +71,24 @@ function initProfileView() {
             return ok;
         });
     }
-    return profileInitPromise;
+    return profileInitPromise.then(ok => {
+        if (ok) refreshProfileThrottled();
+        return ok;
+    });
+}
+
+function bindProfileRefreshTriggers() {
+    const refreshIfProfileActive = () => {
+        if (shell.currentView && shell.currentView() === 'profile') refreshProfileThrottled();
+    };
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') refreshIfProfileActive();
+    });
+    if (window.desktopAPI && typeof window.desktopAPI.on === 'function') {
+        window.desktopAPI.on('desktop:focus-changed', focused => {
+            if (focused === true) refreshIfProfileActive();
+        });
+    }
 }
 
 function initSettingsView() {
@@ -139,6 +171,7 @@ async function main() {
     initPasswordToggles(document);
     bindNotificationRouting();
     bindNavigatePayloads();
+    bindProfileRefreshTriggers();
     initLangSwitcher(document);
 
     shell.onView('e2e', ({ firstActivation }) => {

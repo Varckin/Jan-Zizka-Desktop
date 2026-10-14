@@ -152,3 +152,7 @@ export function initSessions() {
     renderSessions(window.ACTIVE_SESSIONS || []);
     bindTerminateOther();
 }
+
+export function refreshSessions() {
+    return loadSessions();
+}

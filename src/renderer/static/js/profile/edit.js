@@ -159,3 +159,58 @@ export function bindEditMode() {
 
     DOM.saveBtn.addEventListener('click', saveProfile);
 }
+
+export async function refreshProfileView() {
+    try {
+        const res = await fetch('/profile/me');
+        if (!res.ok) return;
+        const user = await res.json();
+        if (!user || typeof user !== 'object') return;
+        if (typeof user.username === 'string') {
+            const usernameEl = document.getElementById('view-username');
+            if (usernameEl) usernameEl.textContent = user.username;
+            if (DOM.initials) DOM.initials.textContent = user.username.slice(0, 1).toUpperCase();
+        }
+        if (typeof user.email === 'string') {
+            const emailEl = document.getElementById('view-email');
+            if (emailEl) emailEl.textContent = user.email;
+        }
+        if ('bio' in user) {
+            const bioEl = document.getElementById('view-bio');
+            if (bioEl) bioEl.textContent = user.bio || i18n.no_bio || 'No bio yet';
+        }
+        if ('first_name' in user || 'last_name' in user) {
+            const newFullName = [user.first_name, user.last_name].filter(n => n && n.trim()).join(' ').trim();
+            const fullnameEl = document.getElementById('profile-fullname');
+            const viewFullnameEl = document.getElementById('view-fullname');
+            const usernameSmallEl = document.getElementById('profile-username-small');
+            if (fullnameEl) fullnameEl.textContent = newFullName || user.username || '';
+            if (viewFullnameEl) viewFullnameEl.textContent = newFullName || i18n.not_specified || 'Not specified';
+            if (usernameSmallEl) {
+                if (newFullName) {
+                    usernameSmallEl.textContent = '@' + (user.username || '');
+                    usernameSmallEl.hidden = false;
+                } else {
+                    usernameSmallEl.hidden = true;
+                }
+            }
+        }
+        if (user.lang != null) {
+            const viewLang = document.getElementById('view-lang');
+            if (viewLang) {
+                viewLang.textContent = LANGUAGES[user.lang]
+                    ? `${String(user.lang).toUpperCase()} · ${LANGUAGES[user.lang].name}`
+                    : (i18n.not_specified || 'Not specified');
+            }
+        }
+        if (user.geo_code != null) {
+            const viewGeo = document.getElementById('view-geo');
+            if (viewGeo) {
+                viewGeo.textContent = COUNTRIES[user.geo_code]
+                    ? `${String(user.geo_code).toUpperCase()} · ${COUNTRIES[user.geo_code].name}`
+                    : (i18n.not_specified || 'Not specified');
+            }
+        }
+    } catch {
+    }
+}
