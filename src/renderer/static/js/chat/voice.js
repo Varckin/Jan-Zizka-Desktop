@@ -3,6 +3,23 @@ import { DOM, i18n } from './dom.js';
 import { showNotification } from './dialogs.js';
 import { enqueueOutgoing } from './chatMessages.js';
 
+const AUDIO_MIME_CANDIDATES = ['audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus', 'audio/mp4'];
+
+function pickAudioMimeType() {
+    if (typeof MediaRecorder === 'undefined' || typeof MediaRecorder.isTypeSupported !== 'function') return '';
+    for (const candidate of AUDIO_MIME_CANDIDATES) {
+        if (MediaRecorder.isTypeSupported(candidate)) return candidate;
+    }
+    return '';
+}
+
+function voiceContainerInfo(mimeType) {
+    const mime = String(mimeType || '').toLowerCase();
+    if (mime.includes('ogg')) return { type: 'audio/ogg', ext: 'ogg' };
+    if (mime.includes('mp4')) return { type: 'audio/mp4', ext: 'm4a' };
+    return { type: 'audio/webm', ext: 'webm' };
+}
+
 export async function toggleVoiceRecording() {
     if (STATE.isRecording) {
         STATE.cancelRecording = false;
@@ -28,7 +45,11 @@ export function stopRecording() {
 async function startRecording() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        STATE.mediaRecorder = new MediaRecorder(stream);
+        const preferredMime = pickAudioMimeType();
+        const recorder = preferredMime
+            ? new MediaRecorder(stream, { mimeType: preferredMime })
+            : new MediaRecorder(stream);
+        STATE.mediaRecorder = recorder;
         STATE.recordedChunks = [];
         STATE.isRecording = true;
         STATE.recordingSeconds = 0;
@@ -50,12 +71,14 @@ async function startRecording() {
             stream.getTracks().forEach(track => track.stop());
 
             if (cancelled || chunks.length === 0) return;
-            const blob = new Blob(chunks, { type: 'audio/webm;codecs=opus' });
+            const actualMime = recorder.mimeType || preferredMime || 'audio/webm';
+            const info = voiceContainerInfo(actualMime);
+            const blob = new Blob(chunks, { type: actualMime });
             if (blob.size < 512) {
                 showNotification(i18n.no_audio_recorded || 'No audio recorded.');
                 return;
             }
-            const file = new File([blob], 'voice.webm', { type: 'audio/webm' });
+            const file = new File([blob], `voice.${info.ext}`, { type: info.type });
             sendVoiceMessage(file);
         };
 
