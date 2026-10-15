@@ -3,6 +3,47 @@ import * as API from '../api.js';
 import { showNotification } from '../dialogs.js';
 import { loadChats } from '../chatList.js';
 import { closeModalFx } from '../modalFx.js';
+import { openChatCrop } from './avatarCrop.js';
+
+let groupAvatarPreviewUrl = null;
+
+function setGroupAvatarPreview(file) {
+    if (groupAvatarPreviewUrl) {
+        URL.revokeObjectURL(groupAvatarPreviewUrl);
+        groupAvatarPreviewUrl = null;
+    }
+    const preview = DOM.groupAvatarPreview;
+    if (!preview) return;
+    if (file) {
+        groupAvatarPreviewUrl = URL.createObjectURL(file);
+        preview.src = groupAvatarPreviewUrl;
+        preview.classList.remove('is-hidden');
+    } else {
+        preview.src = 'data:,';
+        preview.classList.add('is-hidden');
+    }
+}
+
+export function resetGroupAvatarSelection() {
+    window.groupAvatarCropped = null;
+    if (DOM.groupAvatarFile) DOM.groupAvatarFile.value = '';
+    setGroupAvatarPreview(null);
+}
+
+export async function handleGroupAvatarSelect(e) {
+    const file = e.target.files[0];
+    if (!file) { resetGroupAvatarSelection(); return; }
+    try {
+        window.groupAvatarCropped = await openChatCrop(file);
+        setGroupAvatarPreview(window.groupAvatarCropped);
+        showNotification(i18n.avatar_selected_click_create || 'Avatar selected. Click "Create" to finish.');
+    } catch (err) {
+        if (err.message !== 'Cancelled') showNotification((i18n.crop_failed || 'Failed to crop avatar') + ': ' + err.message);
+        e.target.value = '';
+        window.groupAvatarCropped = null;
+        setGroupAvatarPreview(null);
+    }
+}
 
 export function initGroupMembersInput() {
     const container = DOM.groupMembersContainer;
@@ -75,17 +116,17 @@ export async function handleGroupSubmit(e) {
         const description = DOM.groupDescription.value.trim();
         const data = await API.createGroup(name, null, memberIds, description);
         const chatId = data.chat_id;
-        if (window.groupAvatarCropped) {
+        const avatarFile = window.groupAvatarCropped;
+        if (avatarFile) {
             try {
-                await API.uploadAvatar(chatId, window.groupAvatarCropped);
-                showNotification('Group created with avatar.');
-                window.groupAvatarCropped = null;
-                DOM.groupAvatarFile.value = '';
+                await API.uploadAvatar(chatId, avatarFile);
+                showNotification(i18n.group_created_with_avatar || 'Group created with avatar.');
             } catch (err) {
-                showNotification('Group created, but avatar upload failed: ' + err.message);
+                showNotification((i18n.group_created_avatar_failed || 'Group created, but avatar upload failed') + ': ' + err.message);
             }
         } else showNotification(i18n.chat_created_success || 'Group created successfully.');
         closeModalFx(DOM.groupModal);
+        resetGroupAvatarSelection();
         DOM.groupName.value = '';
         DOM.groupMembersContainer.innerHTML = '';
         const input = document.createElement('input');
@@ -94,7 +135,6 @@ export async function handleGroupSubmit(e) {
         input.placeholder = i18n.enter_username || 'Enter username';
         input.autocomplete = 'off';
         DOM.groupMembersContainer.appendChild(input);
-        DOM.groupAvatarFile.value = '';
         DOM.groupDescription.value = '';
         await loadChats(false);
         setTimeout(() => {

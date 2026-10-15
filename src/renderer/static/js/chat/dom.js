@@ -7,6 +7,7 @@ export const DOM = {
     chatMembersCount: document.getElementById('chat-members-count'),
     chatInfo: document.getElementById('chat-info'),
     groupAvatarFile: document.getElementById('group-avatar-file'),
+    groupAvatarPreview: document.getElementById('group-avatar-preview'),
     inputArea: document.getElementById('chat-input-area'),
     messageInput: document.getElementById('message-input'),
     sendBtn: document.getElementById('send-btn'),

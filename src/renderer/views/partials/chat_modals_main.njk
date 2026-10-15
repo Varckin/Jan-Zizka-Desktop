@@ -10,7 +10,11 @@
       <label>{{ t('group_name') }}</label>
       <input type="text" id="group-name" required>
       <label>{{ t('avatar') }}</label>
-      <input type="file" id="group-avatar-file" accept="image/jpeg,image/png,image/gif,image/webp">
+      <div class="avatar-upload">
+        <img id="group-avatar-preview" src="data:," alt="Avatar" class="avatar-preview is-hidden">
+        <label for="group-avatar-file" class="btn-secondary">{{ t('upload') }}</label>
+        <input type="file" id="group-avatar-file" accept="image/jpeg,image/png,image/gif,image/webp" hidden>
+      </div>
       <label>{{ t('description') }}</label>
       <textarea id="group-description" rows="2" placeholder="{{ t('group_description_placeholder') }}"></textarea>
       <label>{{ t('members_usernames') }}</label>

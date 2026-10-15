@@ -64,7 +64,7 @@
     color: var(--chat-text-bright);
     transform: translateX(3px);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-}#view-chat .mute-duration-option:active{ transform: scale(0.98); }#view-chat .avatar-upload{ display: flex; align-items: center; gap: 12px; margin: 8px 0; }#view-chat .avatar-upload .avatar-preview{ max-width: 80px; border-radius: 50%; border: 2px solid var(--chat-accent); }#view-chat .avatar-crop-content{ max-width: 600px; }#view-chat .avatar-crop-container{ max-height: 70vh; overflow: hidden; margin: 10px 0; border-radius: var(--chat-radius-md); }#view-chat .avatar-crop-container img{ max-width: 100%; display: block; }#view-chat .avatar-crop-actions{ display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px; }#view-chat .settings-tabs{
+}#view-chat .mute-duration-option:active{ transform: scale(0.98); }#view-chat .avatar-upload{ display: flex; align-items: center; gap: 12px; margin: 8px 0; }#view-chat .avatar-upload .avatar-preview{ max-width: 80px; border-radius: 50%; border: 2px solid var(--chat-accent); }#view-chat #chat-avatar-crop-modal{ z-index: calc(var(--chat-z-modal) + 30); }#view-chat .avatar-crop-content{ max-width: 600px; }#view-chat .avatar-crop-container{ max-height: 70vh; overflow: hidden; margin: 10px 0; border-radius: var(--chat-radius-md); }#view-chat .avatar-crop-container img{ max-width: 100%; display: block; }#view-chat .avatar-crop-actions{ display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px; }#view-chat .settings-tabs{
     display: flex;
     gap: 4px;
     margin: 16px 0 20px;

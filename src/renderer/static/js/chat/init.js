@@ -1,10 +1,10 @@
 import { STATE } from './state.js';
-import { DOM, i18n } from './dom.js';
+import { DOM } from './dom.js';
 import { ALLOWED_FILE_TYPES } from './constants.js';
 import * as WS from './websocket.js';
 import { loadChats } from './chatList.js';
 import { sendMessage, handleInputKeydown, handleTyping, cancelReplyHandler, handleFileSelect, handleWsMessage, handleGlobalWsMessage, loadMessages, initScrollReadTracker } from './chatMessages.js';
-import { initChatAvatarCrop, initGroupMembersInput, handleGroupSubmit, openSettingsModal, openSearchModal, closeSearchModal, clearMsgSearch, handleMsgSearch, handleMsgSearchKeydown, handleChatSettingsSubmit, handleAvatarUpload, handleDeleteChat, openInfoModal, openUserProfileModal, bindSettingsModalEvents, bindInviteLinksEvents } from './modals.js';
+import { initChatAvatarCrop, initGroupMembersInput, handleGroupSubmit, handleGroupAvatarSelect, resetGroupAvatarSelection, openSettingsModal, openSearchModal, closeSearchModal, clearMsgSearch, handleMsgSearch, handleMsgSearchKeydown, handleChatSettingsSubmit, handleAvatarUpload, handleDeleteChat, openInfoModal, openUserProfileModal, bindSettingsModalEvents, bindInviteLinksEvents } from './modals.js';
 import { bindInviteJoinEvents, handleInviteParam } from './inviteJoin.js';
 import { bindUserSearchEvents } from './userSearchModal.js';
 import { bindChannelEvents, resetChannelAvatarSelection } from './channels.js';
@@ -23,7 +23,6 @@ import { initMentions } from './handlers/mentions.js';
 import { toggleVoiceRecording, cancelVoiceRecording } from './voice.js';
 import { initVoiceCall } from './voice_call/ui.js';
 import { initGroupVoice } from './group_voice/ui.js';
-import { showNotification } from './dialogs.js';
 import { closeChatDropdown, closeAnyOpenDropdown } from './ui/chatItem.js';
 import { createNotificationAudioFromSettings } from '../desktop/notify.js';
 import { initTextareaAutoResize } from '../core_chat/effects.js';
@@ -75,21 +74,6 @@ export function init() {
 
     initVoiceCall();
     initGroupVoice();
-}
-
-async function handleGroupAvatarSelect(e) {
-    const file = e.target.files[0];
-    if (!file) { window.groupAvatarCropped = null; return; }
-    try {
-        const { openChatCrop } = await import('./modals.js');
-        const cropped = await openChatCrop(file);
-        window.groupAvatarCropped = cropped;
-        showNotification(i18n.avatar_selected_click_create || 'Avatar selected. Click "Create" to finish.');
-    } catch (err) {
-        if (err.message !== 'Cancelled') showNotification('Failed to crop avatar: ' + err.message);
-        this.value = '';
-        window.groupAvatarCropped = null;
-    }
 }
 
 export function handleGlobalDropdownClose(e) {
@@ -192,7 +176,7 @@ function handleCreateChatMenuClick(e) {
     e.preventDefault();
     const action = target.dataset.action;
     if (action === 'discover') openDiscoverModal();
-    else if (action === 'group') openModalFx(DOM.groupModal);
+    else if (action === 'group') { resetGroupAvatarSelection(); openModalFx(DOM.groupModal); }
     else if (action === 'channel') { resetChannelAvatarSelection(); openModalFx(document.getElementById('channel-modal')); }
     DOM.createChatMenu.classList.remove('show');
     DOM.createChatMenu.style.display = 'none';

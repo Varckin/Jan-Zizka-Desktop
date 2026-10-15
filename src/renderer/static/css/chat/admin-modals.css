@@ -393,11 +393,11 @@
     padding: 9px 18px;
 }
 
-#view-chat #chat-settings-modal .avatar-upload, #view-chat #channel-settings-modal .avatar-upload, #view-chat #channel-modal .avatar-upload{
+#view-chat #chat-settings-modal .avatar-upload, #view-chat #channel-settings-modal .avatar-upload, #view-chat #channel-modal .avatar-upload, #view-chat #group-modal .avatar-upload{
     gap: 14px;
 }
 
-#view-chat #chat-settings-modal .avatar-upload .avatar-preview, #view-chat #channel-settings-modal .avatar-upload .avatar-preview, #view-chat #channel-modal .avatar-upload .avatar-preview{
+#view-chat #chat-settings-modal .avatar-upload .avatar-preview, #view-chat #channel-settings-modal .avatar-upload .avatar-preview, #view-chat #channel-modal .avatar-upload .avatar-preview, #view-chat #group-modal .avatar-upload .avatar-preview{
     width: 76px;
     height: 76px;
     max-width: 76px;
@@ -412,12 +412,12 @@
     animation: amPopIn 0.5s var(--chat-ease-spring) both;
 }
 
-#view-chat #chat-settings-modal .avatar-upload .avatar-preview:hover, #view-chat #channel-settings-modal .avatar-upload .avatar-preview:hover, #view-chat #channel-modal .avatar-upload .avatar-preview:hover{
+#view-chat #chat-settings-modal .avatar-upload .avatar-preview:hover, #view-chat #channel-settings-modal .avatar-upload .avatar-preview:hover, #view-chat #channel-modal .avatar-upload .avatar-preview:hover, #view-chat #group-modal .avatar-upload .avatar-preview:hover{
     transform: scale(1.08) rotate(3deg);
     box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 0 4px rgba(74, 111, 165, 0.25);
 }
 
-#view-chat #chat-settings-modal .avatar-upload .btn-secondary, #view-chat #channel-settings-modal .avatar-upload .btn-secondary, #view-chat #channel-modal .avatar-upload .btn-secondary{
+#view-chat #chat-settings-modal .avatar-upload .btn-secondary, #view-chat #channel-settings-modal .avatar-upload .btn-secondary, #view-chat #channel-modal .avatar-upload .btn-secondary, #view-chat #group-modal .avatar-upload .btn-secondary{
     border-radius: 12px;
     padding: 9px 18px;
 }
