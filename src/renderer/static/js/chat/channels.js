@@ -14,23 +14,44 @@ import { openUserProfileModal, openChatCrop } from './modals.js';
 
 let channelSettingsId = null;
 let channelAvatarCropped = null;
+let channelAvatarPreviewUrl = null;
+
+function setChannelAvatarPreview(file) {
+    if (channelAvatarPreviewUrl) {
+        URL.revokeObjectURL(channelAvatarPreviewUrl);
+        channelAvatarPreviewUrl = null;
+    }
+    const preview = document.getElementById('channel-avatar-preview');
+    if (!preview) return;
+    if (file) {
+        channelAvatarPreviewUrl = URL.createObjectURL(file);
+        preview.src = channelAvatarPreviewUrl;
+        preview.classList.remove('is-hidden');
+    } else {
+        preview.src = 'data:,';
+        preview.classList.add('is-hidden');
+    }
+}
 
 export function resetChannelAvatarSelection() {
     channelAvatarCropped = null;
     const input = document.getElementById('channel-avatar-file');
     if (input) input.value = '';
+    setChannelAvatarPreview(null);
 }
 
 export async function handleChannelAvatarSelect(e) {
     const file = e.target.files[0];
-    if (!file) { channelAvatarCropped = null; return; }
+    if (!file) { channelAvatarCropped = null; setChannelAvatarPreview(null); return; }
     try {
         channelAvatarCropped = await openChatCrop(file);
+        setChannelAvatarPreview(channelAvatarCropped);
         showNotification(i18n.avatar_selected_click_create || 'Avatar selected. Click "Create" to finish.');
     } catch (err) {
         if (err.message !== 'Cancelled') showNotification((i18n.crop_failed || 'Failed to crop avatar') + ': ' + err.message);
         e.target.value = '';
         channelAvatarCropped = null;
+        setChannelAvatarPreview(null);
     }
 }
 
@@ -446,6 +467,7 @@ export async function handleChannelFormSubmit(e) {
         }
         closeModalFx(document.getElementById('channel-modal'));
         document.getElementById('channel-form').reset();
+        setChannelAvatarPreview(null);
         await loadChats(false);
         setTimeout(() => {
             const item = document.querySelector(`.chat-item[data-chat-id="${data.channel_id}"]`);
