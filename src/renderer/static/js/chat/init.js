@@ -7,7 +7,7 @@ import { sendMessage, handleInputKeydown, handleTyping, cancelReplyHandler, hand
 import { initChatAvatarCrop, initGroupMembersInput, handleGroupSubmit, openSettingsModal, openSearchModal, closeSearchModal, clearMsgSearch, handleMsgSearch, handleMsgSearchKeydown, handleChatSettingsSubmit, handleAvatarUpload, handleDeleteChat, openInfoModal, openUserProfileModal, bindSettingsModalEvents, bindInviteLinksEvents } from './modals.js';
 import { bindInviteJoinEvents, handleInviteParam } from './inviteJoin.js';
 import { bindUserSearchEvents } from './userSearchModal.js';
-import { bindChannelEvents } from './channels.js';
+import { bindChannelEvents, resetChannelAvatarSelection } from './channels.js';
 import { openDiscoverModal, closeDiscoverModal, bindDiscoverEvents } from './discoverModal.js';
 import { openModalFx, closeModalFx } from './modalFx.js';
 import { initDragAndDrop } from './handlers/dragdrop.js';
@@ -193,7 +193,7 @@ function handleCreateChatMenuClick(e) {
     const action = target.dataset.action;
     if (action === 'discover') openDiscoverModal();
     else if (action === 'group') openModalFx(DOM.groupModal);
-    else if (action === 'channel') openModalFx(document.getElementById('channel-modal'));
+    else if (action === 'channel') { resetChannelAvatarSelection(); openModalFx(document.getElementById('channel-modal')); }
     DOM.createChatMenu.classList.remove('show');
     DOM.createChatMenu.style.display = 'none';
     STATE.openDropdown = null;

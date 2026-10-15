@@ -16,6 +16,10 @@
         <small class="hint">{{ t('channel_username_hint') }}</small>
       </div>
       <div class="form-group">
+        <label>{{ t('avatar') }} <small>({{ t('optional') }})</small></label>
+        <input type="file" id="channel-avatar-file" accept="image/jpeg,image/png,image/gif,image/webp">
+      </div>
+      <div class="form-group">
         <label>{{ t('description') }}</label>
         <textarea id="channel-description" rows="3" placeholder="{{ t('channel_description_placeholder') }}"></textarea>
       </div>
@@ -68,6 +72,14 @@
         <div class="form-group">
           <label>{{ t('channel_name') }}</label>
           <input type="text" id="ch-settings-name">
+        </div>
+        <div class="form-group" id="ch-settings-avatar-group">
+          <label>{{ t('avatar') }}</label>
+          <div class="avatar-upload">
+            <img id="ch-settings-avatar-preview" src="data:," alt="Avatar" class="avatar-preview is-hidden">
+            <label for="ch-avatar-input" class="btn-secondary">{{ t('upload') }}</label>
+            <input type="file" id="ch-avatar-input" accept="image/*" hidden>
+          </div>
         </div>
         <div class="form-group">
           <label>{{ t('channel_username') }}</label>

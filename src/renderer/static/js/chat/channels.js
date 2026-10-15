@@ -10,9 +10,48 @@ import { closeWs } from './websocket.js';
 import { updateChatUI, updateChatOnlineStatus } from './ui/onlineStatus.js';
 import { openModalFx, closeModalFx } from './modalFx.js';
 import { mountChatMediaBrowser } from './chatMedia.js';
-import { openUserProfileModal } from './modals.js';
+import { openUserProfileModal, openChatCrop } from './modals.js';
 
 let channelSettingsId = null;
+let channelAvatarCropped = null;
+
+export function resetChannelAvatarSelection() {
+    channelAvatarCropped = null;
+    const input = document.getElementById('channel-avatar-file');
+    if (input) input.value = '';
+}
+
+export async function handleChannelAvatarSelect(e) {
+    const file = e.target.files[0];
+    if (!file) { channelAvatarCropped = null; return; }
+    try {
+        channelAvatarCropped = await openChatCrop(file);
+        showNotification(i18n.avatar_selected_click_create || 'Avatar selected. Click "Create" to finish.');
+    } catch (err) {
+        if (err.message !== 'Cancelled') showNotification((i18n.crop_failed || 'Failed to crop avatar') + ': ' + err.message);
+        e.target.value = '';
+        channelAvatarCropped = null;
+    }
+}
+
+export async function handleChannelSettingsAvatarUpload(e) {
+    const file = e.target.files[0];
+    if (!file || !channelSettingsId) return;
+    try {
+        const cropped = await openChatCrop(file);
+        const data = await API.uploadChannelAvatar(channelSettingsId, cropped);
+        const preview = document.getElementById('ch-settings-avatar-preview');
+        if (data && data.avatar && preview) {
+            preview.src = data.avatar + '?v=' + Date.now();
+            preview.classList.remove('is-hidden');
+        }
+        showNotification(i18n.avatar_updated || 'Avatar updated');
+        loadChats(false);
+    } catch (err) {
+        if (err.message !== 'Cancelled') showNotification((i18n.avatar_upload_failed || 'Failed to upload avatar') + ': ' + err.message);
+    }
+    e.target.value = '';
+}
 
 export async function openChannelInfo(channelId) {
     const modal = document.getElementById('channel-info-modal');
@@ -216,6 +255,13 @@ export async function openChannelSettings(channelId) {
         usernameInput.disabled = !perms.change_username;
         usernameInput.title = perms.change_username ? '' : (i18n.channel_username_owner_only || 'Only the owner can change the public link');
         document.getElementById('ch-settings-description').value = ch.description || '';
+        const avatarGroup = document.getElementById('ch-settings-avatar-group');
+        if (avatarGroup) avatarGroup.classList.toggle('is-hidden', !perms.upload_avatar);
+        const avatarPreview = document.getElementById('ch-settings-avatar-preview');
+        if (avatarPreview) {
+            avatarPreview.src = ch.avatar ? ch.avatar + '?v=' + Date.now() : 'data:,';
+            avatarPreview.classList.toggle('is-hidden', !ch.avatar);
+        }
         const deleteBtn = document.getElementById('delete-channel-btn');
         deleteBtn.classList.toggle('is-hidden', !perms.delete_chat);
         const adminsTab = modal.querySelector('.settings-tab[data-tab="ch-admins"]');
@@ -386,7 +432,18 @@ export async function handleChannelFormSubmit(e) {
     if (!name) { showNotification(i18n.channel_name_required || 'Channel name is required'); return; }
     try {
         const data = await API.createChannel({ name, username: username || null, description: description || null });
-        showNotification(i18n.channel_created || 'Channel created!');
+        const avatarFile = channelAvatarCropped;
+        channelAvatarCropped = null;
+        if (avatarFile) {
+            try {
+                await API.uploadChannelAvatar(data.channel_id, avatarFile);
+                showNotification(i18n.channel_created_with_avatar || 'Channel created with avatar.');
+            } catch (avatarErr) {
+                showNotification((i18n.channel_created_avatar_failed || 'Channel created, but avatar upload failed') + ': ' + avatarErr.message);
+            }
+        } else {
+            showNotification(i18n.channel_created || 'Channel created!');
+        }
         closeModalFx(document.getElementById('channel-modal'));
         document.getElementById('channel-form').reset();
         await loadChats(false);
@@ -495,6 +552,10 @@ export function bindChannelEvents() {
     });
     const channelForm = document.getElementById('channel-form');
     if (channelForm) channelForm.addEventListener('submit', handleChannelFormSubmit);
+    const channelAvatarFile = document.getElementById('channel-avatar-file');
+    if (channelAvatarFile) channelAvatarFile.addEventListener('change', handleChannelAvatarSelect);
+    const chAvatarInput = document.getElementById('ch-avatar-input');
+    if (chAvatarInput) chAvatarInput.addEventListener('change', handleChannelSettingsAvatarUpload);
     document.querySelectorAll('[data-modal-close]').forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = document.getElementById(btn.dataset.modalClose);
